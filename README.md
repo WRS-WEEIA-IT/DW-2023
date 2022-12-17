@@ -1,4 +1,4 @@
-# Dzień wydziału EEIA 20223
+# Dzień wydziału EEIA 2023
 
 ## O stronie
 
