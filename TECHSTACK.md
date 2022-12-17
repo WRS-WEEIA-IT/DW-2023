@@ -131,6 +131,79 @@ Podstawowym narzędziem Reacta są tzw. hooki. Nie są one w żadnym stopniu sko
 Odsyłam do docsów Reacta, tam jest to spoko wytłumaczone:
 [HOOKI](https://reactjs.org/docs/hooks-reference.html), oraz do bardzo fajnego youtubera który też super tłumaczy (nie tylko hooki ale wiele rzeczy powiązanych z Reactem i webdevem): [React hooks explained playlist](https://www.youtube.com/watch?v=O6P86uwfdR0&list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h).
 
+# <img src="public/sass.png" className="logo" style="width:35px" alt="Vite logo" /> SCSS
+
+SCSS jest tylko (i aż) udoskonaleniem języka CSS. Wprowadza on kilka przydatnych mechanik by ciut przyjemniej się nam pisało style, między innymi:
+
+- nesting
+- możliwość pisania funkcji
+- wygodne zmienne
+- tworzenie reużywalnych fragmentów stylów
+
+O co chodzi z tym nestingiem? W skrócie, w CSS jeśli mamy np taką sytuację:
+
+```html
+<div className="container">
+  <button onClick="{handleClick}" />
+</div>
+```
+
+W CSS jeśli chcielibyśmy dotrzeć do tego buttona skorzystalibyśmy z czegoś takiego:
+
+```css
+.container > button {
+  padding: 10px;
+}
+```
+
+W SCSS jest to ciut łatwiejsze, wykorzystujemy tzw. nesting:
+
+```scss
+.container {
+  button {
+    padding: 10px;
+  }
+}
+```
+
+Wydaje sie to w tym przypadku dosyć... mało użyteczne? Był to dosyć mały przykład, z każdym kolejnym dołożeniem kodu rozmiar plików CSS skaluje się potężnie, w SCSS jest to mniej zauważalne:
+
+```css
+.container {
+  width: 100px;
+  height: 100px;
+}
+.container:hover {
+  background-color: red;
+}
+.container > button {
+  padding: 10px;
+}
+.container > button:hover {
+  padding: 20px;
+}
+```
+
+A:
+
+```scss
+.container {
+  width: 100px;
+  height: 100px;
+  &:hover {
+    background-color: red;
+  }
+  button {
+    padding: 10px;
+    &:hover {
+      padding: 20px;
+    }
+  }
+}
+```
+
+Gdzie `&` oznacza, że odnosimy się do tego elementu, w którym to postawimy.
+
 # <img src="public/vite.svg" className="logo" style="width:35px" alt="Vite logo" /> Vite (czytaj wit, bo z francuskiego)
 
 Vite jest czymś co pojawiło się bardzo niedawno na rynku. Jest to build tool od twórcy Vue (innego frameworka js). W skrócie **znacznie** przyspiesza nam on odpalanie strony i jest również bardzo wygodnym narzędziem do zbudowania boilerplate'u aplikacji. W skrócie - jeśli nic się nie zmieni, `create-react-app` odejdzie do lamusa.
