@@ -6,6 +6,6 @@ Coś tam o stronie ....
 
 ## Tech stack
 
-- ReactJS
+- React + Typescript
 - Vite
 - SCSS
