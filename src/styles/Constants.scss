@@ -1,0 +1,111 @@
+//body settings
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: 'Montserrat', sans-serif;
+}
+
+//global constants
+
+$screen-size-mobile: 500px;
+$screen-size-tablet: 1000px;
+$hover-transition-time: 0.2s;
+
+//colors
+
+$primary-color: hsl(202, 87%, 55%);
+$primary-color-15: hsl(202, 87%, 15%);
+$primary-color-25: hsl(202, 87%, 25%);
+$primary-color-35: hsl(202, 87%, 35%);
+$primary-color-45: hsl(202, 87%, 45%);
+$primary-color-65: hsl(202, 87%, 65%);
+$primary-color-75: hsl(202, 87%, 75%);
+$primary-color-85: hsl(202, 87%, 85%);
+
+$neutral-color-05: hsl(0, 0%, 5%);
+$neutral-color-15: hsl(0, 0%, 15%);
+$neutral-color-25: hsl(0, 0%, 25%);
+$neutral-color-35: hsl(0, 0%, 35%);
+$neutral-color-45: hsl(0, 0%, 45%);
+$neutral-color-55: hsl(0, 0%, 55%);
+$neutral-color-65: hsl(0, 0%, 65%);
+$neutral-color-75: hsl(0, 0%, 75%);
+$neutral-color-85: hsl(0, 0%, 85%);
+$neutral-color-95: hsl(0, 0%, 95%);
+
+//fonts
+
+:root {
+  --h1-font-size: 3rem;
+  --h2-font-size: 2.5rem;
+  --h3-font-size: 2rem;
+  --h4-font-size: 1.5rem;
+  --h5-font-size: 1.2rem;
+  --h6-font-size: 1rem;
+  --p-font-size: 1.2rem;
+  --span-font-size: 1rem;
+  --button-font-size: 1.2rem;
+}
+
+h1 {
+  font-size: var(--h1-font-size);
+}
+h2 {
+  font-size: var(--h2-font-size);
+}
+h3 {
+  font-size: var(--h3-font-size);
+}
+h4 {
+  font-size: var(--h4-font-size);
+}
+h5 {
+  font-size: var(--h5-font-size);
+}
+h6 {
+  font-size: var(--h6-font-size);
+}
+p {
+  font-size: var(--p-font-size);
+}
+span {
+  font-size: var(--span-font-size);
+}
+button {
+  font-size: var(--button-font-size);
+}
+
+@media screen and (max-width: $screen-size-tablet) {
+  :root {
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 2.2rem;
+    --h3-font-size: 1.7rem;
+    --h4-font-size: 1.3rem;
+    --h5-font-size: 1rem;
+    --h6-font-size: 0.8rem;
+    --p-font-size: 1rem;
+    --span-font-size: 0.8rem;
+    --button-font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: $screen-size-mobile) {
+  :root {
+    --h1-font-size: 2.2rem;
+    --h2-font-size: 1.8rem;
+    --h3-font-size: 1.4rem;
+    --h4-font-size: 1rem;
+    --h5-font-size: 0.8rem;
+    --h6-font-size: 0.6rem;
+    --p-font-size: 0.8rem;
+    --span-font-size: 0.6rem;
+    --button-font-size: 0.8rem;
+  }
+}
+
+// shared classes
