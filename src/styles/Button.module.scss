@@ -1,8 +1,14 @@
+@import './Constants.scss';
+
 .background {
   background-color: black;
 }
 
 .button {
+  background: none;
+	border: none;
+	padding: 0;
+	outline: inherit;
   display: inline-block;
   margin: 1rem 1rem;
   box-sizing: border-box;
@@ -11,38 +17,39 @@
   font-weight: 700;
   
   &.filled {
-    background-color: rgb(35, 166, 240);
-    transition: 0.2s;
+    background-color: $primary-color;
+    transition: $hover-transition-time;
     height: 3.25rem;
     padding: 0.1rem;
-    color: white;
+    color: $neutral-color-95;
 
     &:hover {
-      background-color: hsl(202, 87%, 75%);
-      transition: 0.2s;
+      background-color: $primary-color-75;
+      transition: $hover-transition-time;
     }
 
     &:active{
-      background-color: hsl(202, 87%, 50%);
+      background-color: $primary-color-45;
     }
   }
 
   &.outlined {
-    background-color: #ffffff00;
-    transition: 0.2s;
+    background-color: hsla(0, 0%, 100%, 0);
+    transition: $hover-transition-time;
     height: 3.25rem;
-    border: 0.1rem solid white;
-    color: white;
+    border: 0.1rem solid $neutral-color-95;
+    color: $neutral-color-95;
 
     &:hover {
-      background-color: white;
-      color: black;
-      transition: 0.2s;
+      background-color: $neutral-color-95;
+      color: $neutral-color-05;
+      transition: $hover-transition-time;
     }
 
     &:active{
-      background-color: hsl(0, 0%, 80%);
-      border-color: hsl(0, 0%, 80%);
+      background-color: $neutral-color-85;
+      border-color: $neutral-color-85;
+      transition: $hover-transition-time;
     }
   }
 
