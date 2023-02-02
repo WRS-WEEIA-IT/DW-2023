@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import HomePage from './components/HomePage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './index.scss';
 import { HOME_PATH } from './constants/RouterConstants';
 
 const router = createBrowserRouter([
   {
     path: HOME_PATH,
-    element: <App />,
+    element: <HomePage />,
   },
 ]);
 
