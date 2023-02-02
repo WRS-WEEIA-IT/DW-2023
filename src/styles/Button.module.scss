@@ -1,10 +1,47 @@
-.button-filled {
-  & .square {
-  }
-
-  & .round {
-  }
+.background {
+  background-color: black;
 }
 
-.button-outlined {
+.button {
+  border: 0;
+  display: inline;
+  margin: 1rem 1rem;
+  &.filled{
+    background-color: #23A6F0;
+    width: 9.5rem;
+    height: 3.25rem;
+    transition: 0.2s;
+
+    &:hover{
+      background-color:  hsl(202, 87%, 64%);
+      transition: 0.2s;
+    }
+  }
+
+
+  &.outlined{
+    background-color: #ffffff00;
+    width: 9.5rem;
+    height: 3.25rem;
+    border: 0.1rem solid white;
+    transition: 0.2s;
+    color: white;
+
+    &:hover{
+      background-color:  white;
+      color: black;
+      transition: 0.2s;
+    }
+  }
+
+  &.square {
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border-radius: 0.5rem
+  }
+
+  &.round {
+    border-radius: 2.3rem;
+    padding: 1rem 2.25rem 1rem 2.25rem;
+    gap: 1rem;
+  }
 }
