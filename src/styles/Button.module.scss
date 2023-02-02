@@ -6,24 +6,30 @@
   display: inline-block;
   margin: 1rem 1rem;
   box-sizing: border-box;
-
+  cursor: pointer;
+  width: fit-content;
+  font-weight: 700;
+  
   &.filled {
-    background-color: #23a6f0;
+    background-color: rgb(35, 166, 240);
     transition: 0.2s;
-    width: 9.5rem;
     height: 3.25rem;
     padding: 0.1rem;
+    color: white;
 
     &:hover {
       background-color: hsl(202, 87%, 75%);
       transition: 0.2s;
+    }
+
+    &:active{
+      background-color: hsl(202, 87%, 50%);
     }
   }
 
   &.outlined {
     background-color: #ffffff00;
     transition: 0.2s;
-    width: 9.5rem;
     height: 3.25rem;
     border: 0.1rem solid white;
     color: white;
@@ -32,6 +38,11 @@
       background-color: white;
       color: black;
       transition: 0.2s;
+    }
+
+    &:active{
+      background-color: hsl(0, 0%, 80%);
+      border-color: hsl(0, 0%, 80%);
     }
   }
 
