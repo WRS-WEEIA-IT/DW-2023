@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import HomePage from './components/HomePage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HOME_PATH } from './constants/RouterConstants';
+import './styles/Constants.scss'
 
 const router = createBrowserRouter([
   {
