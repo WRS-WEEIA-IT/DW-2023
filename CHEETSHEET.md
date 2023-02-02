@@ -28,6 +28,12 @@ Anuluj wszystkie zmiany do ostatniego commita:
 git stash
 ```
 
+Usuń wszystkie untracked pliki:
+
+```
+git clean -f -d
+```
+
 Pushnij lokalne commity do GitHuba:
 
 ```
