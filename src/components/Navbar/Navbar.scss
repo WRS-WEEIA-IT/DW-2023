@@ -1,0 +1,118 @@
+@import '../../styles/Constants.scss';
+
+$navbar-height: 90px;
+$button-gap: 20px;
+$menu-open-transition-duration: 0.8s;
+$menu-bottom-padding: 30px;
+
+@mixin flex-center($flex-direction: row) {
+  display: flex;
+  flex-direction: $flex-direction;
+  align-items: center;
+  justify-content: center;
+}
+
+#navbar-container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  color: $neutral-color-95;
+
+  #navbar-content {
+    margin: 0 var(--screen-side-margin);
+    font-weight: 700;
+    @include flex-center;
+    gap: 5%;
+
+    #mobile-header-container {
+      min-height: $navbar-height;
+      @include flex-center;
+
+      #dw-logo {
+        display: inline-block;
+        margin: 0;
+      }
+
+      #burger-container {
+        display: none;
+      }
+    }
+
+    #navbar-links-container {
+      display: flex;
+      flex-direction: row;
+      gap: $button-gap;
+
+      .navbar-link {
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+
+    #navbar-buttons-container {
+      @include flex-center;
+      gap: $button-gap;
+      margin-left: auto;
+
+      #navbar-signup-button {
+        @include flex-center;
+        gap: 10px;
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-size-tablet) {
+  #navbar-container {
+    background-color: $neutral-color-05 !important;
+
+    #navbar-content {
+      flex-direction: column;
+      position: relative;
+
+      #navbar-links-container {
+        @include flex-center(column);
+        position: absolute;
+        visibility: hidden;
+        z-index: -1;
+        width: 100vw;
+        background-color: $neutral-color-05;
+        top: $navbar-height;
+        padding-bottom: $menu-bottom-padding;
+        transform: translateY(-100%);
+        transition: transform $menu-open-transition-duration,
+          visibility $menu-open-transition-duration;
+        .navbar-link {
+          font-size: var(--h4-font-size);
+          text-align: center;
+        }
+      }
+
+      #navbar-links-container.menu-open {
+        visibility: visible;
+        transform: translateY(0%);
+        transition: transform $menu-open-transition-duration;
+      }
+
+      #navbar-buttons-container {
+        display: none;
+      }
+
+      #mobile-header-container {
+        width: 100%;
+        background-color: $neutral-color-05;
+
+        #burger-container {
+          @include flex-center;
+          margin-left: auto;
+          height: 100%;
+
+          #burger-icon {
+            height: calc(var(--button-font-size) * 2.2);
+          }
+        }
+      }
+    }
+  }
+}
