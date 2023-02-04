@@ -9,7 +9,7 @@
 
 $hover-transition-time: 0.2s;
 $click-transition-time: 0.01s;
-$button-height: 3.25rem;
+$border-radius: 3rem;
 
 .background {
   background-color: black;
@@ -66,7 +66,7 @@ $button-height: 3.25rem;
   }
 
   &.round {
-    border-radius: calc(#{$button-height} / 2);
+    border-radius: $border-radius;
     padding: 1rem 2.25rem;
   }
 }
