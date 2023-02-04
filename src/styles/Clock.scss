@@ -1,0 +1,27 @@
+@import './Constants.scss';
+
+.counter-container {
+  color: $neutral-color-05;
+  background-color: hsla(0, 0%, 100%, 0);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 700;
+
+  .date-label {
+    margin-bottom: 0;
+  }
+
+  .date-counter {
+    margin-top: 0.7rem;
+    margin-bottom: 0;
+    font-size: 5rem;
+    padding-bottom: 0;
+  }
+
+  .counter-label {
+    margin-top: 0;
+    font-weight: 500;
+  }
+}
