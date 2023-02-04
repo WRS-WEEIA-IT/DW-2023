@@ -1,42 +1,49 @@
 @import './Constants.scss';
 
+@mixin disableDefaultButtonStyles {
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+$hover-transition-time: 0.2s;
+$click-transition-time: 0.01s;
+$button-height: 3.25rem;
+
 .background {
   background-color: black;
 }
 
 .button {
-  background: none;
-	border: none;
-	padding: 0;
-	outline: inherit;
-  display: inline-block;
-  margin: 1rem 1rem;
-  box-sizing: border-box;
+  @include disableDefaultButtonStyles;
   cursor: pointer;
-  width: fit-content;
+  background: none;
+  margin: 1rem;
   font-weight: 700;
-  
+
   &.filled {
     background-color: $primary-color;
     transition: $hover-transition-time;
-    height: 3.25rem;
-    padding: 0.1rem;
+    border: 0.1rem solid $primary-color;
     color: $neutral-color-95;
 
     &:hover {
       background-color: $primary-color-75;
+      border-color: $primary-color-75;
       transition: $hover-transition-time;
     }
 
-    &:active{
+    &:active {
       background-color: $primary-color-45;
+      border-color: $primary-color-45;
+      transition: $click-transition-time;
     }
   }
 
   &.outlined {
     background-color: hsla(0, 0%, 100%, 0);
     transition: $hover-transition-time;
-    height: 3.25rem;
     border: 0.1rem solid $neutral-color-95;
     color: $neutral-color-95;
 
@@ -46,20 +53,20 @@
       transition: $hover-transition-time;
     }
 
-    &:active{
-      background-color: $neutral-color-85;
-      border-color: $neutral-color-85;
-      transition: $hover-transition-time;
+    &:active {
+      background-color: $neutral-color-65;
+      border-color: $neutral-color-65;
+      transition: $click-transition-time;
     }
   }
 
   &.square {
     border-radius: 0.5rem;
-    padding: 1rem 1.5rem 1rem 1.5rem;
+    padding: 1rem 1.5rem;
   }
 
   &.round {
-    border-radius: 2.3rem;
-    padding: 1rem 2.25rem 1rem 2.25rem;
+    border-radius: calc(#{$button-height} / 2);
+    padding: 1rem 2.25rem;
   }
 }
