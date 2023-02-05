@@ -1,0 +1,28 @@
+@import './Constants.scss';
+
+.background {
+    position:relative;
+    width: 331px;
+    height: 452px;
+    background-color: grey;
+    background-blend-mode: multiply;
+}
+
+.content {
+    position:absolute;
+    top:61%;
+    color:$neutral-color-95;
+    margin-left:20px;
+    width:50%;
+}
+
+h4{
+    margin-block-start: 0em;
+    margin-block-end: 15px;
+}
+
+h6{
+    margin-block-start: 0em;
+    margin-block-end: 15px;
+}
+
