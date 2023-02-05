@@ -1,4 +1,5 @@
 import Button from '../styles/Button.module.scss';
+import Workshop from '../components/Workshop.tsx';
 
 const HomePage = () => {
   return (
@@ -9,6 +10,11 @@ const HomePage = () => {
         <button className={`${Button.button} ${Button.round} ${Button.outlined}`}>
           Dowiedz się więcej
         </button>
+      </div> 
+      {/* Trzeba dać jakiś imageSrc, żeby działało */}
+      <Workshop workshopOrTraining title="Workshop Title" />
+      <div>
+
       </div>
     </>
   );
