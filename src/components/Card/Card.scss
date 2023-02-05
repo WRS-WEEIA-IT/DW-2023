@@ -1,0 +1,35 @@
+@import '../../styles/Constants.scss';
+
+#workshop-container {
+    width: 22%;
+    height: auto;
+    background-size: cover;
+    min-width: 200px;
+    max-height: 500px;
+    background-color:$neutral-color-55;
+    background-repeat:no-repeat;
+    background-blend-mode: multiply;
+
+    #workshop-content {
+        padding-top:61%;
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-end;
+        margin-left:20px;
+        width:51%;
+        color:$neutral-color-95;
+
+
+    #workshop-title{
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+     }
+
+     #workshop-eventType{
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+     }
+    }
+}
+
+
