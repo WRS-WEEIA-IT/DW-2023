@@ -1,5 +1,5 @@
 import Button from '../styles/Button.module.scss';
-import Workshop from '../components/Workshop.tsx';
+import Workshop from './Workshop/Workshop.tsx';
 
 const HomePage = () => {
   return (
@@ -13,9 +13,6 @@ const HomePage = () => {
       </div> 
       {/* Trzeba dać jakiś imageSrc, żeby działało */}
       <Workshop workshopOrTraining title="Workshop Title" />
-      <div>
-
-      </div>
     </>
   );
 };
