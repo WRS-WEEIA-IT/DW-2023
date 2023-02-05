@@ -1,6 +1,6 @@
-@import './Constants.scss';
+@import '../../styles/Constants.scss';
 
-.background {
+#workshop-background {
     position:relative;
     width: 331px;
     height: 452px;
@@ -8,7 +8,7 @@
     background-blend-mode: multiply;
 }
 
-.content {
+#workshop-content {
     position:absolute;
     top:61%;
     color:$neutral-color-95;
@@ -16,12 +16,12 @@
     width:50%;
 }
 
-h4{
+#workshop-h4{
     margin-block-start: 0em;
     margin-block-end: 15px;
 }
 
-h6{
+#workshop-h6{
     margin-block-start: 0em;
     margin-block-end: 15px;
 }
