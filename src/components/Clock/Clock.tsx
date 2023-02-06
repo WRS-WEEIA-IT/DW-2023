@@ -1,10 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import '../../styles/Clock.scss';
+import { LanguageModeContext } from '../../contexts/LanguageContext';
 
 const Clock = () => {
   const ONE_MINUTE = 60000;
-  const DW_FINAL_DATE = '2023-03-31';
+  const DW_FINAL_DATE = '2023-02-06';
   const ONE_HOUR = 3600000;
   const ONE_DAY = 86400000;
   const finalDate = new Date(DW_FINAL_DATE);
@@ -24,6 +25,7 @@ const Clock = () => {
   };
 
   const [DaysLeft, setDaysLeft] = useState(countDaysLeft());
+  const language = useContext(LanguageModeContext);
 
   setInterval(() => {
     setDaysLeft(countDaysLeft());
@@ -34,24 +36,24 @@ const Clock = () => {
     if (isCounterValid > 0) {
       return (
         <>
-          <p className="date-label">31 MARCA 2023</p>
+          <p className="date-label">{language == 'polish' ? '31 MARCA 2023' : '31 MARCH 2023'}</p>
           <h1 className="date-counter">{DaysLeft}</h1>
-          <p className="counter-label">DNI DO WYDARZENIA</p>
+          <p className="counter-label">{language == 'polish' ? 'DNI DO WYDARZENIA' : 'DAYS TO EVENT'}</p>
         </>
       );
     } else if (isCounterValid === 0) {
       return (
         <>
-          <h3 className="date-counter-actual">Wydarzenie</h3>
-          <h2 className="counter-label-actual">Trwa</h2>
+          <h3 className="date-counter-actual">{language == 'polish' ? 'Wydarzenie' : 'The event'}</h3>
+          <h2 className="counter-label-actual">{language == 'polish' ? 'Trwa' : 'Has begun'}</h2>
         </>
       );
     } else {
       return (
         <>
-          <p className="date-label">Wydarzenie odbyło się</p>
+          <p className="date-label">{language == 'polish' ? 'Wydarzenie odbyło się' : 'The event was'}</p>
           <h1 className="date-counter">{-DaysLeft}</h1>
-          <p className="counter-label">DNI TEMU</p>
+          <p className="counter-label">{language == 'polish' ? 'DNI TEMU' : 'DAYS AGO'}</p>
         </>
       );
     }
