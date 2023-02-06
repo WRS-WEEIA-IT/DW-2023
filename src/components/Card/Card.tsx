@@ -9,20 +9,25 @@ interface CardProps {
   title: string;
 }
 
-const Card = ({imageSrc, eventType, title} : CardProps) => {
+const Card = ({ imageSrc, eventType, title }: CardProps) => {
   const language = useContext(LanguageModeContext);
+  const eventTypeText =
+    eventType === 'training'
+      ? language === 'polish'
+        ? 'Szkolenie'
+        : 'Training'
+      : language === 'polish'
+      ? 'Warsztat'
+      : 'Workshop';
   return (
-    <div id="workshop-container" style={{ backgroundImage: `url(${imageSrc})` }}>
-      <div id="workshop-content">
-        {language === 'polish' ? <h6 id="workshop-eventType">{eventType === 'training' ? 'Szkolenie' : 'Warsztat'}</h6>:
-        <h6 id="workshop-eventType">{eventType === 'training' ? 'Training' : 'Workshop'}</h6>}
-        <h4 id="workshop-title">{title}</h4>
-        <button
-          className={`${Button.button} ${Button.round} ${Button.filled}`}
-          style={{ marginLeft: '0', marginTop: '0' }}>
-          {language === 'polish' ? 'Zapisz Się' : 'Sign Up'} 
-          </button>
-      </div>
+    <div id="card-container" style={{ backgroundImage: `url(${imageSrc})` }}>
+      <h6 id="card-eventType">{eventTypeText}</h6>
+      <h4 id="card-title">{title}</h4>
+      <button
+        className={`${Button.button} ${Button.round} ${Button.filled}`}
+        style={{ marginLeft: '0', marginTop: '0' }}>
+        {language === 'polish' ? 'Zapisz Się' : 'Sign Up'}
+      </button>
     </div>
   );
 };
