@@ -1,35 +1,35 @@
 @import '../../styles/Constants.scss';
-
-#workshop-container {
-    width: 22%;
-    height: auto;
-    background-size: cover;
-    min-width: 200px;
-    max-height: 500px;
-    background-color:$neutral-color-55;
-    background-repeat:no-repeat;
-    background-blend-mode: multiply;
-
-    #workshop-content {
-        padding-top:61%;
-        display:flex;
-        flex-direction:column;
-        justify-content:flex-end;
-        margin-left:20px;
-        width:51%;
-        color:$neutral-color-95;
-
-
-    #workshop-title{
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-     }
-
-     #workshop-eventType{
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-     }
-    }
+#card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: 25px;
 }
+#card-container {
+  background-size: cover;
+  min-height: 300px;
+  max-height: 500px;
+  background-color: $neutral-color-55;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-content: flex-start;
+  gap: 15px;
+  color: $neutral-color-95;
+  padding-left: 20px;
 
+  #card-title {
+    max-width: 50%;
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
 
+  #card-eventType {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+}

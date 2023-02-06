@@ -1,5 +1,6 @@
 import Button from '../styles/Button.module.scss';
 import Card from './Card/Card';
+import mockImage from '../assets/workshopImage2.png';
 
 const HomePage = () => {
   return (
@@ -11,7 +12,16 @@ const HomePage = () => {
           Dowiedz się więcej
         </button>
       </div>
-      <Card imageSrc="photo.png" workshopOrTraining title="Workshop " />
+      <div id="card-grid">
+        <Card imageSrc={mockImage} eventType="workshop" title="Workshop " />
+        <Card imageSrc={mockImage} eventType="workshop" title="Workshop " />
+        <Card imageSrc={mockImage} eventType="workshop" title="Workshop " />
+        <Card
+          imageSrc={mockImage}
+          eventType="workshop"
+          title="Workshop grgegrergergerg ergergergergerg"
+        />
+      </div>
     </>
   );
 };
