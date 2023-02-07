@@ -76,7 +76,7 @@ $menu-padding: 50px;
         @include flex-center(column);
         position: absolute;
         visibility: hidden;
-        z-index: -1;
+        z-index: 1;
         width: 100vw;
         background-color: $neutral-color-07;
         top: $navbar-height;
@@ -104,6 +104,7 @@ $menu-padding: 50px;
       #mobile-header-container {
         width: 100%;
         background-color: $neutral-color-07;
+        z-index: 2;
 
         #burger-container {
           @include flex-center;
