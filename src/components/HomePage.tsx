@@ -16,11 +16,7 @@ const HomePage = () => {
         <Card imageSrc={mockImage} eventType="workshop" title="Workshop " />
         <Card imageSrc={mockImage} eventType="workshop" title="Workshop " />
         <Card imageSrc={mockImage} eventType="workshop" title="Workshop " />
-        <Card
-          imageSrc={mockImage}
-          eventType="workshop"
-          title="Workshop grgegrergergerg ergergergergerg"
-        />
+        <Card imageSrc={mockImage} eventType="workshop" title="Workshop" />
       </div>
     </>
   );

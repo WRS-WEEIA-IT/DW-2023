@@ -2,7 +2,6 @@
 #card-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  width: 100%;
   grid-auto-columns: minmax(0, 1fr);
   grid-auto-flow: column;
   gap: 25px;
@@ -23,13 +22,12 @@
   padding-left: 20px;
 
   #card-title {
-    max-width: 50%;
-    margin-block-start: 0;
-    margin-block-end: 0;
+    margin: 0;
+    font-weight: 500;
   }
 
   #card-eventType {
-    margin-block-start: 0;
-    margin-block-end: 0;
+    margin: 0;
+    font-weight: 600;
   }
 }

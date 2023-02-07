@@ -22,7 +22,7 @@ const Card = ({ imageSrc, eventType, title }: CardProps) => {
   return (
     <div id="card-container" style={{ backgroundImage: `url(${imageSrc})` }}>
       <h6 id="card-eventType">{eventTypeText}</h6>
-      <h4 id="card-title">{title}</h4>
+      <h5 id="card-title">{title}</h5>
       <button
         className={`${Button.button} ${Button.round} ${Button.filled}`}
         style={{ marginLeft: '0', marginTop: '0' }}>
