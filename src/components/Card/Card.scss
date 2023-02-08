@@ -1,12 +1,6 @@
 @import '../../styles/Constants.scss';
-#card-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
-  gap: 25px;
-}
-#card-container {
+
+.card-container {
   background-size: cover;
   min-height: 300px;
   max-height: 500px;
@@ -19,15 +13,19 @@
   align-content: flex-start;
   gap: 15px;
   color: $neutral-color-95;
-  padding-left: 20px;
+  padding: 20px;
 
-  #card-title {
+  .card-title {
     margin: 0;
     font-weight: 500;
   }
 
-  #card-eventType {
+  .card-eventType {
     margin: 0;
     font-weight: 600;
+  }
+
+  .card-signup-button {
+    width: max-content;
   }
 }

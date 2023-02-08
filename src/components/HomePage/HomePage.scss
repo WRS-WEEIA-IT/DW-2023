@@ -1,0 +1,26 @@
+@import '../../styles/Constants.scss';
+
+#homepage-content {
+  margin: 0 var(--screen-side-margin);
+
+  #card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: row;
+    gap: 20px;
+
+    .card-container:nth-child(n + 5) {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-size-tablet) {
+  #homepage-content {
+    #card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-flow: row;
+    }
+  }
+}

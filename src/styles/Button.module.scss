@@ -19,7 +19,6 @@ $border-radius: 3rem;
   @include disableDefaultButtonStyles;
   cursor: pointer;
   background: none;
-  margin: 1rem;
   font-weight: 700;
 
   &.filled {
