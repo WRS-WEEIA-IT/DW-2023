@@ -4,23 +4,26 @@ import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 
 interface CardProps {
-  imageSrc: string;
-  eventType: 'workshop' | 'training';
+  eventType: 'workshop' | 'lecture';
+  imageSource: string;
+  timeEnd: Date;
+  timeStart: Date;
   title: string;
 }
 
-const Card = ({ imageSrc, eventType, title }: CardProps) => {
+const Card = ({ imageSource, eventType, title }: CardProps) => {
   const language = useContext(LanguageModeContext);
   const eventTypeText =
-    eventType === 'training'
+    eventType === 'lecture'
       ? language === 'polish'
         ? 'Szkolenie'
-        : 'Training'
+        : 'Lecture'
       : language === 'polish'
       ? 'Warsztat'
       : 'Workshop';
+
   return (
-    <div id="card-container" style={{ backgroundImage: `url(${imageSrc})` }}>
+    <div id="card-container" style={{ backgroundImage: `url(${imageSource})` }}>
       <h6 id="card-eventType">{eventTypeText}</h6>
       <h5 id="card-title">{title}</h5>
       <button
