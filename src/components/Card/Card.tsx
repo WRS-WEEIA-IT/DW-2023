@@ -1,6 +1,6 @@
 import Button from '../../styles/Button.module.scss';
 import './Card.scss';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 
 interface CardProps {

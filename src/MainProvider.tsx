@@ -14,7 +14,7 @@ const MainProvider = () => {
     },
   ]);
 
-  const [languageMode, setLanguageMode] = useState<'polish' | 'english'>('polish');
+  const [languageMode] = useState<'polish' | 'english'>('polish');
 
   return (
     <React.StrictMode>
