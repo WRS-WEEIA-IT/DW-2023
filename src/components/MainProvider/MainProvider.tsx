@@ -1,9 +1,9 @@
 import React from 'react';
-import HomePage from './components/HomePage';
+import HomePage from '../HomePage/HomePage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HOME_PATH } from './constants/RouterConstants';
-import './styles/Constants.scss';
-import { LanguageModeContext } from './contexts/LanguageContext';
+import { HOME_PATH } from '../../constants/RouterConstants';
+import '../../styles/Constants.scss';
+import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { useState } from 'react';
 
 const MainProvider = () => {
