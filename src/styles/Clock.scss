@@ -1,5 +1,9 @@
 @import './Constants.scss';
 
+$padding-margin-between-label: 0;
+$lebel-counter-font-weight: 500;
+$counter-font-size: 5rem;
+
 .counter-container {
   color: $neutral-color-95;
   background-color: hsla(0, 0%, 100%, 0);
@@ -10,26 +14,26 @@
   font-weight: 700;
 
   .date-label {
-    margin-bottom: 0;
+    margin-bottom: $padding-margin-between-label;
   }
 
   .date-counter {
     margin-top: 0.7rem;
-    margin-bottom: 0;
-    font-size: 5rem;
-    padding-bottom: 0;
+    margin-bottom: $padding-margin-between-label;
+    font-size: $counter-font-size;
+    padding-bottom: $padding-margin-between-label;
   }
 
-  .date-counter-actual{
-    font-weight: 500;
+  .date-counter-actual {
+    font-weight: $lebel-counter-font-weight;
   }
 
   .counter-label {
-    margin-top: 0;
-    font-weight: 500;
+    margin-top: $padding-margin-between-label;
+    font-weight: $lebel-counter-font-weight;
   }
 
-  .counter-label-actual{
+  .counter-label-actual {
     margin-top: 0.2rem;
   }
 }
