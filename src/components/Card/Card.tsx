@@ -23,11 +23,11 @@ const Card = ({ imageSource, eventType, title }: CardProps) => {
       : 'Workshop';
 
   return (
-    <div id="card-container" style={{ backgroundImage: `url(${imageSource})` }}>
-      <h6 id="card-eventType">{eventTypeText}</h6>
-      <h5 id="card-title">{title}</h5>
+    <div className="card-container" style={{ backgroundImage: `url(${imageSource})` }}>
+      <h6 className="card-eventType">{eventTypeText}</h6>
+      <h5 className="card-title">{title}</h5>
       <button
-        className={`${Button.button} ${Button.round} ${Button.filled}`}
+        className={`card-signup-button ${Button.button} ${Button.round} ${Button.filled}`}
         style={{ marginLeft: '0', marginTop: '0' }}>
         {language === 'polish' ? 'Zapisz Się' : 'Sign Up'}
       </button>

@@ -59,6 +59,7 @@ $menu-padding: 50px;
         @include flex-center;
         gap: 10px;
         margin-left: auto;
+        margin-right: 0;
       }
     }
   }
