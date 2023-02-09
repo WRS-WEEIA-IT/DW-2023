@@ -5,6 +5,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection, Query } from 'firebase/firestore';
 import CardInterface from './../Card/CardInterface';
 import Card from '../Card/Card';
+import Clock from '../Clock/Clock';
 
 const HomePage = () => {
   const [events] = useCollectionData<CardInterface>(
@@ -24,6 +25,7 @@ const HomePage = () => {
           timeStart={event.timeStart}
           timeEnd={event.timeEnd}
         />
+        <Clock />
         <h1>Scroll test</h1>
         <h1>Scroll test</h1>
         <h1>Scroll test</h1>

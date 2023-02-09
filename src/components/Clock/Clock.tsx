@@ -5,7 +5,7 @@ import { LanguageModeContext } from '../../contexts/LanguageContext';
 
 const Clock = () => {
   const ONE_MINUTE = 60000;
-  const DW_FINAL_DATE = '2023-02-06';
+  const DW_FINAL_DATE = '2023-03-31';
   const ONE_HOUR = 3600000;
   const ONE_DAY = 86400000;
   const finalDate = new Date(DW_FINAL_DATE);
@@ -38,20 +38,26 @@ const Clock = () => {
         <>
           <p className="date-label">{language == 'polish' ? '31 MARCA 2023' : '31 MARCH 2023'}</p>
           <h1 className="date-counter">{DaysLeft}</h1>
-          <p className="counter-label">{language == 'polish' ? 'DNI DO WYDARZENIA' : 'DAYS TO EVENT'}</p>
+          <p className="counter-label">
+            {language == 'polish' ? 'DNI DO WYDARZENIA' : 'DAYS TO EVENT'}
+          </p>
         </>
       );
     } else if (isCounterValid === 0) {
       return (
         <>
-          <h3 className="date-counter-actual">{language == 'polish' ? 'Wydarzenie' : 'The event'}</h3>
+          <h3 className="date-counter-actual">
+            {language == 'polish' ? 'Wydarzenie' : 'The event'}
+          </h3>
           <h2 className="counter-label-actual">{language == 'polish' ? 'Trwa' : 'Has begun'}</h2>
         </>
       );
     } else {
       return (
         <>
-          <p className="date-label">{language == 'polish' ? 'Wydarzenie odbyło się' : 'The event was'}</p>
+          <p className="date-label">
+            {language == 'polish' ? 'Wydarzenie odbyło się' : 'The event was'}
+          </p>
           <h1 className="date-counter">{-DaysLeft}</h1>
           <p className="counter-label">{language == 'polish' ? 'DNI TEMU' : 'DAYS AGO'}</p>
         </>
