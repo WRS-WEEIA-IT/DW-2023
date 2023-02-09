@@ -2,7 +2,7 @@
 
 $padding-margin-between-label: 0;
 $lebel-counter-font-weight: 500;
-$counter-font-size: 5rem;
+$counter-font-size: 15rem;
 
 .counter-container {
   color: $neutral-color-95;
@@ -15,6 +15,7 @@ $counter-font-size: 5rem;
 
   .date-label {
     margin-bottom: $padding-margin-between-label;
+    font-size: 3rem;
   }
 
   .date-counter {
@@ -24,16 +25,19 @@ $counter-font-size: 5rem;
     padding-bottom: $padding-margin-between-label;
   }
 
-  .date-counter-actual {
-    font-weight: $lebel-counter-font-weight;
-  }
-
   .counter-label {
     margin-top: $padding-margin-between-label;
     font-weight: $lebel-counter-font-weight;
+    font-size: 3rem;
   }
 
-  .counter-label-actual {
+  .ongoing-event-label {
+    font-weight: $lebel-counter-font-weight;
+    font-size: 3rem;
+  }
+
+  .ongoing-event-header {
     margin-top: 0.2rem;
+    font-size: 9rem;
   }
 }
