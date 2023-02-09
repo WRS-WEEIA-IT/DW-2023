@@ -1,32 +1,42 @@
-import React from 'react';
 import Card from '../Card/Card';
-import '../../styles/CardGrid.scss';
+import './CardGrid.scss';
+import { firebaseCollectionName, firebaseDb } from '../../FirebaseConfig';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { collection, Query } from 'firebase/firestore';
+import CardInterface from './../Card/CardInterface';
 
-const CardGrid = ({ CardsName }: { CardsName: string[] }) => {
-  const moreThanFour = true;
-  const CARDS_IN_ROW = 4;
+const CardGrid = ({ showAllCards = false }: { showAllCards?: boolean }) => {
+  const DEFAULT_VISIBLE_CARDS_COUNT = 4;
+  const [events] = useCollectionData<CardInterface>(
+    collection(firebaseDb, firebaseCollectionName) as Query<CardInterface>
+  );
 
   return (
     <div className="grid-container">
-      {CardsName.map(
-        (name: string, index: number) =>
-          (index < CARDS_IN_ROW && (
-            <Card
-              key={index}
-              imageSrc="../../assets/worshopImage2.png"
-              eventType="training"
-              title={name}
-            />
-          )) ||
-          (index >= CARDS_IN_ROW && moreThanFour && (
-            <Card
-              key={index}
-              imageSrc="../../assets/worshopImage2.png"
-              eventType="training"
-              title={name}
-            />
-          ))
-      )}
+      {events &&
+        events.map(
+          (event, index: number) =>
+            (index < DEFAULT_VISIBLE_CARDS_COUNT && (
+              <Card
+                key={index}
+                imageSource={event.imageSource}
+                eventType={event.eventType}
+                title={event.title}
+                timeStart={event.timeStart}
+                timeEnd={event.timeEnd}
+              />
+            )) ||
+            (index >= DEFAULT_VISIBLE_CARDS_COUNT && showAllCards && (
+              <Card
+                key={index}
+                imageSource={event.imageSource}
+                eventType={event.eventType}
+                title={event.title}
+                timeStart={event.timeStart}
+                timeEnd={event.timeEnd}
+              />
+            ))
+        )}
     </div>
   );
 };

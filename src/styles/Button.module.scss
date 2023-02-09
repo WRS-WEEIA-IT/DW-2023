@@ -11,10 +11,6 @@ $hover-transition-time: 0.2s;
 $click-transition-time: 0.01s;
 $border-radius: 3rem;
 
-.background {
-  background-color: black;
-}
-
 .button {
   @include disableDefaultButtonStyles;
   cursor: pointer;
