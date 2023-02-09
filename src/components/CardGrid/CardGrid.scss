@@ -1,24 +1,19 @@
-@import '../styles/Constants.scss';
+@import '../../styles/Constants.scss';
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  height: 450px;
 }
 
 @media (max-width: $screen-size-tablet) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
-    height: 450px;
   }
 }
 
 @media (max-width: $screen-size-mobile) {
   .grid-container {
     grid-template-columns: repeat(1, 1fr);
-    height: 450px;
   }
 }
