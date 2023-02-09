@@ -6,7 +6,7 @@ const Clock = () => {
   const ONE_MINUTE = 60000;
   const ONE_HOUR = 3600000;
   const ONE_DAY = 86400000;
-  const DW_FINAL_DATE = '2023-03-31';
+  const DW_FINAL_DATE = '2023-02-09';
   const finalDate = new Date(DW_FINAL_DATE);
 
   const countDaysLeft = () => {
@@ -38,10 +38,10 @@ const Clock = () => {
     } else if (daysLeft === 0) {
       return (
         <>
-          <h3 className="date-counter-actual">
+          <h3 className="ongoing-event-label">
             {language == 'polish' ? 'Wydarzenie' : 'The event'}
           </h3>
-          <h2 className="counter-label-actual">{language == 'polish' ? 'Trwa' : 'Has begun'}</h2>
+          <h2 className="ongoing-event-header">{language == 'polish' ? 'Trwa' : 'Has begun'}</h2>
         </>
       );
     } else {
