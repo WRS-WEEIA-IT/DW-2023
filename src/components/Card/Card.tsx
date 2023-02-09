@@ -2,16 +2,9 @@ import Button from '../../styles/Button.module.scss';
 import './Card.scss';
 import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
+import CardInterface from './CardInterface';
 
-interface CardProps {
-  eventType: 'workshop' | 'lecture';
-  imageSource: string;
-  timeEnd: Date;
-  timeStart: Date;
-  title: string;
-}
-
-const Card = ({ imageSource, eventType, title }: CardProps) => {
+const Card = ({ imageSource, eventType, title }: CardInterface) => {
   const language = useContext(LanguageModeContext);
   const eventTypeText =
     eventType === 'lecture'
@@ -23,7 +16,7 @@ const Card = ({ imageSource, eventType, title }: CardProps) => {
       : 'Workshop';
 
   return (
-    <div className="card-container" style={{ backgroundImage: `url(${imageSource})` }}>
+    <div className="card-container" style={{ backgroundImage: `url(images/${imageSource}.jpg)` }}>
       <h6 className="card-eventType">{eventTypeText}</h6>
       <h5 className="card-title">{title}</h5>
       <button
