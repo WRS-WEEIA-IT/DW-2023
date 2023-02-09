@@ -6,13 +6,13 @@ const Clock = () => {
   const ONE_MINUTE = 60000;
   const ONE_HOUR = 3600000;
   const ONE_DAY = 86400000;
-  const DW_FINAL_DATE = '2023-02-09';
-  const finalDate = new Date(DW_FINAL_DATE);
+  const DW_EVENT_DATE = '2023-03-31';
+  const eventDate = new Date(DW_EVENT_DATE);
 
   const countDaysLeft = () => {
     const currentDate = new Date();
     const counterResult: number = Math.floor(
-      (+finalDate.getTime() - +currentDate.getTime() + ONE_HOUR) / ONE_DAY + 1
+      (+eventDate.getTime() - +currentDate.getTime() + ONE_HOUR) / ONE_DAY + 1
     );
     return counterResult != 0 ? counterResult : 0;
   };
