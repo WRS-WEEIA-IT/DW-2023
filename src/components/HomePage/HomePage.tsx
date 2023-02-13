@@ -4,6 +4,7 @@ import WelcomeSection from '../Sections/WelcomeSection/WelcomeSection';
 import EventsSection from '../Sections/EventsSection/EventsSection';
 import AboutSection from '../Sections/DescriptionSection/AboutSection';
 import PartnersSection from '../Sections/PartnersSection/PartnersSection';
+import Footer from '../Footer/Footer';
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <AboutSection />
       <EventsSection />
       <PartnersSection />
+      <Footer />
     </div>
   );
 };

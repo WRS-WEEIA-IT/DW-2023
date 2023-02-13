@@ -1,0 +1,39 @@
+@import './Constants.scss';
+
+$padding-margin-between-label: 0;
+$lebel-counter-font-weight: 500;
+$counter-font-size: 5rem;
+
+.counter-container {
+  color: $neutral-color-95;
+  background-color: hsla(0, 0%, 100%, 0);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 700;
+
+  .date-label {
+    margin-bottom: $padding-margin-between-label;
+  }
+
+  .date-counter {
+    margin-top: 0.7rem;
+    margin-bottom: $padding-margin-between-label;
+    font-size: $counter-font-size;
+    padding-bottom: $padding-margin-between-label;
+  }
+
+  .date-counter-actual {
+    font-weight: $lebel-counter-font-weight;
+  }
+
+  .counter-label {
+    margin-top: $padding-margin-between-label;
+    font-weight: $lebel-counter-font-weight;
+  }
+
+  .counter-label-actual {
+    margin-top: 0.2rem;
+  }
+}
