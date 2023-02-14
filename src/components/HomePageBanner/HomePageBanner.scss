@@ -3,10 +3,10 @@
 #home-page-banner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 100%;
   gap: 25%;
   align-items: center;
-  margin-bottom: 10vh;
+  justify-content: center;
+  margin: 0 var(--screen-side-margin) 10vh var(--screen-side-margin);
 
   #left-banner-side {
     display: flex;
