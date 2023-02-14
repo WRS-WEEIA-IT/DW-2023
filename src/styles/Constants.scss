@@ -9,6 +9,11 @@ html {
 :root {
   font-family: 'Montserrat', sans-serif;
   --screen-side-margin: 13vw;
+
+  background: url('/public/background/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
 //global constants
@@ -128,11 +133,16 @@ button {
 }
 
 // shared classes
-.background {
-  height: 200vh;
-  background-color: rgb(59, 59, 59);
-}
 
 .icon {
   height: calc(var(--button-font-size) * 1.5);
+}
+
+// mixins
+
+@mixin flex-center($flex-direction: row) {
+  display: flex;
+  flex-direction: $flex-direction;
+  align-items: center;
+  justify-content: center;
 }

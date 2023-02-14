@@ -1,19 +1,24 @@
 @import '/src/styles/Constants.scss';
 
-#home-page-banner {
+$welcome-page-grid-gap: 25%;
+$bottom-banner-margin: 10vh;
+$banner-grid-gap: 1rem;
+
+$banner-buttons-gap: 1rem;
+$banner-buttons-gap-mobile: 1.8rem;
+
+#welcome-page-banner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 25%;
+  gap: $welcome-page-grid-gap;
   align-items: center;
   justify-content: center;
-  margin: 0 var(--screen-side-margin) 10vh var(--screen-side-margin);
+  margin: 0 var(--screen-side-margin) $bottom-banner-margin var(--screen-side-margin);
 
   #left-banner-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flex-center(column);
     width: auto;
+    gap: $banner-grid-gap;
 
     #banner-text {
       color: $neutral-color-95;
@@ -26,18 +31,19 @@
 
     #banner-buttons {
       display: flex;
-      gap: 10px;
+      gap: $banner-buttons-gap;
     }
   }
 }
 
 @media screen and (max-width: $screen-size-tablet) {
-  #home-page-banner {
+  #welcome-page-banner {
     grid-template-columns: 1fr;
+
     #left-banner-side {
-      gap: 2rem;
+      gap: $banner-buttons-gap-mobile;
+
       #banner-buttons {
-        gap: 20px;
         flex-direction: column;
         align-items: center;
       }

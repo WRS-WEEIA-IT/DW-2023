@@ -5,13 +5,13 @@ import { LanguageModeContext } from '../../contexts/LanguageContext';
 import CardInterface from './CardInterface';
 
 const Card = ({ imageSource, eventType, title }: CardInterface) => {
-  const language = useContext(LanguageModeContext);
+  const languageMode = useContext(LanguageModeContext);
   const eventTypeText =
     eventType === 'lecture'
-      ? language === 'polish'
+      ? languageMode === 'polish'
         ? 'Szkolenie'
         : 'Lecture'
-      : language === 'polish'
+      : languageMode === 'polish'
       ? 'Warsztat'
       : 'Workshop';
 
@@ -22,7 +22,7 @@ const Card = ({ imageSource, eventType, title }: CardInterface) => {
       <button
         className={`card-signup-button ${Button.button} ${Button.round} ${Button.filled}`}
         style={{ marginLeft: '0', marginTop: '0' }}>
-        {language === 'polish' ? 'Zapisz Się' : 'Sign Up'}
+        {languageMode === 'polish' ? 'Zapisz Się' : 'Sign Up'}
       </button>
     </div>
   );
