@@ -10,13 +10,13 @@ import {
 
 const AboutSection = () => {
   const languageMode = useContext(LanguageModeContext);
-  const headerText = languageMode == 'polish' ? headerTextPL : headerTextEN;
-  const descriptionText = languageMode == 'polish' ? descriptionTextPL : descriptionTextEN;
+  const HEADER_TEXT = languageMode == 'polish' ? headerTextPL : headerTextEN;
+  const DESCRIPTION_TEXT = languageMode == 'polish' ? descriptionTextPL : descriptionTextEN;
 
   return (
     <section id="about-section">
-      <h4 id="about-header">{headerText}</h4>
-      <p id="about-description">{descriptionText}</p>
+      <h4 id="about-header-text">{HEADER_TEXT}</h4>
+      <p id="about-description-text">{DESCRIPTION_TEXT}</p>
     </section>
   );
 };

@@ -50,7 +50,8 @@ const Navbar = () => {
           <button
             id="navbar-signup-button"
             className={`${Button.button} ${Button.filled} ${Button.square}`}>
-            Zapisz się <img className="icon" id="arrow-right-icon" src={ARROW_RIGHT_ICON} />
+            {languageMode == 'polish' ? 'Zapisz się' : 'Sign up'}
+            <img className="icon" id="arrow-right-icon" src={ARROW_RIGHT_ICON} />
           </button>
         </div>
       </div>
