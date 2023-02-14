@@ -30,7 +30,6 @@ $primary-color-75: hsl(202, 87%, 75%);
 $primary-color-85: hsl(202, 87%, 85%);
 
 $neutral-color-05: hsl(0, 0%, 5%);
-$neutral-color-07: hsl(0, 0%, 7%);
 $neutral-color-15: hsl(0, 0%, 15%);
 $neutral-color-25: hsl(0, 0%, 25%);
 $neutral-color-35: hsl(0, 0%, 35%);
@@ -50,7 +49,7 @@ $neutral-color-95: hsl(0, 0%, 95%);
   --h4-font-size: 1.3rem;
   --h5-font-size: 1.1rem;
   --h6-font-size: 0.8rem;
-  --p-font-size: 0.8rem;
+  --p-font-size: 1.1rem;
   --span-font-size: 0.8rem;
   --button-font-size: 0.8rem;
 }
@@ -91,7 +90,7 @@ button {
     --h4-font-size: 1.3rem;
     --h5-font-size: 1rem;
     --h6-font-size: 0.8rem;
-    --p-font-size: 0.8rem;
+    --p-font-size: 1rem;
     --span-font-size: 0.8rem;
     --button-font-size: 0.8rem;
     --screen-side-margin: 9vw;
@@ -106,7 +105,7 @@ button {
     --h4-font-size: 1.3rem;
     --h5-font-size: 1rem;
     --h6-font-size: 0.8rem;
-    --p-font-size: 0.8rem;
+    --p-font-size: 1rem;
     --span-font-size: 0.8rem;
     --button-font-size: 0.8rem;
     --screen-side-margin: 6vw;
@@ -121,7 +120,7 @@ button {
     --h4-font-size: 1rem;
     --h5-font-size: 0.8rem;
     --h6-font-size: 0.7rem;
-    --p-font-size: 0.7rem;
+    --p-font-size: 0.8rem;
     --span-font-size: 0.7rem;
     --button-font-size: 0.7rem;
     --screen-side-margin: 9vw;

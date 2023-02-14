@@ -1,0 +1,21 @@
+#partners-header-container {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background-image: url('/public/background/homepage-wave.svg');
+    background-size: cover;
+    transform: rotateZ(180deg);
+  }
+
+  #partners-header {
+    text-align: center;
+    margin: 0;
+    padding: 4rem 0;
+  }
+}

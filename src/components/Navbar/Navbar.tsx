@@ -30,7 +30,7 @@ const Navbar = () => {
   addScrollHandler();
 
   return (
-    <div id="navbar-container" style={{ backgroundColor: `hsl(0, 0%, 7%, ${navbarTransparency})` }}>
+    <div id="navbar-container" style={{ backgroundColor: `hsl(0, 0%, 5%, ${navbarTransparency})` }}>
       <div id="navbar-content">
         <div id="mobile-header-container">
           <h3 id="dw-logo">DW2023</h3>

@@ -1,0 +1,13 @@
+@import '/src/styles/Constants.scss';
+
+#about-section {
+  background-color: $neutral-color-05;
+  padding: 10vh calc(2 * var(--screen-side-margin));
+  color: $neutral-color-95;
+  text-align: center;
+
+  #about-header {
+  }
+  #about-description {
+  }
+}
