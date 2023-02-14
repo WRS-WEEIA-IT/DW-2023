@@ -8,10 +8,10 @@ const HomePage = () => {
     <>
       <div id="homepage-container">
         <Navbar />
-        <div id="homepage-content">
+        <div id="homepage-welcome-content">
           <HomePageBanner />
         </div>
-        <div>
+        <div id="homepage-content">
           <CardGrid showAllCards />
 
           <h1>Scroll test</h1>

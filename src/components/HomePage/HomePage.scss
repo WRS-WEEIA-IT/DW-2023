@@ -1,13 +1,19 @@
 @import '../../styles/Constants.scss';
 
+:root {
+  background: url('/public/background/background.png');
+  background-repeat: no-repeat;
+  background-size: 100vw 110vh;
+}
+
 #homepage-container {
-  #homepage-content {
+  #homepage-welcome-content {
     padding: 0 var(--screen-side-margin);
-    padding-top: $navbar-height;
-    background: url('/public/background/background.png');
-    background-size: cover;
     height: calc(100vh - $navbar-height);
-    transform: translateY(-$navbar-height - 1px);
     display: flex;
+  }
+
+  #homepage-content {
+    background-color: $neutral-color-07;
   }
 }
