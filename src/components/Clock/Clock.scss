@@ -54,3 +54,9 @@ $lebel-counter-font-weight: 500;
     --bigger-label-size: 4rem;
   }
 }
+
+@media screen and (max-width: $screen-size-tablet) {
+  .counter-container {
+    display: none;
+  }
+}

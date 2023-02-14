@@ -30,3 +30,17 @@
     }
   }
 }
+
+@media screen and (max-width: $screen-size-tablet) {
+  #home-page-banner {
+    grid-template-columns: 1fr;
+    #left-banner-side {
+      gap: 2rem;
+      #banner-buttons {
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+}
