@@ -1,0 +1,32 @@
+@import '/src/styles/Constants.scss';
+
+#home-page-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  gap: 25%;
+  align-items: center;
+  margin-bottom: 10vh;
+
+  #left-banner-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+
+    #banner-text {
+      color: $neutral-color-95;
+      font-weight: 500;
+    }
+
+    #dw-logo {
+      width: 100%;
+    }
+
+    #banner-buttons {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}

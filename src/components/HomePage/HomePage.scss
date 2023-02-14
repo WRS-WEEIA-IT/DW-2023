@@ -1,5 +1,13 @@
 @import '../../styles/Constants.scss';
 
-#homepage-content {
-  margin: 0 var(--screen-side-margin);
+#homepage-container {
+  #homepage-content {
+    padding: 0 var(--screen-side-margin);
+    padding-top: $navbar-height;
+    background: url('/public/background/background.png');
+    background-size: cover;
+    height: calc(100vh - $navbar-height);
+    transform: translateY(-$navbar-height - 1px);
+    display: flex;
+  }
 }
