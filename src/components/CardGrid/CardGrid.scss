@@ -1,7 +1,9 @@
 @import '../../styles/Constants.scss';
 
+$card-grid-container-padding: 10vh;
+
 .grid-container {
-  padding: 10vh 0;
+  padding: $card-grid-container-padding 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
