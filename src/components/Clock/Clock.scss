@@ -1,10 +1,13 @@
 @import '../../styles/Constants.scss';
 
+:root {
+  --counter-font-size: 12rem;
+  --smaller-label-size: 2.5rem;
+  --bigger-label-size: 6rem;
+}
+
 $padding-margin-between-label: 0;
 $lebel-counter-font-weight: 500;
-$counter-font-size: 15rem;
-$smaller-label-size: 3rem;
-$bigger-label-size: 9rem;
 
 .counter-container {
   color: $neutral-color-95;
@@ -17,29 +20,37 @@ $bigger-label-size: 9rem;
 
   .date-label {
     margin-bottom: $padding-margin-between-label;
-    font-size: $smaller-label-size;
+    font-size: var(--smaller-label-size);
   }
 
   .date-counter {
     margin-top: 0.7rem;
     margin-bottom: $padding-margin-between-label;
-    font-size: $counter-font-size;
+    font-size: var(--counter-font-size);
     padding-bottom: $padding-margin-between-label;
   }
 
   .counter-label {
     margin-top: $padding-margin-between-label;
     font-weight: $lebel-counter-font-weight;
-    font-size: $smaller-label-size;
+    font-size: var(--smaller-label-size);
   }
 
   .ongoing-event-label {
     font-weight: $lebel-counter-font-weight;
-    font-size: $smaller-label-size;
+    font-size: var(--smaller-label-size);
   }
 
   .ongoing-event-header {
     margin-top: 0.2rem;
-    font-size: $bigger-label-size;
+    font-size: var(--bigger-label-size);
+  }
+}
+
+@media screen and (max-width: $screen-size-laptop) {
+  :root {
+    --counter-font-size: 9rem;
+    --smaller-label-size: 2rem;
+    --bigger-label-size: 4rem;
   }
 }
