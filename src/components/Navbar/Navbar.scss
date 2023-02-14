@@ -5,13 +5,6 @@ $button-gap-mobile: 30px;
 $menu-open-transition-duration: 0.6s;
 $menu-padding: 50px;
 
-@mixin flex-center($flex-direction: row) {
-  display: flex;
-  flex-direction: $flex-direction;
-  align-items: center;
-  justify-content: center;
-}
-
 #navbar-container {
   position: sticky;
   top: 0;

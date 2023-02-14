@@ -1,12 +1,12 @@
-import HomePageBanner from '../../HomePageBanner/HomePageBanner';
 import WAVE_IMG from '../../../../public/background/homepage-wave.svg';
 import './WelcomeSection.scss';
+import WelcomePageBanner from '../../HomePageBanner/WelcomePageBanner';
 
 const WelcomeSection = () => {
   return (
     <section id="welcome-section">
-      <HomePageBanner />
-      <img src={WAVE_IMG} id="homepage-wave-img" />
+      <WelcomePageBanner />
+      <img src={WAVE_IMG} id="welcome-wave-img" />
     </section>
   );
 };
