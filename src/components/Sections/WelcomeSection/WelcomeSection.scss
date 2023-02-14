@@ -1,0 +1,15 @@
+@import '/src/styles/Constants.scss';
+
+#welcome-section {
+  height: calc(100vh - $navbar-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  #homepage-wave-img {
+    justify-self: flex-end;
+    align-self: flex-end;
+    width: 100%;
+  }
+}

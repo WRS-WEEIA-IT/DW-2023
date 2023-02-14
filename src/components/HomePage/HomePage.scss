@@ -3,17 +3,5 @@
 :root {
   background: url('/public/background/background.png');
   background-repeat: no-repeat;
-  background-size: 100vw 110vh;
-}
-
-#homepage-container {
-  #homepage-welcome-content {
-    padding: 0 var(--screen-side-margin);
-    height: calc(100vh - $navbar-height);
-    display: flex;
-  }
-
-  #homepage-content {
-    background-color: $neutral-color-07;
-  }
+  background-size: 100vw 100vh;
 }
