@@ -9,8 +9,9 @@
     height: 100%;
     content: '';
     background-image: url('/public/background/homepage-wave.svg');
+    background-position: bottom;
     background-size: cover;
-    transform: rotateZ(180deg);
+    transform: rotateZ(180deg) translateY(1px);
   }
 
   #partners-header {
