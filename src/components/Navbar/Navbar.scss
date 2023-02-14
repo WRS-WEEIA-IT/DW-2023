@@ -67,7 +67,7 @@ $menu-padding: 50px;
 
 @media (max-width: $screen-size-tablet) {
   #navbar-container {
-    background-color: $neutral-color-07 !important;
+    background-color: $neutral-color-05 !important;
 
     #navbar-content {
       flex-direction: column;
@@ -79,7 +79,7 @@ $menu-padding: 50px;
         visibility: hidden;
         z-index: 1;
         width: 100vw;
-        background-color: $neutral-color-07;
+        background-color: $neutral-color-05;
         top: $navbar-height;
         padding: $menu-padding 0;
         gap: $button-gap-mobile;
@@ -104,7 +104,7 @@ $menu-padding: 50px;
 
       #mobile-header-container {
         width: 100%;
-        background-color: $neutral-color-07;
+        background-color: $neutral-color-05;
         z-index: 2;
 
         #burger-container {

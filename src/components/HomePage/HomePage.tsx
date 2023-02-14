@@ -1,8 +1,9 @@
 import Navbar from '../Navbar/Navbar';
 import './HomePage.scss';
 import WelcomeSection from '../Sections/WelcomeSection/WelcomeSection';
-import DescriptionSection from '../Sections/DescriptionSection/DescriptionSection';
 import EventsSection from '../Sections/EventsSection/EventsSection';
+import AboutSection from '../Sections/DescriptionSection/AboutSection';
+import PartnersSection from '../Sections/PartnersSection/PartnersSection';
 
 const HomePage = () => {
   return (
@@ -10,8 +11,9 @@ const HomePage = () => {
       <div id="homepage-container">
         <Navbar />
         <WelcomeSection />
-        <DescriptionSection />
+        <AboutSection />
         <EventsSection />
+        <PartnersSection />
       </div>
     </>
   );

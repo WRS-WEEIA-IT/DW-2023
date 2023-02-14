@@ -1,0 +1,20 @@
+@import '/src/styles/Constants.scss';
+
+#events-section {
+  #events-content {
+    background-color: $neutral-color-05;
+    color: $neutral-color-95;
+    padding: 10vh var(--screen-side-margin);
+
+    #events-header,
+    #events-description,
+    #events-show-more-link {
+      text-align: center;
+    }
+  }
+
+  #events-wave-img {
+    transform: rotateZ(180deg) translateY(1px);
+    width: 100%;
+  }
+}
