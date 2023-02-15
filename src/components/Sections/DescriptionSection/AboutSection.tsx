@@ -9,7 +9,7 @@ import {
 } from './DescriptionTexts';
 
 const AboutSection = () => {
-  const languageMode = useContext(LanguageModeContext);
+  const { languageMode } = useContext(LanguageModeContext);
   const HEADER_TEXT = languageMode == 'polish' ? headerTextPL : headerTextEN;
   const DESCRIPTION_TEXT = languageMode == 'polish' ? descriptionTextPL : descriptionTextEN;
 

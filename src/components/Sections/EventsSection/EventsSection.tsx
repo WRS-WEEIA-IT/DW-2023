@@ -4,7 +4,7 @@ import CardGrid from '../../CardGrid/CardGrid';
 import './EventsSection.scss';
 
 const EventsSection = () => {
-  const languageMode = useContext(LanguageModeContext);
+  const { languageMode } = useContext(LanguageModeContext);
 
   const HEADER_TEXT = languageMode == 'polish' ? 'Szkolenia i warsztaty' : 'Lectures and workshops';
   const DESCRIPTION_TEXT =

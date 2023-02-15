@@ -5,7 +5,7 @@ import { LanguageModeContext } from '../../contexts/LanguageContext';
 import CardInterface from './CardInterface';
 
 const Card = ({ imageSource, eventType, title }: CardInterface) => {
-  const languageMode = useContext(LanguageModeContext);
+  const { languageMode } = useContext(LanguageModeContext);
   const eventTypeText =
     eventType === 'lecture'
       ? languageMode === 'polish'

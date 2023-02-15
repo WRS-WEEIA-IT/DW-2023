@@ -18,7 +18,7 @@ const Clock = () => {
   };
 
   const [daysLeft, setDaysLeft] = useState(countDaysLeft());
-  const language = useContext(LanguageModeContext);
+  const { languageMode } = useContext(LanguageModeContext);
 
   setInterval(() => {
     setDaysLeft(countDaysLeft());
@@ -28,10 +28,12 @@ const Clock = () => {
     if (daysLeft > 0) {
       return (
         <>
-          <p className="date-label">{language == 'polish' ? '31 MARCA 2023' : '31 MARCH 2023'}</p>
+          <p className="date-label">
+            {languageMode == 'polish' ? '31 MARCA 2023' : '31 MARCH 2023'}
+          </p>
           <h1 className="date-counter">{daysLeft}</h1>
           <p className="counter-label">
-            {language == 'polish' ? 'DNI DO WYDARZENIA' : 'DAYS TO EVENT'}
+            {languageMode == 'polish' ? 'DNI DO WYDARZENIA' : 'DAYS TO EVENT'}
           </p>
         </>
       );
@@ -39,19 +41,21 @@ const Clock = () => {
       return (
         <>
           <h3 className="ongoing-event-label">
-            {language == 'polish' ? 'Wydarzenie' : 'The event'}
+            {languageMode == 'polish' ? 'Wydarzenie' : 'The event'}
           </h3>
-          <h2 className="ongoing-event-header">{language == 'polish' ? 'Trwa' : 'Has begun'}</h2>
+          <h2 className="ongoing-event-header">
+            {languageMode == 'polish' ? 'Trwa' : 'Has begun'}
+          </h2>
         </>
       );
     } else {
       return (
         <>
           <p className="date-label">
-            {language == 'polish' ? 'Wydarzenie odbyło się' : 'The event was'}
+            {languageMode == 'polish' ? 'Wydarzenie odbyło się' : 'The event was'}
           </p>
           <h1 className="date-counter">{-daysLeft}</h1>
-          <p className="counter-label">{language == 'polish' ? 'DNI TEMU' : 'DAYS AGO'}</p>
+          <p className="counter-label">{languageMode == 'polish' ? 'DNI TEMU' : 'DAYS AGO'}</p>
         </>
       );
     }
