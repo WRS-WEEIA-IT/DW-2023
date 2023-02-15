@@ -6,6 +6,7 @@ import { LanguageModeContext } from './../../contexts/LanguageContext';
 import ARROW_RIGHT_ICON from '../../assets/icons/arrow-right.svg';
 import BURGER_OPEN_ICON from '../../assets/icons/burger-open.svg';
 import BURGER_CLOSE_ICON from '../../assets/icons/burger-close.svg';
+import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
 
 const Navbar = () => {
   const languageMode = useContext(LanguageModeContext);
@@ -46,7 +47,7 @@ const Navbar = () => {
           ))}
         </div>
         <div id="navbar-buttons-container">
-          <span>Jezyk</span>
+          <LanguageSwitch />
           <button
             id="navbar-signup-button"
             className={`${Button.button} ${Button.filled} ${Button.square}`}>
