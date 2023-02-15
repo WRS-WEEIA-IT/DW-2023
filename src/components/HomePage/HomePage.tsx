@@ -7,15 +7,13 @@ import PartnersSection from '../Sections/PartnersSection/PartnersSection';
 
 const HomePage = () => {
   return (
-    <>
-      <div id="homepage-container">
-        <Navbar />
-        <WelcomeSection />
-        <AboutSection />
-        <EventsSection />
-        <PartnersSection />
-      </div>
-    </>
+    <div id="homepage-container">
+      <Navbar />
+      <WelcomeSection />
+      <AboutSection />
+      <EventsSection />
+      <PartnersSection />
+    </div>
   );
 };
 
