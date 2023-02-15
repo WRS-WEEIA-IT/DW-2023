@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 
 const WelcomePageBanner = () => {
-  const languageMode = useContext(LanguageModeContext);
+  const { languageMode } = useContext(LanguageModeContext);
 
   const BANNER_TEXT =
     languageMode == 'polish' ? 'Twoja nowa perspektywa na EEIA' : 'Your new perspective on EEIA';

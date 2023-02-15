@@ -14,11 +14,11 @@ const MainProvider = () => {
     },
   ]);
 
-  const [languageMode] = useState<'polish' | 'english'>('polish');
+  const [languageMode, setLanguageMode] = useState<'polish' | 'english'>('polish');
 
   return (
     <React.StrictMode>
-      <LanguageModeContext.Provider value={languageMode}>
+      <LanguageModeContext.Provider value={{ languageMode, setLanguageMode }}>
         <RouterProvider router={router} />
       </LanguageModeContext.Provider>
     </React.StrictMode>

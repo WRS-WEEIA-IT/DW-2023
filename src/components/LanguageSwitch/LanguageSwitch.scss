@@ -1,5 +1,9 @@
 @import '/src/styles/Constants.scss';
 
-#language-switch-icon {
-  height: 30px;
+#language-mode-switch {
+  cursor: pointer;
+
+  #language-switch-icon {
+    height: 30px;
+  }
 }

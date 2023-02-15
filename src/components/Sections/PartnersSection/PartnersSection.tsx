@@ -3,7 +3,7 @@ import { LanguageModeContext } from '../../../contexts/LanguageContext';
 import './PartnersSection.scss';
 
 const PartnersSection = () => {
-  const languageMode = useContext(LanguageModeContext);
+  const { languageMode } = useContext(LanguageModeContext);
 
   return (
     <section id="partners-section">

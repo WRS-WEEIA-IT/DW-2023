@@ -9,7 +9,7 @@ import BURGER_CLOSE_ICON from '../../assets/icons/burger-close.svg';
 import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
 
 const Navbar = () => {
-  const languageMode = useContext(LanguageModeContext);
+  const { languageMode } = useContext(LanguageModeContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [navbarTransparency, setNavbarTransparency] = useState(0);
 
