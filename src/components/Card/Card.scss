@@ -15,12 +15,19 @@
   color: $neutral-color-95;
   padding: 20px;
 
+  .card-event-time {
+    justify-self: flex-start;
+    flex-grow: 1;
+    align-self: flex-end;
+    margin: 0;
+  }
+
   .card-title {
     margin: 0;
     font-weight: 500;
   }
 
-  .card-eventType {
+  .card-event-type {
     margin: 0;
     font-weight: 600;
   }
