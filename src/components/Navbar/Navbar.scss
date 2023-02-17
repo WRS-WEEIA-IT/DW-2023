@@ -1,9 +1,15 @@
 @import '../../styles/Constants.scss';
 
+@mixin set-deafult-a-attributes() {
+  all: unset;
+  cursor: pointer;
+}
+
 $button-gap: 20px;
 $button-gap-mobile: 30px;
 $menu-open-transition-duration: 0.6s;
 $menu-padding: 50px;
+$link-hover-transition-duration: 0.2s;
 
 #navbar-container {
   position: sticky;
@@ -38,8 +44,15 @@ $menu-padding: 50px;
       gap: $button-gap;
 
       .navbar-link {
+        @include set-deafult-a-attributes;
         font-weight: 600;
         margin: 0;
+        transition: $link-hover-transition-duration;
+
+        &:hover {
+          color: $primary-color;
+          transition: $link-hover-transition-duration;
+        }
       }
     }
 
