@@ -1,0 +1,125 @@
+@import '../../styles/Constants.scss';
+
+$zero-margin: 0;
+$gap-between-sections-mobile: 2rem;
+$gap-between-content-mobile: 1.5rem;
+
+.footer-container {
+  color: $neutral-color-95;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin: 0.5rem 0;
+  }
+
+  h4 {
+    margin-top: $zero-margin;
+    margin-bottom: 1rem;
+  }
+
+  #no-margin-bot {
+    margin-bottom: $zero-margin;
+  }
+
+  .contact-section {
+    display: flex;
+    color: $neutral-color-05;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem var(--screen-side-margin);
+    background-color: $neutral-color-95;
+  }
+
+  .footer-section {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2.5rem var(--screen-side-margin);
+    justify-content: space-between;
+    background-color: $neutral-color-05;
+
+    #column-span-2 {
+      grid-column: span 2;
+    }
+
+    #basic-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-column {
+      display: grid;
+      grid-template-columns: 1fr 5fr;
+
+      .column {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        #contact-icon {
+          align-self: center;
+        }
+      }
+    }
+  }
+
+  .rights-section {
+    display: flex;
+    color: $neutral-color-65;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: $neutral-color-95;
+    justify-content: space-between;
+    padding: 1rem var(--screen-side-margin);
+
+    .social-media-icon {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+}
+
+@media (max-width: $screen-size-tablet) {
+  .footer-container {
+    color: $neutral-color-95;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .contact-section {
+      display: flex;
+      flex-direction: column;
+      justify-self: center;
+      justify-content: center;
+      gap: $gap-between-sections-mobile;
+    }
+
+    .footer-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      gap: $gap-between-sections-mobile;
+
+      .contact-column {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        justify-content: space-evenly;
+        align-self: center;
+        column-gap: $gap-between-content-mobile;
+
+        .column {
+          justify-self: right;
+          text-align: left;
+        }
+      }
+    }
+
+    .rights-section {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: $gap-between-content-mobile;
+    }
+  }
+}
