@@ -3,8 +3,9 @@ import './Card.scss';
 import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import CardInterface from './CardInterface';
+import { Timestamp } from '@firebase/firestore';
 
-const Card = ({ imageSource, eventType, title }: CardInterface) => {
+const Card = ({ imageSource, eventType, title, timeStart, timeEnd }: CardInterface) => {
   const { languageMode } = useContext(LanguageModeContext);
   const eventTypeText =
     eventType === 'lecture'
@@ -15,9 +16,16 @@ const Card = ({ imageSource, eventType, title }: CardInterface) => {
       ? 'Warsztat'
       : 'Workshop';
 
+  const convertToClockTime = (time: Timestamp) =>
+    `${time.toDate().getHours()}:${time.toDate().getMinutes()}`;
+
+  const startHour = convertToClockTime(timeStart);
+  const endHour = convertToClockTime(timeEnd);
+
   return (
     <div className="card-container" style={{ backgroundImage: `url(images/${imageSource}.jpg)` }}>
-      <h6 className="card-eventType">{eventTypeText}</h6>
+      <p className="card-event-time">{`${startHour} - ${endHour}`}</p>
+      <h6 className="card-event-type">{eventTypeText}</h6>
       <h5 className="card-title">{title}</h5>
       <button
         className={`card-signup-button ${Button.button} ${Button.round} ${Button.filled}`}

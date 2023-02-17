@@ -10,20 +10,24 @@ import { LanguageModeContext } from '../../contexts/LanguageContext';
 import '../../styles/Constants.scss';
 
 const Footer = () => {
-  const language = useContext(LanguageModeContext);
+  const { languageMode } = useContext(LanguageModeContext);
 
   const contactSection = () => {
     return (
       <div className="contact-section">
         <div>
           <h4>
-            {language
+            {languageMode == 'polish'
               ? 'Masz jakieś pytania do organizatorów?'
               : 'Have you got any questions to organizers?'}
           </h4>
-          <p id="no-margin-bot">{language ? 'Skontaktuj się z nami!' : 'Contact with us!'}</p>
+          <p id="no-margin-bot">
+            {languageMode == 'polish' ? 'Skontaktuj się z nami!' : 'Contact us!'}
+          </p>
         </div>
-        <button className={` ${Button.button} ${Button.square} ${Button.filled}`}>Kontakt</button>
+        <button className={` ${Button.button} ${Button.square} ${Button.filled}`}>
+          {languageMode == 'polish' ? 'Skontaktuj się z nami' : 'Contact us'}
+        </button>
       </div>
     );
   };
@@ -32,17 +36,17 @@ const Footer = () => {
     return (
       <div className="footer-section">
         <div className="information-column" id="basic-column">
-          <h4>{language ? 'Informacje' : 'Informations'}</h4>
-          <p>{language ? 'O wydarzeniu' : 'About Event'}</p>
-          <p>{language ? 'Szkolenia' : 'Training'}</p>
+          <h4>{languageMode == 'polish' ? 'Informacje' : 'Information'}</h4>
+          <p>{languageMode == 'polish' ? 'O wydarzeniu' : 'About event'}</p>
+          <p>{languageMode == 'polish' ? 'Szkolenia i warsztaty' : 'Lectures and workshops'}</p>
         </div>
         <div className="sponsors-column" id="basic-column">
-          <h4>{language ? 'Sponsorzy' : 'Sponsors'}</h4>
+          <h4>{languageMode == 'polish' ? 'Sponsorzy' : 'Sponsors'}</h4>
           <p>HTD</p>
           <p>Commerzbank</p>
         </div>
         <div className="contact-column">
-          <h4 id="column-span-2">{language ? 'Kontakt' : 'Contact'}</h4>
+          <h4 id="column-span-2">{languageMode == 'polish' ? 'Kontakt' : 'Contact'}</h4>
           <div className="column">
             <img src={CALL_ICON} className="icon" id="contact-icon"></img>
             <img src={LOCATION_ICON} className="icon" id="contact-icon"></img>
