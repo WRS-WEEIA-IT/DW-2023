@@ -8,6 +8,7 @@ import BURGER_OPEN_ICON from '../../assets/icons/burger-open.svg';
 import BURGER_CLOSE_ICON from '../../assets/icons/burger-close.svg';
 import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
 import { HashLink as Link } from 'react-router-hash-link';
+import { WELCOME_SECTION_ID } from './NavLinks';
 
 const Navbar = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -22,8 +23,11 @@ const Navbar = () => {
       : setNavbarTransparency(1);
   };
 
-  const handleBurgerToggle = () => {
+  const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   const addScrollHandler = () => {
@@ -35,14 +39,21 @@ const Navbar = () => {
     <div id="navbar-container" style={{ backgroundColor: `hsl(0, 0%, 5%, ${navbarTransparency})` }}>
       <div id="navbar-content">
         <div id="mobile-header-container">
-          <h3 id="dw-logo">DW2023</h3>
-          <div id="burger-container" onClick={handleBurgerToggle}>
+          <Link to={WELCOME_SECTION_ID} id="dw-logo-link" smooth>
+            <h3 id="dw-logo">DW2023</h3>
+          </Link>
+          <div id="burger-container" onClick={handleMenuToggle}>
             <img id="burger-icon" src={isMenuOpen ? BURGER_CLOSE_ICON : BURGER_OPEN_ICON} />
           </div>
         </div>
         <div id="navbar-links-container" className={isMenuOpen ? 'menu-open' : ''}>
           {(languageMode == 'polish' ? navLinksPL : navLinksEN).map((navLink, index) => (
-            <Link to={navLink.sectionId} key={index} className="navbar-link" smooth>
+            <Link
+              to={navLink.sectionId}
+              key={index}
+              className="navbar-link"
+              smooth
+              onClick={closeMenu}>
               {navLink.title}
             </Link>
           ))}

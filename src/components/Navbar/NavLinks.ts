@@ -3,7 +3,7 @@ interface navLinkInterface {
   sectionId: string;
 }
 
-const WELCOME_SECTION_ID = '#welcome-section';
+export const WELCOME_SECTION_ID = '#welcome-section';
 const EVENTS_SECTION_ID = '#events-section';
 const PARTNERS_SECTION_ID = '#partners-section';
 const FOOTER_SECTION_ID = '#footer-section';
