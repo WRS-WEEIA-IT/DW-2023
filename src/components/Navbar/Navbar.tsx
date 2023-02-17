@@ -7,6 +7,7 @@ import ARROW_RIGHT_ICON from '../../assets/icons/arrow-right.svg';
 import BURGER_OPEN_ICON from '../../assets/icons/burger-open.svg';
 import BURGER_CLOSE_ICON from '../../assets/icons/burger-close.svg';
 import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
+import { HashLink as Link } from 'react-router-hash-link';
 
 const Navbar = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -41,9 +42,9 @@ const Navbar = () => {
         </div>
         <div id="navbar-links-container" className={isMenuOpen ? 'menu-open' : ''}>
           {(languageMode == 'polish' ? navLinksPL : navLinksEN).map((navLink, index) => (
-            <h5 key={index} className="navbar-link">
+            <Link to={navLink.sectionId} key={index} className="navbar-link" smooth>
               {navLink.title}
-            </h5>
+            </Link>
           ))}
         </div>
         <div id="navbar-buttons-container">
