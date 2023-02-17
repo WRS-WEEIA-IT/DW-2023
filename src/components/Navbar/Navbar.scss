@@ -12,7 +12,7 @@ $menu-padding: 50px;
 $link-hover-transition-duration: 0.2s;
 
 #navbar-container {
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   color: $neutral-color-95;
@@ -28,9 +28,13 @@ $link-hover-transition-duration: 0.2s;
       min-height: $navbar-height;
       @include flex-center;
 
-      #dw-logo {
-        display: inline-block;
-        margin: 0;
+      #dw-logo-link {
+        @include set-deafult-a-attributes;
+
+        #dw-logo {
+          display: inline-block;
+          margin: 0;
+        }
       }
 
       #burger-container {
