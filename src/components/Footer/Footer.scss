@@ -1,6 +1,5 @@
 @import '../../styles/Constants.scss';
 
-$zero-margin: 0;
 $gap-between-sections-mobile: 2rem;
 $gap-between-content-mobile: 1.5rem;
 
@@ -14,12 +13,12 @@ $gap-between-content-mobile: 1.5rem;
   }
 
   h4 {
-    margin-top: $zero-margin;
+    margin-top: 0;
     margin-bottom: 1rem;
   }
 
   #contact-text {
-    margin-bottom: $zero-margin;
+    margin-bottom: 0;
   }
 
   #contact-section {
