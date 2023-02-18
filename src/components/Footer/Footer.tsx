@@ -15,7 +15,7 @@ const Footer = () => {
 
   const contactSection = () => {
     return (
-      <div className="contact-section">
+      <div id="contact-section">
         <div>
           <h4>
             {languageMode == 'polish'
@@ -33,10 +33,10 @@ const Footer = () => {
     );
   };
 
-  const footerSection = () => {
+  const mainFooterSection = () => {
     return (
-      <div className="footer-section">
-        <div className="information-column">
+      <div id="main-footer-section">
+        <div id="information-column">
           <h4>{languageMode == 'polish' ? 'Informacje' : 'Information'}</h4>
           <Link to="#about-section" className="footer-link" smooth>
             <p>{languageMode == 'polish' ? 'O wydarzeniu' : 'About event'}</p>
@@ -45,19 +45,19 @@ const Footer = () => {
             <p>{languageMode == 'polish' ? 'Szkolenia i warsztaty' : 'Lectures and workshops'}</p>
           </Link>
         </div>
-        <div className="sponsors-column">
+        <div id="partners-column">
           <h4>{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h4>
           <p>HTD</p>
           <p>Commerzbank</p>
         </div>
-        <div className="contact-column">
+        <div id="contact-column">
           <h4 id="contact-header">{languageMode == 'polish' ? 'Kontakt' : 'Contact'}</h4>
-          <div className="column">
+          <div id="contact-icons-column">
             <img src={CALL_ICON} className="icon" id="contact-icon"></img>
             <img src={LOCATION_ICON} className="icon" id="contact-icon"></img>
             <img src={MAIL_ICON} className="icon" id="contact-icon"></img>
           </div>
-          <div className="column">
+          <div id="contact-text-column">
             <p>(+48) 123 456 789</p>
             <p>Stefanowskiego 18/22, Łódź</p>
             <p>dzien.weeia@samorzad.p.lodz.pl</p>
@@ -67,13 +67,11 @@ const Footer = () => {
     );
   };
 
-  return (
-    <div className="footer-container" id="footer-section">
-      {contactSection()}
-      {footerSection()}
-      <div className="rights-section">
+  const allRightsReservedSection = () => {
+    return (
+      <div id="all-rights-reserved-section">
         <p>Dzień Wydziału EEIA 2023 - All Rights Reserved</p>
-        <div className="social-media-icons">
+        <div id="social-media-icons-container">
           <Link
             className="icon-link"
             target="_blank"
@@ -90,6 +88,14 @@ const Footer = () => {
           </Link>
         </div>
       </div>
+    );
+  };
+
+  return (
+    <div id="footer-section">
+      {contactSection()}
+      {mainFooterSection()}
+      {allRightsReservedSection()}
     </div>
   );
 };
