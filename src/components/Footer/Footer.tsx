@@ -8,6 +8,7 @@ import INSTAGRAM_ICON from '../../assets/icons/insta.svg';
 import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import '../../styles/Constants.scss';
+import { HashLink as Link } from 'react-router-hash-link';
 
 const Footer = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -21,7 +22,7 @@ const Footer = () => {
               ? 'Masz jakieś pytania do organizatorów?'
               : 'Have you got any questions to organizers?'}
           </h4>
-          <p id="no-margin-bot">
+          <p id="contact-text">
             {languageMode == 'polish' ? 'Skontaktuj się z nami!' : 'Contact us!'}
           </p>
         </div>
@@ -35,25 +36,29 @@ const Footer = () => {
   const footerSection = () => {
     return (
       <div className="footer-section">
-        <div className="information-column" id="basic-column">
+        <div className="information-column">
           <h4>{languageMode == 'polish' ? 'Informacje' : 'Information'}</h4>
-          <p>{languageMode == 'polish' ? 'O wydarzeniu' : 'About event'}</p>
-          <p>{languageMode == 'polish' ? 'Szkolenia i warsztaty' : 'Lectures and workshops'}</p>
+          <Link to="#about-section" className="footer-link" smooth>
+            <p>{languageMode == 'polish' ? 'O wydarzeniu' : 'About event'}</p>
+          </Link>
+          <Link to="#events-section" className="footer-link" smooth>
+            <p>{languageMode == 'polish' ? 'Szkolenia i warsztaty' : 'Lectures and workshops'}</p>
+          </Link>
         </div>
-        <div className="sponsors-column" id="basic-column">
-          <h4>{languageMode == 'polish' ? 'Sponsorzy' : 'Sponsors'}</h4>
+        <div className="sponsors-column">
+          <h4>{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h4>
           <p>HTD</p>
           <p>Commerzbank</p>
         </div>
         <div className="contact-column">
-          <h4 id="column-span-2">{languageMode == 'polish' ? 'Kontakt' : 'Contact'}</h4>
+          <h4 id="contact-header">{languageMode == 'polish' ? 'Kontakt' : 'Contact'}</h4>
           <div className="column">
             <img src={CALL_ICON} className="icon" id="contact-icon"></img>
             <img src={LOCATION_ICON} className="icon" id="contact-icon"></img>
             <img src={MAIL_ICON} className="icon" id="contact-icon"></img>
           </div>
           <div className="column">
-            <p>(48) 123 456 789</p>
+            <p>(+48) 123 456 789</p>
             <p>Stefanowskiego 18/22, Łódź</p>
             <p>dzien.weeia@samorzad.p.lodz.pl</p>
           </div>
@@ -68,9 +73,21 @@ const Footer = () => {
       {footerSection()}
       <div className="rights-section">
         <p>Dzień Wydziału EEIA 2023 - All Rights Reserved</p>
-        <div className="social-media-icon">
-          <img src={FACEBOOK_ICON}></img>
-          <img src={INSTAGRAM_ICON}></img>
+        <div className="social-media-icons">
+          <Link
+            className="icon-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            to="https://www.facebook.com/events/660013089462906/">
+            <img src={FACEBOOK_ICON} />
+          </Link>
+          <Link
+            className="icon-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            to="https://www.instagram.com/weeia_/">
+            <img src={INSTAGRAM_ICON} />
+          </Link>
         </div>
       </div>
     </div>

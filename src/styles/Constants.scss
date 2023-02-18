@@ -146,3 +146,8 @@ button {
   align-items: center;
   justify-content: center;
 }
+
+@mixin set-deafult-a-attributes() {
+  all: unset;
+  cursor: pointer;
+}

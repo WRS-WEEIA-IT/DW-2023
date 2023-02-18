@@ -1,10 +1,5 @@
 @import '../../styles/Constants.scss';
 
-@mixin set-deafult-a-attributes() {
-  all: unset;
-  cursor: pointer;
-}
-
 $button-gap: 20px;
 $button-gap-mobile: 30px;
 $menu-open-transition-duration: 0.6s;
