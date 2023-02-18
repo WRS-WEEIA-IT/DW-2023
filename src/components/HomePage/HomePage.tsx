@@ -5,17 +5,20 @@ import EventsSection from '../Sections/EventsSection/EventsSection';
 import AboutSection from '../Sections/DescriptionSection/AboutSection';
 import PartnersSection from '../Sections/PartnersSection/PartnersSection';
 import Footer from '../Footer/Footer';
+import { domAnimation, LazyMotion } from 'framer-motion';
 
 const HomePage = () => {
   return (
-    <div id="homepage-container">
-      <Navbar />
-      <WelcomeSection />
-      <AboutSection />
-      <EventsSection />
-      <PartnersSection />
-      <Footer />
-    </div>
+    <LazyMotion features={domAnimation}>
+      <div id="homepage-container">
+        <Navbar />
+        <WelcomeSection />
+        <AboutSection />
+        <EventsSection />
+        <PartnersSection />
+        <Footer />
+      </div>
+    </LazyMotion>
   );
 };
 
