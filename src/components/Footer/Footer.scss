@@ -18,7 +18,7 @@ $gap-between-content-mobile: 1.5rem;
     margin-bottom: 1rem;
   }
 
-  #no-margin-bot {
+  #contact-text {
     margin-bottom: $zero-margin;
   }
 
@@ -40,13 +40,18 @@ $gap-between-content-mobile: 1.5rem;
     justify-content: space-between;
     background-color: $neutral-color-05;
 
-    #column-span-2 {
+    #contact-header {
       grid-column: span 2;
     }
 
-    #basic-column {
+    .information-column,
+    .sponsors-column {
       display: flex;
       flex-direction: column;
+
+      .footer-link {
+        @include set-deafult-a-attributes;
+      }
     }
 
     .contact-column {
@@ -73,9 +78,13 @@ $gap-between-content-mobile: 1.5rem;
     justify-content: space-between;
     padding: 1rem var(--screen-side-margin);
 
-    .social-media-icon {
-      display: flex;
+    .social-media-icons {
+      @include flex-center;
       gap: 1rem;
+
+      .icon-link {
+        @include flex-center;
+      }
     }
   }
 }
