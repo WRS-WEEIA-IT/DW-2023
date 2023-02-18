@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import { LanguageModeContext } from '../../../contexts/LanguageContext';
 import CardGrid from '../../CardGrid/CardGrid';
 import './EventsSection.scss';
-import { motion } from 'framer-motion';
 import { animateOnScroll, viewportProperties } from '../../../animations/animateOnScroll';
+import { m } from 'framer-motion';
 
 const EventsSection = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -20,13 +20,13 @@ const EventsSection = () => {
       <div id="events-content">
         <h2 id="events-header">{HEADER_TEXT}</h2>
         <p id="events-description">{DESCRIPTION_TEXT}</p>
-        <motion.div
+        <m.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportProperties}
           variants={animateOnScroll}>
           <CardGrid />
-        </motion.div>
+        </m.div>
         <h4 id="events-show-more-link">{SHOW_MORE_LINK}</h4>
       </div>
     </section>

@@ -8,7 +8,7 @@ import {
   descriptionTextPL,
 } from './DescriptionTexts';
 import { animateOnScroll, viewportProperties } from '../../../animations/animateOnScroll';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const AboutSection = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -17,14 +17,14 @@ const AboutSection = () => {
 
   return (
     <section id="about-section">
-      <motion.div
+      <m.div
         initial="hidden"
         whileInView="visible"
         viewport={viewportProperties}
         variants={animateOnScroll}>
         <h4 id="about-header-text">{HEADER_TEXT}</h4>
         <p id="about-description-text">{DESCRIPTION_TEXT}</p>
-      </motion.div>
+      </m.div>
     </section>
   );
 };
