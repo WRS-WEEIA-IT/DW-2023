@@ -47,8 +47,12 @@ const Footer = () => {
         </div>
         <div id="partners-column">
           <h4>{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h4>
-          <p>HTD</p>
-          <p>Commerzbank</p>
+          <div id="partners-grid">
+            <p>B/S/H</p>
+            <p>Ericsson</p>
+            <p>JTI</p>
+            <p>HTD</p>
+          </div>
         </div>
         <div id="contact-column">
           <h4 id="contact-header">{languageMode == 'polish' ? 'Kontakt' : 'Contact'}</h4>

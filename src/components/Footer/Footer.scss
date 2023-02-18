@@ -51,6 +51,13 @@ $gap-between-content-mobile: 1.5rem;
       .footer-link {
         @include set-deafult-a-attributes;
       }
+
+      #partners-grid {
+        grid-template-rows: auto auto auto;
+        grid-auto-flow: column;
+        display: grid;
+        gap: 0 20px;
+      }
     }
 
     #contact-column {
@@ -109,6 +116,12 @@ $gap-between-content-mobile: 1.5rem;
       flex-direction: column;
       justify-content: space-evenly;
       gap: $gap-between-sections-mobile;
+
+      #partners-column {
+        #partners-grid {
+          grid-auto-flow: unset;
+        }
+      }
 
       #contact-column {
         display: grid;
