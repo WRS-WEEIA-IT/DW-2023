@@ -3,7 +3,7 @@ import { LanguageModeContext } from '../../../contexts/LanguageContext';
 import CardGrid from '../../CardGrid/CardGrid';
 import './EventsSection.scss';
 import { motion } from 'framer-motion';
-import animateOnScroll from '../../../constants/animateOnScroll';
+import { animateOnScroll, viewportProperties } from '../../../animations/animateOnScroll';
 
 const EventsSection = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -23,7 +23,7 @@ const EventsSection = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.4, once: true }}
+          viewport={viewportProperties}
           variants={animateOnScroll}>
           <CardGrid />
         </motion.div>
