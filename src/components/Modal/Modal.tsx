@@ -8,6 +8,7 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [error, setError] = useState(false);
 
   const ChangeNameHandler = (event: SyntheticEvent) => {
     setName((event.currentTarget as HTMLTextAreaElement).value);
@@ -24,25 +25,40 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
     console.log(message);
   };
 
+  const ChangeErrorState = (state: boolean) => {
+    setError(state);
+  };
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    if (name.length == 0 || email.length == 0 || message.length == 0 || !email.includes('@')) {
+      ChangeErrorState(true);
+      return;
+    }
+  };
+
   return (
     <>
       <div className="backdrop">
-        <form className="form-container">
+        <form className="form-container" onSubmit={onSubmitHandler}>
           <div className="form-row">
             <label>{languageMode == 'polish' ? 'Imię' : 'Name'}</label>
             <input
+              className={error == false ? 'correct' : 'error'}
               placeholder={languageMode == 'polish' ? 'Wpisz swoje imię' : 'Type your name'}
               onChange={ChangeNameHandler}></input>
           </div>
           <div className="form-row">
             <label>E-mail</label>
             <input
+              className={error == false ? 'correct' : 'error'}
               placeholder={languageMode == 'polish' ? 'Wpisz e-mail' : 'Type e-mail'}
               onChange={ChangeEmailHandler}></input>
           </div>
           <div className="form-row">
             <label>{languageMode == 'polish' ? 'Wiadomość' : 'Message'}</label>
             <textarea
+              className={error == false ? 'correct' : 'error-textarea'}
               name="Text1"
               maxLength={500}
               placeholder="What`s your problem kurwo?"
