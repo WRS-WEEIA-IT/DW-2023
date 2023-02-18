@@ -67,7 +67,7 @@ const Footer = () => {
       {contactSection()}
       {footerSection()}
       <div className="rights-section">
-        <p>Dzień Wydziału EEIA 2023 - ALL Rights Reserved</p>
+        <p>Dzień Wydziału EEIA 2023 - All Rights Reserved</p>
         <div className="social-media-icon">
           <img src={FACEBOOK_ICON}></img>
           <img src={INSTAGRAM_ICON}></img>
