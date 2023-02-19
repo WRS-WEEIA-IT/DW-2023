@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { LanguageModeContext } from '../../../contexts/LanguageContext';
 import CardGrid from '../../CardGrid/CardGrid';
 import './EventsSection.scss';
-import { animateOnScroll, viewportProperties } from '../../../animations/animateOnScroll';
+import { createAnimateOnScroll, cardViewportProperties } from '../../../animations/animateOnScroll';
 import { m } from 'framer-motion';
 
 const EventsSection = () => {
@@ -23,8 +23,8 @@ const EventsSection = () => {
         <m.div
           initial="hidden"
           whileInView="visible"
-          viewport={viewportProperties}
-          variants={animateOnScroll}>
+          viewport={cardViewportProperties}
+          variants={createAnimateOnScroll()}>
           <CardGrid />
         </m.div>
         <h4 id="events-show-more-link">{SHOW_MORE_LINK}</h4>
