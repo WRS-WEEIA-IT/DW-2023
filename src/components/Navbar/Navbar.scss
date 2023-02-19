@@ -53,6 +53,10 @@ $link-hover-transition-duration: 0.2s;
           transition: $link-hover-transition-duration;
         }
       }
+
+      .language-switch-mobile {
+        display: none;
+      }
     }
 
     #navbar-buttons-container {
@@ -95,6 +99,10 @@ $link-hover-transition-duration: 0.2s;
         .navbar-link {
           font-size: var(--h3-font-size);
           text-align: center;
+        }
+
+        .language-switch-mobile {
+          display: unset;
         }
       }
 

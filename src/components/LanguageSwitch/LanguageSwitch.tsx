@@ -4,7 +4,7 @@ import EN_IMG from '../../assets/icons/united-kingdom.png';
 import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 
-const LanguageSwitch = () => {
+const LanguageSwitch = ({ className }: { className?: string }) => {
   const { languageMode, setLanguageMode } = useContext(LanguageModeContext);
 
   const toggleLanguageMode = () => {
@@ -12,7 +12,7 @@ const LanguageSwitch = () => {
   };
 
   return (
-    <div id="language-mode-switch" onClick={toggleLanguageMode}>
+    <div id="language-mode-switch" className={className} onClick={toggleLanguageMode}>
       <img src={languageMode === 'polish' ? EN_IMG : PL_IMG} id="language-switch-icon" />
     </div>
   );
