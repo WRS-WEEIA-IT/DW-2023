@@ -9,6 +9,8 @@ import BURGER_CLOSE_ICON from '../../assets/icons/burger-close.svg';
 import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
 import { HashLink as Link } from 'react-router-hash-link';
 import { WELCOME_SECTION_ID } from './NavLinks';
+import { m } from 'framer-motion';
+import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
 
 const Navbar = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -40,7 +42,14 @@ const Navbar = () => {
       <div id="navbar-content">
         <div id="mobile-header-container">
           <Link to={WELCOME_SECTION_ID} id="dw-logo-link" smooth>
-            <h3 id="dw-logo">DW2023</h3>
+            <m.h3
+              initial="hidden"
+              whileInView="visible"
+              viewport={cardViewportProperties}
+              variants={createAnimateOnScroll(0)}
+              id="dw-logo">
+              DW2023
+            </m.h3>
           </Link>
           <div id="burger-container" onClick={handleMenuToggle}>
             <img id="burger-icon" src={isMenuOpen ? BURGER_CLOSE_ICON : BURGER_OPEN_ICON} />
@@ -48,15 +57,18 @@ const Navbar = () => {
         </div>
         <div id="navbar-links-container" className={isMenuOpen ? 'menu-open' : ''}>
           {(languageMode == 'polish' ? navLinksPL : navLinksEN).map((navLink, index) => (
-            <Link
-              to={navLink.sectionId}
-              key={index}
-              className="navbar-link"
-              smooth
-              onClick={closeMenu}>
-              {navLink.title}
-            </Link>
+            <m.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ amount: 0.2, once: false }}
+              variants={createAnimateOnScroll(0.1)}
+              key={index}>
+              <Link to={navLink.sectionId} className="navbar-link" smooth onClick={closeMenu}>
+                {navLink.title}
+              </Link>
+            </m.div>
           ))}
+          <LanguageSwitch className="language-switch-mobile" />
         </div>
         <div id="navbar-buttons-container">
           <LanguageSwitch />
