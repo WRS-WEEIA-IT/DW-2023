@@ -87,27 +87,6 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
     <>
       <div className="backdrop">
         <form className="form-container" onSubmit={onSubmitHandler}>
-          {nameError && (
-            <div className="error-message">
-              {languageMode == 'polish'
-                ? 'Pole imię musi zawierać przynajmniej jedną literę'
-                : 'Name field must have at least one character'}
-            </div>
-          )}
-          {emailError && (
-            <div className="error-message">
-              {languageMode == 'polish'
-                ? `Pole e-mail musi zawierać przynajmniej jedną literę oraz symbol ${'@'}`
-                : `E-mail field must have at least one character and symgol ${'@'}`}
-            </div>
-          )}
-          {messageError && (
-            <div className="error-message">
-              {languageMode == 'polish'
-                ? 'Pole wiadomość musi zawierać przynajmniej jedną literę'
-                : 'Message field must have at least one character'}
-            </div>
-          )}
           <div className="form-row">
             <label>{languageMode == 'polish' ? 'Imię' : 'Name'}</label>
             <input
@@ -116,6 +95,13 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
               onChange={ChangeNameHandler}
               value={name}></input>
           </div>
+          {nameError && (
+            <div className="error-message">
+              {languageMode == 'polish'
+                ? 'Pole imię musi zawierać przynajmniej jedną literę'
+                : 'Name field must have at least one character'}
+            </div>
+          )}
           <div className="form-row">
             <label>E-mail</label>
             <input
@@ -124,6 +110,13 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
               onChange={ChangeEmailHandler}
               value={email}></input>
           </div>
+          {emailError && (
+            <div className="error-message">
+              {languageMode == 'polish'
+                ? `Pole e-mail musi zawierać przynajmniej jedną literę oraz symbol ${'@'}`
+                : `E-mail field must have at least one character and symgol ${'@'}`}
+            </div>
+          )}
           <div className="form-row">
             <label>{languageMode == 'polish' ? 'Wiadomość' : 'Message'}</label>
             <textarea
@@ -134,6 +127,13 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
               onChange={ChangeMessageHandler}
               value={message}></textarea>
           </div>
+          {messageError && (
+            <div className="error-message">
+              {languageMode == 'polish'
+                ? 'Pole wiadomość musi zawierać przynajmniej jedną literę'
+                : 'Message field must have at least one character'}
+            </div>
+          )}
           <button type="submit" className={`${Button.button} ${Button.square} ${Button.filled}`}>
             {languageMode == 'polish' ? 'Wyślij' : 'Send'}
           </button>
