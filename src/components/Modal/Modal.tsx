@@ -34,8 +34,9 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
   };
 
   const ChangeNameHandler = (event: SyntheticEvent) => {
-    setName((event.currentTarget as HTMLTextAreaElement).value);
-    if (name.trim().length == 0) {
+    const currentName = (event.currentTarget as HTMLTextAreaElement).value;
+    setName(currentName);
+    if (currentName.trim().length == 0) {
       ChangeErrorState(true, errorIdentifier.NAME);
     } else {
       ChangeErrorState(false, errorIdentifier.NAME);
@@ -44,8 +45,9 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
   };
 
   const ChangeEmailHandler = (event: SyntheticEvent) => {
-    setEmail((event.currentTarget as HTMLTextAreaElement).value);
-    if (email.trim().length == 0 || !email.includes('@')) {
+    const currentEmail = (event.currentTarget as HTMLTextAreaElement).value;
+    setEmail(currentEmail);
+    if (currentEmail.trim().length == 0 || !currentEmail.includes('@')) {
       ChangeErrorState(true, errorIdentifier.EMAIL);
     } else {
       ChangeErrorState(false, errorIdentifier.EMAIL);
@@ -54,8 +56,9 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
   };
 
   const ChangeMessageHandler = (event: SyntheticEvent) => {
-    setMessage((event.currentTarget as HTMLTextAreaElement).value);
-    if (message.trim().length == 0) {
+    const currentMessage = (event.currentTarget as HTMLTextAreaElement).value;
+    setMessage(currentMessage);
+    if (currentMessage.trim().length == 0) {
       ChangeErrorState(true, errorIdentifier.MESSAGE);
     } else {
       ChangeErrorState(false, errorIdentifier.MESSAGE);
@@ -84,6 +87,27 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
     <>
       <div className="backdrop">
         <form className="form-container" onSubmit={onSubmitHandler}>
+          {nameError && (
+            <div className="error-message">
+              {languageMode == 'polish'
+                ? 'Pole imię musi zawierać przynajmniej jedną literę'
+                : 'Name field must have at least one character'}
+            </div>
+          )}
+          {emailError && (
+            <div className="error-message">
+              {languageMode == 'polish'
+                ? `Pole e-mail musi zawierać przynajmniej jedną literę oraz symbol ${'@'}`
+                : `E-mail field must have at least one character and symgol ${'@'}`}
+            </div>
+          )}
+          {messageError && (
+            <div className="error-message">
+              {languageMode == 'polish'
+                ? 'Pole wiadomość musi zawierać przynajmniej jedną literę'
+                : 'Message field must have at least one character'}
+            </div>
+          )}
           <div className="form-row">
             <label>{languageMode == 'polish' ? 'Imię' : 'Name'}</label>
             <input
