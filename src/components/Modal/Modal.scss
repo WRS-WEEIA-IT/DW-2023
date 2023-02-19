@@ -12,6 +12,17 @@
   justify-content: center;
   align-items: center;
 
+  .error-message {
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    color: red;
+    border: 0.1rem solid red;
+    height: 40%;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+
   .error {
     padding: 0.8rem 1rem;
     border-radius: 0.5rem;
