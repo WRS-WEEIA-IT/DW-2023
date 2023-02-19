@@ -7,7 +7,7 @@ import {
   descriptionTextEN,
   descriptionTextPL,
 } from './DescriptionTexts';
-import { animateOnScroll, viewportProperties } from '../../../animations/animateOnScroll';
+import { createAnimateOnScroll, viewportProperties } from '../../../animations/animateOnScroll';
 import { m } from 'framer-motion';
 
 const AboutSection = () => {
@@ -21,7 +21,7 @@ const AboutSection = () => {
         initial="hidden"
         whileInView="visible"
         viewport={viewportProperties}
-        variants={animateOnScroll}>
+        variants={createAnimateOnScroll()}>
         <h4 id="about-header-text">{HEADER_TEXT}</h4>
         <p id="about-description-text">{DESCRIPTION_TEXT}</p>
       </m.div>
