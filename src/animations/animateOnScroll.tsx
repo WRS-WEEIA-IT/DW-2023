@@ -9,7 +9,7 @@ export const viewportProperties = { amount: minimumVisibleElementHeight, once: t
 export const cardViewportProperties = { amount: minimumVisibleCardsHeight, once: true };
 
 export const createAnimateOnScroll = (
-  delay: 0 | 0.1 | 0.2 | 0.3 | 0.4 = defaultAnimationDelay
+  delay: 0 | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 = defaultAnimationDelay
 ): Variants => {
   return {
     hidden: {
