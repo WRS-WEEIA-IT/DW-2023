@@ -10,9 +10,11 @@ html {
   font-family: 'Montserrat', sans-serif;
   --screen-side-margin: 13vw;
 
-  background: url('/public/background/background.jpg');
+  background: url('/public/background/background2.png');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: left;
+  background-position-y: 0%;
   height: 100vh;
 }
 
