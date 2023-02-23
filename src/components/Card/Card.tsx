@@ -8,7 +8,7 @@ import { Timestamp } from '@firebase/firestore';
 const Card = ({ imageSource, eventType, title, timeStart, timeEnd }: CardInterface) => {
   const { languageMode } = useContext(LanguageModeContext);
   const eventTypeText =
-    eventType === 'lecture'
+    eventType === 'lectures'
       ? languageMode === 'polish'
         ? 'Szkolenie'
         : 'Lecture'
@@ -17,7 +17,7 @@ const Card = ({ imageSource, eventType, title, timeStart, timeEnd }: CardInterfa
       : 'Workshop';
 
   const convertToClockTime = (time: Timestamp) =>
-    `${time.toDate().getHours()}:${time.toDate().getMinutes()}`;
+    `${time.toDate().getHours()}:${time.toDate().getMinutes() || '00'}`;
 
   const startHour = convertToClockTime(timeStart);
   const endHour = convertToClockTime(timeEnd);
