@@ -7,8 +7,7 @@
     padding: 6vh var(--screen-side-margin) 10vh var(--screen-side-margin);
 
     #events-header,
-    #events-description,
-    #events-show-more-link {
+    #events-description {
       text-align: center;
     }
   }
@@ -16,5 +15,18 @@
   #events-wave-img {
     transform: rotateZ(180deg) translateY(1px);
     width: 100%;
+  }
+}
+
+@media screen and (max-width: $screen-size-tablet) {
+  #events-section {
+    #events-content {
+      padding: 6vh 0 10vh 0;
+    }
+  }
+
+  #events-header,
+  #events-description {
+    padding: 0 var(--screen-side-margin);
   }
 }

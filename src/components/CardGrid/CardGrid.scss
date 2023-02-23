@@ -7,14 +7,23 @@ $card-grid-container-padding: 10vh;
   height: 400px;
 
   .swiper-slide {
-    width: calc(25% - 20px);
+    width: calc(22% - 20px);
   }
 }
 
 @media screen and (max-width: $screen-size-tablet) {
   .grid-container {
     .swiper-slide {
-      width: calc(50% - 20px);
+      width: calc(60% - 2 * var(--screen-side-margin));
+    }
+
+    .swiper-wrapper {
+      padding-left: var(--screen-side-margin);
+      padding-right: 10rem;
+    }
+
+    .swiper-slide:nth-last-child(1) {
+      padding-right: calc(2 * var(--screen-side-margin));
     }
   }
 }
@@ -22,7 +31,16 @@ $card-grid-container-padding: 10vh;
 @media screen and (max-width: $screen-size-mobile) {
   .grid-container {
     .swiper-slide {
-      width: calc(100%);
+      width: calc(100% - 2 * var(--screen-side-margin));
+    }
+
+    .swiper-wrapper {
+      padding-left: var(--screen-side-margin);
+      padding-right: 10rem;
+    }
+
+    .swiper-slide:nth-last-child(1) {
+      padding-right: calc(2 * var(--screen-side-margin));
     }
   }
 }
