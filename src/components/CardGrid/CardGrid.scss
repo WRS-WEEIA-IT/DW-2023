@@ -3,20 +3,26 @@
 $card-grid-container-padding: 10vh;
 
 .grid-container {
-  padding: $card-grid-container-padding 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-}
+  padding: 2rem 0;
+  height: 400px;
 
-@media (max-width: $screen-size-tablet) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
+  .swiper-slide {
+    width: calc(25% - 20px);
   }
 }
 
-@media (max-width: $screen-size-mobile) {
+@media screen and (max-width: $screen-size-tablet) {
   .grid-container {
-    grid-template-columns: repeat(1, 1fr);
+    .swiper-slide {
+      width: calc(50% - 20px);
+    }
+  }
+}
+
+@media screen and (max-width: $screen-size-mobile) {
+  .grid-container {
+    .swiper-slide {
+      width: calc(100%);
+    }
   }
 }

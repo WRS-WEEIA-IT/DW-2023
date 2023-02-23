@@ -13,7 +13,6 @@ const EventsSection = () => {
     languageMode == 'polish'
       ? 'Zapisz się na najciekawsze szkolenia i warsztaty!'
       : 'Choose the events that suit you the most and sign up for them!';
-  const SHOW_MORE_LINK = languageMode == 'polish' ? 'Kliknij i sprawdź więcej!' : 'Find out more!';
 
   return (
     <section id="events-section">
@@ -27,7 +26,6 @@ const EventsSection = () => {
           variants={createAnimateOnScroll()}>
           <CardGrid />
         </m.div>
-        <h4 id="events-show-more-link">{SHOW_MORE_LINK}</h4>
       </div>
     </section>
   );
