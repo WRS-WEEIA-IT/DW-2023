@@ -1,25 +1,36 @@
 @import '../../styles/Constants.scss';
 
 $card-grid-container-padding: 10vh;
+$card-size-pc: 22%;
+$card-size-laptop: 30%;
+$card-size-tablet: 60%;
+$card-size-mobile: 100%;
 
 .grid-container {
   padding: 2rem 0;
   height: 400px;
 
   .swiper-slide {
-    width: calc(22% - 20px);
+    width: calc($card-size-pc - 20px);
+  }
+}
+
+@media screen and (max-width: $screen-size-laptop) {
+  .grid-container {
+    .swiper-slide {
+      width: calc($card-size-laptop - 20px);
+    }
   }
 }
 
 @media screen and (max-width: $screen-size-tablet) {
   .grid-container {
     .swiper-slide {
-      width: calc(60% - 2 * var(--screen-side-margin));
+      width: calc($card-size-tablet - 2 * var(--screen-side-margin));
     }
 
     .swiper-wrapper {
       padding-left: var(--screen-side-margin);
-      padding-right: 10rem;
     }
 
     .swiper-slide:nth-last-child(1) {
@@ -36,7 +47,6 @@ $card-grid-container-padding: 10vh;
 
     .swiper-wrapper {
       padding-left: var(--screen-side-margin);
-      padding-right: 10rem;
     }
 
     .swiper-slide:nth-last-child(1) {
