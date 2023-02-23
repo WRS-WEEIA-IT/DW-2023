@@ -7,9 +7,6 @@ $card-size-tablet: 60%;
 $card-size-mobile: 100%;
 
 .grid-container {
-  padding: 2rem 0;
-  height: 400px;
-
   .swiper-slide {
     width: calc($card-size-pc - 20px);
   }

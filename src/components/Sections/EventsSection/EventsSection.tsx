@@ -19,12 +19,23 @@ const EventsSection = () => {
       <div id="events-content">
         <h2 id="events-header">{HEADER_TEXT}</h2>
         <p id="events-description">{DESCRIPTION_TEXT}</p>
+        <h4 className="card-swiper-label">{languageMode == 'polish' ? 'Szkolenia' : 'Lectures'}</h4>
         <m.div
           initial="hidden"
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll()}>
-          <CardGrid />
+          <CardGrid eventType="lectures" />
+        </m.div>
+        <h4 className="card-swiper-label">
+          {languageMode == 'polish' ? 'Warsztaty' : 'Workshops'}
+        </h4>
+        <m.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={cardViewportProperties}
+          variants={createAnimateOnScroll()}>
+          <CardGrid eventType="workshops" />
         </m.div>
       </div>
     </section>

@@ -16,6 +16,11 @@
     transform: rotateZ(180deg) translateY(1px);
     width: 100%;
   }
+
+  .card-swiper-label {
+    padding-top: 2rem;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: $screen-size-tablet) {

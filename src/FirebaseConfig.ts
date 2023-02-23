@@ -14,7 +14,6 @@ const firebaseConfig = {
 //setup firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseDb = getFirestore(firebaseApp);
-export const firebaseCollectionName = 'events';
 
 //example of fetching all events from firebase database
 // const [events, loading, error] = useCollectionData(collection(firebaseDb, firebaseCollectionName));
