@@ -1,6 +1,6 @@
 @import '../../styles/Constants.scss';
 
-.form-container {
+#form-container {
   position: fixed;
   display: flex;
   width: 100%;
@@ -11,14 +11,14 @@
   justify-content: center;
   align-items: center;
 
-  .backdrop {
+  #backdrop {
     width: 100%;
     height: 100%;
     background-color: hsl(0, 0%, 35%, 0.5);
     display: flex;
   }
 
-  .form-section {
+  #form-section {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -27,6 +27,24 @@
     border-radius: 0.5rem;
     width: 40%;
     position: fixed;
+
+    #form-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      #form-header-text {
+        color: $neutral-color-95;
+        margin: 0;
+        margin-right: auto;
+      }
+
+      #form-close-icon {
+        height: var(--h3-font-size);
+        cursor: pointer;
+      }
+    }
 
     .error-message {
       color: red;
@@ -51,7 +69,8 @@
       color: $neutral-color-95;
     }
 
-    input {
+    #email-input,
+    #name-input {
       padding: 0.8rem 1rem;
       border-radius: 0.5rem;
       border: 0.1rem solid $primary-color;
@@ -59,7 +78,7 @@
       font-family: inherit;
     }
 
-    textarea {
+    #message-input {
       resize: none;
       border-radius: 0.5rem;
       border: 0.1rem solid $primary-color;
@@ -67,5 +86,59 @@
       height: 16vh;
       font-family: inherit;
     }
+
+    #form-message-sent-header,
+    #form-message-sent-description {
+      color: $neutral-color-95;
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (min-width: calc($screen-size-tablet + 1px)) {
+  #form-container {
+    #form-section {
+      animation: show-desktop-form 0.3s forwards;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-size-tablet) {
+  #form-container {
+    #backdrop {
+      width: 100%;
+      height: 100%;
+      background-color: hsl(0, 0%, 35%, 0.5);
+      display: flex;
+    }
+
+    #form-section {
+      top: unset;
+      bottom: 0;
+      box-sizing: border-box;
+      width: 100%;
+      border-radius: 2rem 2rem 0 0;
+      animation: show-mobile-form 0.3s forwards;
+    }
+  }
+}
+
+@keyframes show-mobile-form {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes show-desktop-form {
+  0% {
+    transform: scale(0%);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(100%);
+    opacity: 1;
   }
 }

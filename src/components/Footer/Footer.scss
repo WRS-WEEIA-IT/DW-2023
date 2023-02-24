@@ -8,17 +8,14 @@ $gap-between-content-mobile: 1.5rem;
   display: flex;
   flex-direction: column;
 
-  p {
-    margin: 0.5rem 0;
-  }
-
-  h4 {
+  #contact-section-label {
     margin-top: 0;
     margin-bottom: 1rem;
   }
 
-  #contact-text {
-    margin-bottom: 0;
+  margin-bottom: 0;
+  #contact-section-description {
+    margin: 0.5rem 0;
   }
 
   #contact-section {
