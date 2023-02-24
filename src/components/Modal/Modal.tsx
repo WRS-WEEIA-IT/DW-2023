@@ -66,6 +66,10 @@ const Modal = () => {
 
   const changeFormShowState = () => {
     setShowForm(!showForm);
+    changeErrorState(false, 'all');
+    setEmail('');
+    setMessage('');
+    setName('');
   };
 
   const formContainerContent = () => {
