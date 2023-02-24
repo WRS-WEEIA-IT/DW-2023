@@ -96,7 +96,9 @@ const Modal = () => {
             <label>E-mail</label>
             <input
               className={emailError == false ? '' : 'error-input'}
-              placeholder={languageMode == 'polish' ? 'Wpisz e-mail' : 'Type e-mail'}
+              placeholder={
+                languageMode == 'polish' ? 'Wpisz swój adres e-mail' : 'Type in your e-mail address'
+              }
               onChange={changeEmailHandler}
               value={email}></input>
           </div>
@@ -139,7 +141,7 @@ const Modal = () => {
       <button
         className={`${Button.button} ${Button.square} ${Button.filled}`}
         onClick={changeFormShowState}>
-        Kontakt
+        {languageMode == 'polish' ? 'Skontaktuj się z nami' : 'Contact us'}
       </button>
       {showForm == false ? '' : formContainerContent()}
     </>
