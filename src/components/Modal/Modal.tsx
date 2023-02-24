@@ -83,13 +83,13 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
 
   const formContainerContent = () => {
     return (
-      <>
+      <div className="form-container">
         <div className="backdrop" onClick={changeFormShowState}></div>
-        <form className="form-container" onSubmit={onSubmitHandler}>
+        <form className="form-section" onSubmit={onSubmitHandler}>
           <div className="form-row">
             <label>{languageMode == 'polish' ? 'Imię' : 'Name'}</label>
             <input
-              className={nameError == false ? 'correct' : 'error-input'}
+              className={nameError == false ? '' : 'error-input'}
               placeholder={languageMode == 'polish' ? 'Wpisz swoje imię' : 'Type your name'}
               onChange={changeNameHandler}
               value={name}></input>
@@ -104,7 +104,7 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
           <div className="form-row">
             <label>E-mail</label>
             <input
-              className={emailError == false ? 'correct' : 'error-input'}
+              className={emailError == false ? '' : 'error-input'}
               placeholder={languageMode == 'polish' ? 'Wpisz e-mail' : 'Type e-mail'}
               onChange={changeEmailHandler}
               value={email}></input>
@@ -119,7 +119,7 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
           <div className="form-row">
             <label>{languageMode == 'polish' ? 'Wiadomość' : 'Message'}</label>
             <textarea
-              className={messageError == false ? 'correct' : 'error-textarea'}
+              className={messageError == false ? '' : 'error-textarea'}
               name="Text1"
               maxLength={500}
               placeholder={
@@ -139,7 +139,7 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
             {languageMode == 'polish' ? 'Wyślij' : 'Send'}
           </button>
         </form>
-      </>
+      </div>
     );
   };
 
