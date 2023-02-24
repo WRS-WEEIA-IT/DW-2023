@@ -13,21 +13,17 @@ const Modal = () => {
   const [emailError, setEmailError] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
-  const errorIdentifier = {
-    NAME: 0,
-    EMAIL: 1,
-    MESSAGE: 2,
-    ALL: 3,
-  };
-
-  const changeErrorState = (state: boolean, triggeredError: number) => {
-    if (triggeredError == errorIdentifier.NAME) {
+  const changeErrorState = (
+    state: boolean,
+    triggeredError: 'name' | 'email' | 'message' | 'all'
+  ) => {
+    if (triggeredError == 'name') {
       setNameError(state);
-    } else if (triggeredError == errorIdentifier.EMAIL) {
+    } else if (triggeredError == 'email') {
       setEmailError(state);
-    } else if (triggeredError == errorIdentifier.MESSAGE) {
+    } else if (triggeredError == 'message') {
       setMessageError(state);
-    } else if (triggeredError == errorIdentifier.ALL) {
+    } else if (triggeredError == 'all') {
       setNameError(state);
       setEmailError(state);
       setMessageError(state);
@@ -37,31 +33,19 @@ const Modal = () => {
   const changeNameHandler = (event: SyntheticEvent) => {
     const currentName = (event.currentTarget as HTMLTextAreaElement).value;
     setName(currentName);
-    if (currentName.trim().length == 0) {
-      changeErrorState(true, errorIdentifier.NAME);
-    } else {
-      changeErrorState(false, errorIdentifier.NAME);
-    }
+    changeErrorState(currentName.trim().length == 0, 'name');
   };
 
   const changeEmailHandler = (event: SyntheticEvent) => {
     const currentEmail = (event.currentTarget as HTMLTextAreaElement).value;
     setEmail(currentEmail);
-    if (currentEmail.trim().length == 0 || !currentEmail.includes('@')) {
-      changeErrorState(true, errorIdentifier.EMAIL);
-    } else {
-      changeErrorState(false, errorIdentifier.EMAIL);
-    }
+    changeErrorState(currentEmail.trim().length == 0 || !currentEmail.includes('@'), 'email');
   };
 
   const changeMessageHandler = (event: SyntheticEvent) => {
     const currentMessage = (event.currentTarget as HTMLTextAreaElement).value;
     setMessage(currentMessage);
-    if (currentMessage.trim().length == 0) {
-      changeErrorState(true, errorIdentifier.MESSAGE);
-    } else {
-      changeErrorState(false, errorIdentifier.MESSAGE);
-    }
+    changeErrorState(currentMessage.trim().length == 0, 'message');
   };
 
   const onSubmitHandler = (event: SyntheticEvent) => {
@@ -69,7 +53,7 @@ const Modal = () => {
     if (emailError && nameError && messageError) {
       return;
     } else if (name.length > 0 && message.length > 0 && email.length > 0) {
-      changeErrorState(false, errorIdentifier.ALL);
+      changeErrorState(false, 'all');
       setEmail('');
       setMessage('');
       setName('');
