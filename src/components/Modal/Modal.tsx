@@ -11,6 +11,7 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
   const [nameError, setNameError] = useState(false);
   const [messageError, setMessageError] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   const errorIdentifier = {
     NAME: 0,
@@ -19,80 +20,78 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
     ALL: 3,
   };
 
-  const ChangeErrorState = (state: boolean, triggeredEroor: number) => {
-    if (triggeredEroor == errorIdentifier.NAME) {
+  const changeErrorState = (state: boolean, triggeredError: number) => {
+    if (triggeredError == errorIdentifier.NAME) {
       setNameError(state);
-    } else if (triggeredEroor == errorIdentifier.EMAIL) {
+    } else if (triggeredError == errorIdentifier.EMAIL) {
       setEmailError(state);
-    } else if (triggeredEroor == errorIdentifier.MESSAGE) {
+    } else if (triggeredError == errorIdentifier.MESSAGE) {
       setMessageError(state);
-    } else if (triggeredEroor == errorIdentifier.ALL) {
+    } else if (triggeredError == errorIdentifier.ALL) {
       setNameError(state);
       setEmailError(state);
       setMessageError(state);
     }
   };
 
-  const ChangeNameHandler = (event: SyntheticEvent) => {
+  const changeNameHandler = (event: SyntheticEvent) => {
     const currentName = (event.currentTarget as HTMLTextAreaElement).value;
     setName(currentName);
     if (currentName.trim().length == 0) {
-      ChangeErrorState(true, errorIdentifier.NAME);
+      changeErrorState(true, errorIdentifier.NAME);
     } else {
-      ChangeErrorState(false, errorIdentifier.NAME);
+      changeErrorState(false, errorIdentifier.NAME);
     }
-    console.log(name);
   };
 
-  const ChangeEmailHandler = (event: SyntheticEvent) => {
+  const changeEmailHandler = (event: SyntheticEvent) => {
     const currentEmail = (event.currentTarget as HTMLTextAreaElement).value;
     setEmail(currentEmail);
     if (currentEmail.trim().length == 0 || !currentEmail.includes('@')) {
-      ChangeErrorState(true, errorIdentifier.EMAIL);
+      changeErrorState(true, errorIdentifier.EMAIL);
     } else {
-      ChangeErrorState(false, errorIdentifier.EMAIL);
+      changeErrorState(false, errorIdentifier.EMAIL);
     }
-    console.log(email);
   };
 
-  const ChangeMessageHandler = (event: SyntheticEvent) => {
+  const changeMessageHandler = (event: SyntheticEvent) => {
     const currentMessage = (event.currentTarget as HTMLTextAreaElement).value;
     setMessage(currentMessage);
     if (currentMessage.trim().length == 0) {
-      ChangeErrorState(true, errorIdentifier.MESSAGE);
+      changeErrorState(true, errorIdentifier.MESSAGE);
     } else {
-      ChangeErrorState(false, errorIdentifier.MESSAGE);
+      changeErrorState(false, errorIdentifier.MESSAGE);
     }
-    console.log(message);
   };
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    if (
-      name.trim().length == 0 ||
-      email.trim().length == 0 ||
-      message.trim().length == 0 ||
-      !email.includes('@')
-    ) {
+    if (emailError && nameError && messageError) {
       return;
-    } else {
-      ChangeErrorState(false, errorIdentifier.ALL);
+    } else if (message.length > 0 && message.length > 0 && email.length > 0) {
+      changeErrorState(false, errorIdentifier.ALL);
       setEmail('');
       setMessage('');
       setName('');
+      setShowForm(false);
     }
   };
 
-  return (
-    <>
-      <div className="backdrop">
+  const changeFormShowState = () => {
+    setShowForm(!showForm);
+  };
+
+  const formContainerContent = () => {
+    return (
+      <>
+        <div className="backdrop" onClick={changeFormShowState}></div>
         <form className="form-container" onSubmit={onSubmitHandler}>
           <div className="form-row">
             <label>{languageMode == 'polish' ? 'Imię' : 'Name'}</label>
             <input
-              className={nameError == false ? 'correct' : 'error'}
+              className={nameError == false ? 'correct' : 'error-input'}
               placeholder={languageMode == 'polish' ? 'Wpisz swoje imię' : 'Type your name'}
-              onChange={ChangeNameHandler}
+              onChange={changeNameHandler}
               value={name}></input>
           </div>
           {nameError && (
@@ -105,9 +104,9 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
           <div className="form-row">
             <label>E-mail</label>
             <input
-              className={emailError == false ? 'correct' : 'error'}
+              className={emailError == false ? 'correct' : 'error-input'}
               placeholder={languageMode == 'polish' ? 'Wpisz e-mail' : 'Type e-mail'}
-              onChange={ChangeEmailHandler}
+              onChange={changeEmailHandler}
               value={email}></input>
           </div>
           {emailError && (
@@ -123,8 +122,10 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
               className={messageError == false ? 'correct' : 'error-textarea'}
               name="Text1"
               maxLength={500}
-              placeholder="What`s your problem kurwo?"
-              onChange={ChangeMessageHandler}
+              placeholder={
+                languageMode == 'polish' ? 'Opisz nam swoje pytanie' : 'Describe your question'
+              }
+              onChange={changeMessageHandler}
               value={message}></textarea>
           </div>
           {messageError && (
@@ -138,7 +139,18 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
             {languageMode == 'polish' ? 'Wyślij' : 'Send'}
           </button>
         </form>
-      </div>
+      </>
+    );
+  };
+
+  return (
+    <>
+      <button
+        className={`${Button.button} ${Button.square} ${Button.filled}`}
+        onClick={changeFormShowState}>
+        Kontakt
+      </button>
+      {showForm == false ? '' : formContainerContent()}
     </>
   );
 };

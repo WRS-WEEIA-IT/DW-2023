@@ -11,6 +11,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1.5rem;
+  background-color: $neutral-color-15;
+  padding: 2rem 3rem;
+  border-radius: 0.5rem;
+  width: 40%;
+  z-index: 100;
 
   .error-message {
     padding: 0.8rem 1rem;
@@ -23,7 +35,7 @@
     font-family: inherit;
   }
 
-  .error {
+  .error-input {
     padding: 0.8rem 1rem;
     border-radius: 0.5rem;
     border: 0.1rem solid red;
@@ -42,17 +54,6 @@
     height: 20vh;
     font-family: inherit;
     box-sizing: border-box;
-  }
-
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 1.5rem;
-    background-color: $neutral-color-15;
-    padding: 2rem 3rem;
-    border-radius: 0.5rem;
-    width: 40%;
   }
 
   .form-row {
