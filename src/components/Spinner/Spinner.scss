@@ -1,0 +1,41 @@
+@import '/src/styles/Constants.scss';
+
+$spinner-size: calc(var(--button-font-size) + 2rem);
+$spinner-color: $primary-color;
+
+.lds-ring {
+  display: flex;
+  margin: auto;
+  position: relative;
+  width: $spinner-size;
+  height: $spinner-size;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: calc(0.8 * #{$spinner-size});
+  height: calc(0.8 * #{$spinner-size});
+  margin: calc(0.1 * #{$spinner-size});
+  border: calc(0.1 * #{$spinner-size}) solid $spinner-color;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: $spinner-color transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
