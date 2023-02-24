@@ -3,7 +3,7 @@ import { LanguageModeContext } from '../../contexts/LanguageContext';
 import './Modal.scss';
 import { SyntheticEvent, useContext, useState } from 'react';
 
-const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
+const Modal = () => {
   const { languageMode } = useContext(LanguageModeContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -64,11 +64,11 @@ const Modal = ({ isModalShown = false }: { isModalShown: boolean }) => {
     }
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = (event: SyntheticEvent) => {
     event.preventDefault();
     if (emailError && nameError && messageError) {
       return;
-    } else if (message.length > 0 && message.length > 0 && email.length > 0) {
+    } else if (name.length > 0 && message.length > 0 && email.length > 0) {
       changeErrorState(false, errorIdentifier.ALL);
       setEmail('');
       setMessage('');

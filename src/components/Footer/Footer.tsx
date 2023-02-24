@@ -1,5 +1,4 @@
 import './Footer.scss';
-import Button from '../../styles/Button.module.scss';
 import CALL_ICON from '../../assets/icons/call.svg';
 import LOCATION_ICON from '../../assets/icons/location.svg';
 import MAIL_ICON from '../../assets/icons/mail.svg';
@@ -8,7 +7,11 @@ import INSTAGRAM_ICON from '../../assets/icons/insta.svg';
 import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import '../../styles/Constants.scss';
+<<<<<<< HEAD
 import { HashLink as Link } from 'react-router-hash-link';
+=======
+import Modal from '../Modal/Modal';
+>>>>>>> 5291e98 (Add modal to page)
 
 const Footer = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -26,9 +29,7 @@ const Footer = () => {
             {languageMode == 'polish' ? 'Skontaktuj się z nami!' : 'Contact us!'}
           </p>
         </div>
-        <button className={` ${Button.button} ${Button.square} ${Button.filled}`}>
-          {languageMode == 'polish' ? 'Skontaktuj się z nami' : 'Contact us'}
-        </button>
+        <Modal />
       </div>
     );
   };
