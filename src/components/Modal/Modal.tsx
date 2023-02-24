@@ -50,7 +50,10 @@ const Modal = () => {
 
   const onSubmitHandler = (event: SyntheticEvent) => {
     event.preventDefault();
-    if (emailError && nameError && messageError) {
+    changeErrorState(name.trim().length == 0, 'name');
+    changeErrorState(email.trim().length == 0 || !email.includes('@'), 'email');
+    changeErrorState(message.trim().length == 0, 'message');
+    if (emailError || nameError || messageError) {
       return;
     } else if (name.length > 0 && message.length > 0 && email.length > 0) {
       changeErrorState(false, 'all');
@@ -96,8 +99,8 @@ const Modal = () => {
           {emailError && (
             <div className="error-message">
               {languageMode == 'polish'
-                ? `Pole e-mail musi zawierać przynajmniej jedną literę oraz symbol ${'@'}`
-                : `E-mail field must have at least one character and symgol ${'@'}`}
+                ? `Pole e-mail musi zawierać symbol ${'@'}`
+                : `E-mail field must have at least one character and symbol ${'@'}`}
             </div>
           )}
           <div className="form-row">
