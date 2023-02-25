@@ -1,89 +1,95 @@
 import Button from '../../styles/Button.module.scss';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import './Modal.scss';
-import { SyntheticEvent, useContext, useState } from 'react';
+import { SyntheticEvent, useContext, useRef, useState } from 'react';
 import CLOSE_ICON from '../../assets/icons/burger-close.svg';
 import { sendEmail } from '../../services/EmailService';
 import Spinner from '../Spinner/Spinner';
 
 const Modal = () => {
   const { languageMode } = useContext(LanguageModeContext);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [nameError, setNameError] = useState(false);
   const [messageError, setMessageError] = useState(false);
   const [emailError, setEmailError] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [isFormShown, setIsFormShown] = useState(false);
   const [isMessageSent, setIsMessageSent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [isFormClosing, setIsFormClosing] = useState(false);
   const FORM_ANIMATION_DURATION = 300;
 
-  const changeErrorState = (
-    state: boolean,
-    triggeredError: 'name' | 'email' | 'message' | 'all'
-  ) => {
-    if (triggeredError == 'name') {
-      setNameError(state);
-    } else if (triggeredError == 'email') {
-      setEmailError(state);
-    } else if (triggeredError == 'message') {
-      setMessageError(state);
-    } else if (triggeredError == 'all') {
-      setNameError(state);
-      setEmailError(state);
-      setMessageError(state);
+  const checkError = (formElement: 'name' | 'email' | 'message' | 'all'): boolean => {
+    let isAnyError = false;
+    if ((formElement == 'name' || formElement == 'all') && nameRef.current !== null) {
+      const hasError = nameRef.current?.value.trim().length === 0;
+      setNameError(hasError);
+      isAnyError = isAnyError || hasError;
     }
+    if ((formElement == 'email' || formElement == 'all') && emailRef.current !== null) {
+      const hasError =
+        emailRef.current?.value.trim().length === 0 || !emailRef.current?.value.includes('@');
+      setEmailError(hasError);
+      isAnyError = isAnyError || hasError;
+    }
+    if ((formElement == 'message' || formElement == 'all') && messageRef.current !== null) {
+      const hasError = messageRef.current?.value.trim().length === 0;
+      setMessageError(hasError);
+      isAnyError = isAnyError || hasError;
+    }
+    return isAnyError;
   };
 
   const handleChangeName = (event: SyntheticEvent) => {
     const currentName = (event.currentTarget as HTMLTextAreaElement).value;
     setName(currentName);
-    changeErrorState(currentName.trim().length == 0, 'name');
+    checkError('name');
   };
 
   const handleChangeEmail = (event: SyntheticEvent) => {
     const currentEmail = (event.currentTarget as HTMLTextAreaElement).value;
     setEmail(currentEmail);
-    changeErrorState(currentEmail.trim().length == 0 || !currentEmail.includes('@'), 'email');
+    checkError('email');
   };
 
   const handleChangeMessage = (event: SyntheticEvent) => {
     const currentMessage = (event.currentTarget as HTMLTextAreaElement).value;
     setMessage(currentMessage);
-    changeErrorState(currentMessage.trim().length == 0, 'message');
+    checkError('message');
   };
 
   const handleFormSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    changeErrorState(name.trim().length == 0, 'name');
-    changeErrorState(email.trim().length == 0 || !email.includes('@'), 'email');
-    changeErrorState(message.trim().length == 0, 'message');
-    if (emailError || nameError || messageError) {
+    if (checkError('all')) {
       return;
-    } else if (name.trim().length > 0 && email.trim().length > 0 && message.trim().length > 0) {
+    } else {
       setIsLoading(true);
       sendEmail(name, email, message)
-        .then((_message) => setIsMessageSent(true))
+        .then(() => setIsMessageSent(true))
         .finally(() => setIsLoading(false));
     }
   };
 
   const handleOpenForm = () => {
-    setShowForm(true);
+    setIsFormShown(true);
   };
 
   const handleCloseForm = () => {
-    setIsAnimating(true);
+    setIsFormClosing(true);
     setTimeout(() => {
-      setIsAnimating(false);
+      setIsFormClosing(false);
       setIsMessageSent(false);
-      changeErrorState(false, 'all');
+      setNameError(false);
+      setEmailError(false);
+      setMessageError(false);
       setEmail('');
       setMessage('');
       setName('');
-      setShowForm(false);
+      setIsFormShown(false);
     }, FORM_ANIMATION_DURATION);
   };
 
@@ -91,7 +97,10 @@ const Modal = () => {
     return (
       <div id="form-container">
         <div id="backdrop" onClick={handleCloseForm}></div>
-        <form id="form-section" onSubmit={handleFormSubmit} data-animation={isAnimating.toString()}>
+        <form
+          id="form-section"
+          onSubmit={handleFormSubmit}
+          data-animation={isFormClosing.toString()}>
           <div id="form-header">
             <h4 id="form-header-text">
               {languageMode == 'polish' ? 'Formularz kontaktowy' : 'Contact form'}
@@ -102,6 +111,7 @@ const Modal = () => {
             <label>{languageMode == 'polish' ? 'Imię' : 'Name'}</label>
             <input
               id="name-input"
+              ref={nameRef}
               className={nameError == false ? '' : 'error-input'}
               placeholder={languageMode == 'polish' ? 'Wpisz swoje imię' : 'Type your name'}
               onChange={handleChangeName}
@@ -118,6 +128,7 @@ const Modal = () => {
             <label>E-mail</label>
             <input
               id="email-input"
+              ref={emailRef}
               className={emailError == false ? '' : 'error-input'}
               placeholder={
                 languageMode == 'polish' ? 'Wpisz swój adres e-mail' : 'Type in your e-mail address'
@@ -136,6 +147,7 @@ const Modal = () => {
             <label>{languageMode == 'polish' ? 'Wiadomość' : 'Message'}</label>
             <textarea
               id="message-input"
+              ref={messageRef}
               className={messageError == false ? '' : 'error-textarea'}
               name="Text1"
               maxLength={500}
@@ -171,7 +183,10 @@ const Modal = () => {
     return (
       <div id="form-container">
         <div id="backdrop" onClick={handleCloseForm}></div>
-        <form id="form-section" onSubmit={handleFormSubmit} data-animation={isAnimating.toString()}>
+        <form
+          id="form-section"
+          onSubmit={handleFormSubmit}
+          data-animation={isFormClosing.toString()}>
           <div id="form-header">
             <h4 id="form-header-text">
               {languageMode == 'polish' ? 'Formularz kontaktowy' : 'Contact form'}
@@ -203,7 +218,7 @@ const Modal = () => {
         onClick={handleOpenForm}>
         {languageMode == 'polish' ? 'Skontaktuj się z nami' : 'Contact us'}
       </button>
-      {showForm &&
+      {isFormShown &&
         (isMessageSent ? formContainerContentAfterSendingMessage() : formContainerContent())}
     </>
   );
