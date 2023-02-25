@@ -161,22 +161,22 @@ $backdrop-opacity: 0.5;
 
 @keyframes show-desktop-form {
   0% {
-    transform: scale(0%);
+    transform: translateY(70px);
     opacity: 0;
   }
   100% {
-    transform: scale(100%);
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes hide-desktop-form {
   0% {
-    transform: scale(100%);
+    transform: translateY(0);
     opacity: 1;
   }
   100% {
-    transform: scale(0%);
+    transform: translateY(70px);
     opacity: 0;
   }
 }
