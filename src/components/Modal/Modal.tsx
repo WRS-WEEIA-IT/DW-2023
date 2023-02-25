@@ -185,8 +185,8 @@ const Modal = () => {
         <div id="backdrop" onClick={handleCloseForm}></div>
         <form
           id="form-section"
-          onSubmit={handleFormSubmit}
-          data-animation={isFormClosing.toString()}>
+          data-animation={isFormClosing.toString()}
+          onSubmit={(event) => event.preventDefault()}>
           <div id="form-header">
             <h4 id="form-header-text">
               {languageMode == 'polish' ? 'Formularz kontaktowy' : 'Contact form'}
