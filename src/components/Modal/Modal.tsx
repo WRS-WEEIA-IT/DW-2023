@@ -148,7 +148,7 @@ const Modal = () => {
             <textarea
               id="message-input"
               ref={messageRef}
-              className={messageError == false ? '' : 'error-textarea'}
+              className={messageError == false ? '' : 'error-input'}
               name="Text1"
               maxLength={500}
               placeholder={

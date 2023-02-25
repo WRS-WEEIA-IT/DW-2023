@@ -3,6 +3,9 @@
 $form-open-animation-duration: 0.3s;
 $backdrop-color: $neutral-color-45;
 $backdrop-opacity: 0.5;
+$input-padding: 0.8rem 1rem;
+$input-border-radius: 0.5rem;
+$input-border-width: 0.1rem;
 
 #form-container {
   text-align: left;
@@ -21,7 +24,6 @@ $backdrop-opacity: 0.5;
     height: 100%;
     background-color: $backdrop-color;
     opacity: $backdrop-opacity;
-    display: flex;
   }
 
   #form-section {
@@ -57,14 +59,6 @@ $backdrop-opacity: 0.5;
       font-size: var(--h6-font-size);
     }
 
-    .error-input {
-      border: 0.1rem solid red;
-    }
-
-    .error-textarea {
-      border: 0.1rem solid red;
-    }
-
     .form-row {
       display: flex;
       flex-direction: column;
@@ -76,21 +70,23 @@ $backdrop-opacity: 0.5;
     }
 
     #email-input,
-    #name-input {
-      padding: 0.8rem 1rem;
-      border-radius: 0.5rem;
-      border: 0.1rem solid $primary-color;
-      box-sizing: border-box;
+    #name-input,
+    #message-input {
+      padding: $input-padding;
+      border-radius: $input-border-radius;
+      border: $input-border-width solid $primary-color;
       font-family: inherit;
+      box-sizing: border-box;
+      background-color: $neutral-color-95;
+
+      &.error-input {
+        border-color: red;
+      }
     }
 
     #message-input {
       resize: none;
-      border-radius: 0.5rem;
-      border: 0.1rem solid $primary-color;
-      padding: 0.8rem 1rem;
       height: 16vh;
-      font-family: inherit;
     }
 
     #form-message-sent-header,
