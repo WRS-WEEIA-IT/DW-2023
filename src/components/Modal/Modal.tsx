@@ -17,6 +17,8 @@ const Modal = () => {
   const [showForm, setShowForm] = useState(false);
   const [isMessageSent, setIsMessageSent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const FORM_ANIMATION_DURATION = 300;
 
   const changeErrorState = (
     state: boolean,
@@ -35,25 +37,25 @@ const Modal = () => {
     }
   };
 
-  const changeNameHandler = (event: SyntheticEvent) => {
+  const handleChangeName = (event: SyntheticEvent) => {
     const currentName = (event.currentTarget as HTMLTextAreaElement).value;
     setName(currentName);
     changeErrorState(currentName.trim().length == 0, 'name');
   };
 
-  const changeEmailHandler = (event: SyntheticEvent) => {
+  const handleChangeEmail = (event: SyntheticEvent) => {
     const currentEmail = (event.currentTarget as HTMLTextAreaElement).value;
     setEmail(currentEmail);
     changeErrorState(currentEmail.trim().length == 0 || !currentEmail.includes('@'), 'email');
   };
 
-  const changeMessageHandler = (event: SyntheticEvent) => {
+  const handleChangeMessage = (event: SyntheticEvent) => {
     const currentMessage = (event.currentTarget as HTMLTextAreaElement).value;
     setMessage(currentMessage);
     changeErrorState(currentMessage.trim().length == 0, 'message');
   };
 
-  const onSubmitHandler = (event: SyntheticEvent) => {
+  const handleFormSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
     changeErrorState(name.trim().length == 0, 'name');
     changeErrorState(email.trim().length == 0 || !email.includes('@'), 'email');
@@ -68,25 +70,33 @@ const Modal = () => {
     }
   };
 
-  const changeFormShowState = () => {
-    setShowForm(!showForm);
-    setIsMessageSent(false);
-    changeErrorState(false, 'all');
-    setEmail('');
-    setMessage('');
-    setName('');
+  const handleOpenForm = () => {
+    setShowForm(true);
+  };
+
+  const handleCloseForm = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setIsAnimating(false);
+      setIsMessageSent(false);
+      changeErrorState(false, 'all');
+      setEmail('');
+      setMessage('');
+      setName('');
+      setShowForm(false);
+    }, FORM_ANIMATION_DURATION);
   };
 
   const formContainerContent = () => {
     return (
       <div id="form-container">
-        <div id="backdrop" onClick={changeFormShowState}></div>
-        <form id="form-section" onSubmit={onSubmitHandler}>
+        <div id="backdrop" onClick={handleCloseForm}></div>
+        <form id="form-section" onSubmit={handleFormSubmit} data-animation={isAnimating.toString()}>
           <div id="form-header">
             <h4 id="form-header-text">
               {languageMode == 'polish' ? 'Formularz kontaktowy' : 'Contact form'}
             </h4>
-            <img id="form-close-icon" src={CLOSE_ICON} onClick={changeFormShowState} />
+            <img id="form-close-icon" src={CLOSE_ICON} onClick={handleCloseForm} />
           </div>
           <div className="form-row">
             <label>{languageMode == 'polish' ? 'Imię' : 'Name'}</label>
@@ -94,13 +104,13 @@ const Modal = () => {
               id="name-input"
               className={nameError == false ? '' : 'error-input'}
               placeholder={languageMode == 'polish' ? 'Wpisz swoje imię' : 'Type your name'}
-              onChange={changeNameHandler}
+              onChange={handleChangeName}
               value={name}></input>
           </div>
           {nameError && (
             <div className="error-message">
               {languageMode == 'polish'
-                ? 'Pole imię musi zawierać przynajmniej jedną literę'
+                ? 'Pole imienia musi zawierać przynajmniej jedną literę'
                 : 'Name field must have at least one character'}
             </div>
           )}
@@ -112,7 +122,7 @@ const Modal = () => {
               placeholder={
                 languageMode == 'polish' ? 'Wpisz swój adres e-mail' : 'Type in your e-mail address'
               }
-              onChange={changeEmailHandler}
+              onChange={handleChangeEmail}
               value={email}></input>
           </div>
           {emailError && (
@@ -132,13 +142,13 @@ const Modal = () => {
               placeholder={
                 languageMode == 'polish' ? 'Opisz nam swoje pytanie' : 'Describe your question'
               }
-              onChange={changeMessageHandler}
+              onChange={handleChangeMessage}
               value={message}></textarea>
           </div>
           {messageError && (
             <div className="error-message">
               {languageMode == 'polish'
-                ? 'Pole wiadomość musi zawierać przynajmniej jedną literę'
+                ? 'Pole wiadomości musi zawierać przynajmniej jedną literę'
                 : 'Message field must have at least one character'}
             </div>
           )}
@@ -160,13 +170,13 @@ const Modal = () => {
   const formContainerContentAfterSendingMessage = () => {
     return (
       <div id="form-container">
-        <div id="backdrop" onClick={changeFormShowState}></div>
-        <form id="form-section" onSubmit={onSubmitHandler}>
+        <div id="backdrop" onClick={handleCloseForm}></div>
+        <form id="form-section" onSubmit={handleFormSubmit} data-animation={isAnimating.toString()}>
           <div id="form-header">
             <h4 id="form-header-text">
               {languageMode == 'polish' ? 'Formularz kontaktowy' : 'Contact form'}
             </h4>
-            <img id="form-close-icon" src={CLOSE_ICON} onClick={changeFormShowState} />
+            <img id="form-close-icon" src={CLOSE_ICON} onClick={handleCloseForm} />
           </div>
           <h5 id="form-message-sent-header">
             {languageMode == 'polish' ? 'Email wysłany!' : 'Email sent!'}
@@ -178,7 +188,7 @@ const Modal = () => {
           </p>
           <button
             className={`${Button.button} ${Button.square} ${Button.filled}`}
-            onClick={changeFormShowState}>
+            onClick={handleCloseForm}>
             {languageMode == 'polish' ? 'Gotowe' : 'OK'}
           </button>
         </form>
@@ -190,7 +200,7 @@ const Modal = () => {
     <>
       <button
         className={`${Button.button} ${Button.square} ${Button.filled}`}
-        onClick={changeFormShowState}>
+        onClick={handleOpenForm}>
         {languageMode == 'polish' ? 'Skontaktuj się z nami' : 'Contact us'}
       </button>
       {showForm &&
