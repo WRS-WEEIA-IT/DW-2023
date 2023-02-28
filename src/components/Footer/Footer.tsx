@@ -35,34 +35,40 @@ const Footer = () => {
     return (
       <div id="main-footer-section">
         <div id="information-column">
-          <h4>{languageMode == 'polish' ? 'Informacje' : 'Information'}</h4>
+          <h4 className="footer-header">
+            {languageMode == 'polish' ? 'Informacje' : 'Information'}
+          </h4>
           <Link to="#about-section" className="footer-link" smooth>
-            <p>{languageMode == 'polish' ? 'O wydarzeniu' : 'About event'}</p>
+            <p className="footer-paragraph">
+              {languageMode == 'polish' ? 'O wydarzeniu' : 'About event'}
+            </p>
           </Link>
           <Link to="#events-section" className="footer-link" smooth>
             <p>{languageMode == 'polish' ? 'Szkolenia i warsztaty' : 'Lectures and workshops'}</p>
           </Link>
         </div>
         <div id="partners-column">
-          <h4>{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h4>
+          <h4 className="footer-header">{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h4>
           <div id="partners-grid">
-            <p>B/S/H</p>
-            <p>Ericsson</p>
-            <p>JTI</p>
-            <p>HTD</p>
+            <p className="footer-paragraph">B/S/H</p>
+            <p className="footer-paragraph">Ericsson</p>
+            <p className="footer-paragraph">JTI</p>
+            <p className="footer-paragraph">HTD</p>
           </div>
         </div>
         <div id="contact-column">
-          <h4 id="contact-header">{languageMode == 'polish' ? 'Kontakt' : 'Contact'}</h4>
+          <h4 className="footer-header" id="contact-header">
+            {languageMode == 'polish' ? 'Kontakt' : 'Contact'}
+          </h4>
           <div id="contact-icons-column">
             <img src={CALL_ICON} className="icon" id="contact-icon"></img>
             <img src={LOCATION_ICON} className="icon" id="contact-icon"></img>
             <img src={MAIL_ICON} className="icon" id="contact-icon"></img>
           </div>
           <div id="contact-text-column">
-            <p>(+48) 123 456 789</p>
-            <p>Stefanowskiego 18/22, Łódź</p>
-            <p>dzien.weeia@samorzad.p.lodz.pl</p>
+            <p className="footer-paragraph">(+48) 123 456 789</p>
+            <p className="footer-paragraph">Stefanowskiego 18/22, Łódź</p>
+            <p className="footer-paragraph">dzien.weeia@samorzad.p.lodz.pl</p>
           </div>
         </div>
       </div>

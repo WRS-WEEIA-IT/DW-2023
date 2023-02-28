@@ -16,6 +16,7 @@ $border-radius: 3rem;
   cursor: pointer;
   background: none;
   font-weight: 700;
+  white-space: nowrap;
 
   &.filled {
     background-color: $primary-color;

@@ -11,6 +11,7 @@ const MainProvider = () => {
     {
       path: HOME_PATH,
       element: <HomePage />,
+      errorElement: <HomePage />,
     },
   ]);
 

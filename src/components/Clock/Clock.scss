@@ -17,10 +17,12 @@ $lebel-counter-font-weight: 500;
   justify-content: center;
   flex-direction: column;
   font-weight: 700;
+  text-align: center;
 
   .date-label {
     margin-bottom: $padding-margin-between-label;
     font-size: var(--smaller-label-size);
+    white-space: nowrap;
   }
 
   .date-counter {
