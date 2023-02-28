@@ -1,7 +1,6 @@
 @import '/src/styles/Constants.scss';
 
 $welcome-page-grid-gap: 25%;
-$bottom-banner-margin: 10vh;
 $banner-grid-gap: 1rem;
 
 $banner-buttons-gap: 1rem;
@@ -13,9 +12,10 @@ $banner-buttons-gap-mobile: 1.8rem;
   gap: $welcome-page-grid-gap;
   align-items: center;
   justify-content: center;
-  padding: 0 var(--screen-side-margin) $bottom-banner-margin var(--screen-side-margin);
+  padding: 10vh var(--screen-side-margin) 0 var(--screen-side-margin);
   box-sizing: border-box;
   width: 100%;
+  height: 100%;
 
   #left-banner-side {
     @include flex-center(column);
