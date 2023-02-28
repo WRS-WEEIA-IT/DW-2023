@@ -93,6 +93,14 @@ $gap-between-content-mobile: 1.5rem;
   }
 }
 
+.footer-paragraph {
+  margin: 0.6rem 0;
+}
+
+.footer-header {
+  margin: 0 0 1.2rem 0;
+}
+
 @media (max-width: $screen-size-tablet) {
   #footer-section {
     color: $neutral-color-95;
@@ -141,5 +149,8 @@ $gap-between-content-mobile: 1.5rem;
       text-align: center;
       gap: $gap-between-content-mobile;
     }
+  }
+  .footer-header {
+    margin: 0 0 0.8rem 0;
   }
 }
