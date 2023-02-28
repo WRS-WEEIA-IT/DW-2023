@@ -13,7 +13,7 @@ $banner-buttons-gap-mobile: 1.8rem;
   gap: $welcome-page-grid-gap;
   align-items: center;
   justify-content: center;
-  margin: 0 var(--screen-side-margin) $bottom-banner-margin var(--screen-side-margin);
+  padding: 0 var(--screen-side-margin) $bottom-banner-margin var(--screen-side-margin);
 
   #left-banner-side {
     @include flex-center(column);
