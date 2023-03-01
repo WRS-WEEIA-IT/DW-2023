@@ -1,0 +1,78 @@
+@import '../../styles/Constants.scss';
+
+@mixin section($columns: 4) {
+  margin: 0 9vw;
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: 3rem;
+  justify-content: center;
+  justify-items: center;
+}
+
+@mixin container() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin name() {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.partners-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-bottom: 4rem;
+
+  .diamond-section {
+    @include section(4);
+
+    .diamond-container {
+      @include container();
+
+      .diamond-logo {
+        width: 11rem;
+      }
+
+      .diamond-name {
+        @include name();
+      }
+    }
+  }
+
+  .gold-section {
+    @include section(5);
+    margin-top: 0;
+
+    .gold-container {
+      @include container();
+
+      .gold-logo {
+        width: 10rem;
+      }
+
+      .gold-name {
+        @include name();
+      }
+    }
+  }
+
+  .silver-section {
+    @include section(5);
+
+    .silver-container {
+      @include container();
+
+      .silver-logo {
+        width: 9rem;
+      }
+
+      .silver-name {
+        @include name();
+      }
+    }
+  }
+}
