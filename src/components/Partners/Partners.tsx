@@ -3,7 +3,7 @@ import { firebaseDb } from '../../FirebaseConfig';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection, Query } from 'firebase/firestore';
 import PartnersInterface from './PartnersInterface';
-import { number } from 'prop-types';
+import MOON from '../../../public/moon.png';
 
 const Partners = () => {
   const [partners, loading] = useCollectionData<PartnersInterface>(
@@ -15,21 +15,43 @@ const Partners = () => {
   }
 
   let diamondPackage: PartnersInterface[] = [];
+  let goldPackage: PartnersInterface[] = [];
+  let silverPackage: PartnersInterface[] = [];
 
-  const renderPartners = () => {
+  const filterPartners = () => {
     diamondPackage = partners!.filter((partner) => partner.package == 'diamond');
+    goldPackage = partners!.filter((partner) => partner.package == 'gold');
+    silverPackage = partners!.filter((partner) => partner.package == 'silver');
   };
 
-  renderPartners();
+  filterPartners();
 
   return (
     <div className="partners-container">
-      {diamondPackage.map((partner, index) => (
-        <div key={index}>
-          <h2>{partner.name}</h2>
-          <h3>{partner.package}</h3>
-        </div>
-      ))}
+      <div className="diamond-section">
+        {diamondPackage.map((partner, index) => (
+          <div key={index} className="diamond-container">
+            <img src={MOON} className="diamond-logo"></img>
+            <h3 className="diamond-name">{partner.name}</h3>
+          </div>
+        ))}
+      </div>
+      <div className="gold-section">
+        {goldPackage.map((partner, index) => (
+          <div key={index} className="gold-container">
+            <img src={MOON} className="gold-logo"></img>
+            <h4 className="gold-name">{partner.name}</h4>
+          </div>
+        ))}
+      </div>
+      <div className="silver-section">
+        {silverPackage.map((partner, index) => (
+          <div key={index} className="silver-container">
+            <img src={MOON} className="silver-logo"></img>
+            <h5 className="silver-name">{partner.name}</h5>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
