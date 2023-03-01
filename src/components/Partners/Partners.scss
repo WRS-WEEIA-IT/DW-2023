@@ -1,10 +1,10 @@
 @import '../../styles/Constants.scss';
 
-@mixin section($columns: 4) {
+@mixin section($columns: 4, $gap: 3rem) {
   margin: 0 9vw;
   display: grid;
   grid-template-columns: repeat($columns, 1fr);
-  gap: 3rem;
+  gap: $gap;
   justify-content: center;
   justify-items: center;
 }
@@ -72,6 +72,62 @@
 
       .silver-name {
         @include name();
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-size-mobile) {
+  .partners-container {
+    gap: 2rem;
+
+    .diamond-section {
+      @include section(2, 1rem);
+
+      .diamond-container {
+        .diamond-logo {
+          width: 6rem;
+        }
+
+        .diamond-name {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .gold-section {
+      @include section(2, 1rem);
+
+      .gold-container {
+        .gold-logo {
+          width: 5rem;
+        }
+
+        .gold-name {
+          font-size: 1.1rem;
+        }
+      }
+
+      .gold-container:nth-child(5) {
+        grid-column: span 2;
+      }
+    }
+
+    .silver-section {
+      @include section(2, 1rem);
+
+      .silver-container {
+        .silver-logo {
+          width: 4rem;
+        }
+
+        .silver-name {
+          font-size: 1rem;
+        }
+      }
+
+      .silver-container:nth-child(5) {
+        grid-column: span 2;
       }
     }
   }
