@@ -33,7 +33,6 @@ const Partners = () => {
             <img
               src={`../../../public/logos/${partner.imageSource}.png`}
               className="diamond-logo"></img>
-            {/* <h3 className="diamond-name">{partner.imageSource}</h3> */}
           </div>
         ))}
       </div>
@@ -43,7 +42,6 @@ const Partners = () => {
             <img
               src={`../../../public/logos/${partner.imageSource}.png`}
               className="gold-logo"></img>
-            {/* <h4 className="gold-name">{partner.imageSource}</h4> */}
           </div>
         ))}
       </div>
@@ -53,7 +51,6 @@ const Partners = () => {
             <img
               src={`../../../public/logos/${partner.imageSource}.png`}
               className="silver-logo"></img>
-            {/* <h5 className="silver-name">{partner.imageSource}</h5> */}
           </div>
         ))}
       </div>
