@@ -17,7 +17,11 @@ const Card = ({ imageSource, eventType, title, timeStart, timeEnd }: CardInterfa
       : 'Workshop';
 
   const convertToClockTime = (time: Timestamp) =>
-    `${time.toDate().getHours()}:${time.toDate().getMinutes() || '00'}`;
+    `${time.toDate().getHours()}:${
+      time.toDate().getMinutes() < 10
+        ? '0' + time.toDate().getMinutes()
+        : time.toDate().getMinutes()
+    }`;
 
   const startHour = convertToClockTime(timeStart);
   const endHour = convertToClockTime(timeEnd);
