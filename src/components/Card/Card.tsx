@@ -5,7 +5,7 @@ import { LanguageModeContext } from '../../contexts/LanguageContext';
 import CardInterface from './CardInterface';
 import { Timestamp } from '@firebase/firestore';
 
-const Card = ({ imageSource, eventType, title, timeStart, timeEnd }: CardInterface) => {
+const Card = ({ imageSource, eventType, title, timeStart, timeEnd, partner }: CardInterface) => {
   const { languageMode } = useContext(LanguageModeContext);
   const eventTypeText =
     eventType === 'lectures'
@@ -28,7 +28,10 @@ const Card = ({ imageSource, eventType, title, timeStart, timeEnd }: CardInterfa
 
   return (
     <div className="card-container" style={{ backgroundImage: `url(images/${imageSource}.jpg)` }}>
-      <p className="card-event-time">{`${startHour} - ${endHour}`}</p>
+      <div className="card-event-header">
+        <p className="card-event-time">{`${startHour} - ${endHour}`}</p>
+        <h6 className="card-event-partner">{partner}</h6>
+      </div>
       <h6 className="card-event-type">{eventTypeText}</h6>
       <h5 className="card-title">{title}</h5>
       <button
