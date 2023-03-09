@@ -6,4 +6,5 @@ export default interface CardInterface {
   timeEnd: Timestamp;
   timeStart: Timestamp;
   title: string;
+  partner: string;
 }
