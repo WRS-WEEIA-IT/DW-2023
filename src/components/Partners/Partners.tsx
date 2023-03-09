@@ -25,17 +25,15 @@ const Partners = () => {
 
   filterPartners();
 
-  const consoleLog = (name: string) => {
-    console.log(name.replace('/', ' '));
-  };
-
   return (
     <div className="partners-container">
       <div className="diamond-section">
         {diamondPackage.map((partner, index) => (
           <div key={index} className="diamond-container">
-            <img src={`../../../public/logos/${partner.name}.png`} className="diamond-logo"></img>
-            {/* <h3 className="diamond-name">{partner.name}</h3> */}
+            <img
+              src={`../../../public/logos/${partner.imageSource}.png`}
+              className="diamond-logo"></img>
+            {/* <h3 className="diamond-name">{partner.imageSource}</h3> */}
           </div>
         ))}
       </div>
@@ -43,17 +41,19 @@ const Partners = () => {
         {goldPackage.map((partner, index) => (
           <div key={index} className="gold-container">
             <img
-              src={`../../../public/logos/${partner.name.replaceAll('/', ' ')}.png`}
+              src={`../../../public/logos/${partner.imageSource}.png`}
               className="gold-logo"></img>
-            {/* <h4 className="gold-name">{partner.name}</h4> */}
+            {/* <h4 className="gold-name">{partner.imageSource}</h4> */}
           </div>
         ))}
       </div>
       <div className="silver-section">
         {silverPackage.map((partner, index) => (
           <div key={index} className="silver-container">
-            <img src={`../../../public/logos/${partner.name}.png`} className="silver-logo"></img>
-            {/* <h5 className="silver-name">{partner.name}</h5> */}
+            <img
+              src={`../../../public/logos/${partner.imageSource}.png`}
+              className="silver-logo"></img>
+            {/* <h5 className="silver-name">{partner.imageSource}</h5> */}
           </div>
         ))}
       </div>
