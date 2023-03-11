@@ -22,6 +22,25 @@
   gap: 2rem;
   margin-bottom: 4rem;
 
+  #strategic-partners-header,
+  #partners-header {
+    text-align: center;
+    margin: 0;
+    padding: 4rem 0;
+  }
+
+  .strategic-section {
+    @include section(2, 2rem);
+
+    .strategic-container {
+      @include container();
+
+      .strategic-logo {
+        width: 15rem;
+      }
+    }
+  }
+
   .diamond-section {
     @include section(3);
 
@@ -31,6 +50,10 @@
       .diamond-logo {
         width: 12rem;
       }
+    }
+
+    .diamond-container:last-child {
+      grid-column: span 3;
     }
   }
 
@@ -70,6 +93,16 @@
 @media (max-width: $screen-size-mobile) {
   .partners-container {
     gap: 2rem;
+
+    .strategic-section {
+      @include section(2, 1rem);
+
+      .strategic-container {
+        .strategic-logo {
+          width: 8rem;
+        }
+      }
+    }
 
     .diamond-section {
       @include section(2, 1rem);
