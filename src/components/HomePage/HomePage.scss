@@ -1,0 +1,34 @@
+#backgroud-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -4;
+  background: url('../../../public/background/photo1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  animation: change-photo 10s infinite;
+}
+
+@keyframes change-photo {
+  0% {
+    background-image: url('../../../public/background/photo1.jpg');
+  }
+  20% {
+    background-image: url('../../../public/background/photo2.jpg');
+  }
+  60% {
+    background-image: url('../../../public/background/photo4.jpg');
+  }
+  80% {
+    background-image: url('../../../public/background/photo5.jpg');
+  }
+  90% {
+    background-image: url('../../../public/background/photo6.jpg');
+  }
+  90% {
+    background-image: url('../../../public/background/photo6.jpg');
+  }
+}
