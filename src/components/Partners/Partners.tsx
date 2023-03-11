@@ -3,8 +3,14 @@ import { firebaseDb } from '../../FirebaseConfig';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection, Query } from 'firebase/firestore';
 import PartnersInterface from './PartnersInterface';
+import { useContext } from 'react';
+import { LanguageModeContext } from '../../contexts/LanguageContext';
+import { m } from 'framer-motion';
+import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
 
 const Partners = () => {
+  const { languageMode } = useContext(LanguageModeContext);
+
   const [partners, loading] = useCollectionData<PartnersInterface>(
     collection(firebaseDb, 'partners') as Query<PartnersInterface>
   );
@@ -29,8 +35,15 @@ const Partners = () => {
 
   return (
     <div className="partners-container">
-      <h2 id="strategic-partners-header">Partnerzy strategiczni</h2>
-      <div className="strategic-section">
+      <h2 id="strategic-partners-header">
+        {languageMode == 'polish' ? 'Partnerzy strategiczni' : 'Strategic partners'}
+      </h2>
+      <m.div
+        className="strategic-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={cardViewportProperties}
+        variants={createAnimateOnScroll(0.1)}>
         {strategicPackage.map((partner, index) => (
           <div key={index} className="strategic-container">
             <img
@@ -38,9 +51,14 @@ const Partners = () => {
               className="strategic-logo"></img>
           </div>
         ))}
-      </div>
-      <h2 id="partners-header">Partnerzy</h2>
-      <div className="diamond-section">
+      </m.div>
+      <h2 id="partners-header">{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h2>
+      <m.div
+        className="diamond-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={cardViewportProperties}
+        variants={createAnimateOnScroll(0.1)}>
         {diamondPackage.map((partner, index) => (
           <div key={index} className="diamond-container">
             <img
@@ -48,8 +66,13 @@ const Partners = () => {
               className="diamond-logo"></img>
           </div>
         ))}
-      </div>
-      <div className="gold-section">
+      </m.div>
+      <m.div
+        className="gold-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={cardViewportProperties}
+        variants={createAnimateOnScroll(0.1)}>
         {goldPackage.map((partner, index) => (
           <div key={index} className="gold-container">
             <img
@@ -57,8 +80,13 @@ const Partners = () => {
               className="gold-logo"></img>
           </div>
         ))}
-      </div>
-      <div className="silver-section">
+      </m.div>
+      <m.div
+        className="silver-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={cardViewportProperties}
+        variants={createAnimateOnScroll(0.1)}>
         {silverPackage.map((partner, index) => (
           <div key={index} className="silver-container">
             <img
@@ -66,7 +94,18 @@ const Partners = () => {
               className="silver-logo"></img>
           </div>
         ))}
-      </div>
+      </m.div>
+      <h2 id="patrons-header">{languageMode == 'polish' ? 'Patronat' : 'Patronage'}</h2>
+      <m.div
+        className="patrons-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={cardViewportProperties}
+        variants={createAnimateOnScroll(0.1)}>
+        <div className="patrons-container">
+          <img src="../../../public/logos/mlodzi_w_lodzi.png" className="patrons-logo"></img>
+        </div>
+      </m.div>
     </div>
   );
 };

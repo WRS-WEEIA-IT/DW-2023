@@ -19,14 +19,27 @@
 .partners-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4rem;
   margin-bottom: 4rem;
 
   #strategic-partners-header,
-  #partners-header {
+  #partners-header,
+  #patrons-header {
     text-align: center;
     margin: 0;
     padding: 4rem 0;
+  }
+
+  .patrons-section {
+    @include section(1);
+
+    .patrons-container {
+      @include container();
+
+      .patrons-logo {
+        width: clamp(11rem, 2rem + 10vw, 15rem);
+      }
+    }
   }
 
   .strategic-section {
@@ -36,7 +49,7 @@
       @include container();
 
       .strategic-logo {
-        width: 15rem;
+        width: clamp(11rem, 2rem + 10vw, 15rem);
       }
     }
   }
@@ -48,7 +61,7 @@
       @include container();
 
       .diamond-logo {
-        width: 12rem;
+        width: clamp(8rem, 2rem + 8vw, 13rem);
       }
     }
 
@@ -65,7 +78,7 @@
       @include container();
       grid-column: span 2;
       .gold-logo {
-        width: 11rem;
+        width: clamp(7rem, 2rem + 7vw, 10rem);
       }
     }
 
@@ -84,7 +97,7 @@
       @include container();
 
       .silver-logo {
-        width: 9rem;
+        width: clamp(6rem, 2rem + 5vw, 8rem);
       }
     }
   }
