@@ -12,6 +12,17 @@
   animation: change-photo 40s infinite;
 }
 
+body::after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+  content: url('../../../public/background/photo1.jpg') url('../../../public/background/photo2.jpg')
+    url('../../../public/background/photo3.jpg') url('../../../public/background/photo4.jpg')
+    url('../../../public/background/photo5.jpg') url('../../../public/background/photo6.jpg');
+}
+
 @keyframes change-photo {
   0% {
     background-image: url('../../../public/background/photo1.jpg');
