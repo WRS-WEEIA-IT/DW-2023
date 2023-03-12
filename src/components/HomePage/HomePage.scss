@@ -9,26 +9,47 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position-x: center;
-  animation: change-photo 10s infinite;
+  animation: change-photo 40s infinite;
 }
 
 @keyframes change-photo {
   0% {
     background-image: url('../../../public/background/photo1.jpg');
   }
-  20% {
+  8% {
+    background-image: url('../../../public/background/photo1.jpg');
+  }
+  12% {
     background-image: url('../../../public/background/photo2.jpg');
   }
-  60% {
+  24% {
+    background-image: url('../../../public/background/photo2.jpg');
+  }
+  28% {
+    background-image: url('../../../public/background/photo3.jpg');
+  }
+  40% {
+    background-image: url('../../../public/background/photo3.jpg');
+  }
+  44% {
     background-image: url('../../../public/background/photo4.jpg');
   }
-  80% {
+  56% {
+    background-image: url('../../../public/background/photo4.jpg');
+  }
+  60% {
     background-image: url('../../../public/background/photo5.jpg');
   }
-  90% {
+  72% {
+    background-image: url('../../../public/background/photo5.jpg');
+  }
+  76% {
     background-image: url('../../../public/background/photo6.jpg');
   }
-  90% {
+  88% {
     background-image: url('../../../public/background/photo6.jpg');
+  }
+  92% {
+    background-image: url('../../../public/background/photo1.jpg');
   }
 }
