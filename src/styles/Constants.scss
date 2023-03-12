@@ -134,6 +134,7 @@ button {
   overflow: visible;
   font-family: 'Montserrat', sans-serif;
   --screen-side-margin: 13vw;
+  background-color: $neutral-color-15;
 }
 
 :root::before {
@@ -190,15 +191,4 @@ body::-webkit-scrollbar-thumb {
 @mixin set-deafult-a-attributes() {
   all: unset;
   cursor: pointer;
-}
-
-body::after {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  z-index: -1;
-  content: url('../../../public/background/photo1.jpg') url('../../../public/background/photo2.jpg')
-    url('../../../public/background/photo3.jpg') url('../../../public/background/photo4.jpg')
-    url('../../../public/background/photo5.jpg') url('../../../public/background/photo6.jpg');
 }
