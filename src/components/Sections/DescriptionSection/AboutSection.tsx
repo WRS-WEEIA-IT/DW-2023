@@ -22,7 +22,7 @@ const AboutSection = () => {
         whileInView="visible"
         viewport={viewportProperties}
         variants={createAnimateOnScroll()}>
-        <h4 id="about-header-text">{HEADER_TEXT}</h4>
+        <h2 id="about-header-text">{HEADER_TEXT}</h2>
         <p id="about-description-text">{DESCRIPTION_TEXT()}</p>
       </m.div>
     </section>
