@@ -48,7 +48,9 @@ const Footer = () => {
           </Link>
         </div>
         <div id="partners-column">
-          <h4 className="footer-header">{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h4>
+          <h4 className="footer-header">
+            {languageMode == 'polish' ? 'Partnerzy strategiczni' : 'Strategic partners'}
+          </h4>
           <div id="partners-grid">
             <p className="footer-paragraph">ZF</p>
             <p className="footer-paragraph">Commerzbank</p>
