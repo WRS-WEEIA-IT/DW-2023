@@ -34,9 +34,14 @@ const WelcomePageBanner = () => {
           <button className={`${Button.button} ${Button.filled} ${Button.round}`}>
             {languageMode === 'polish' ? 'Zapisz się' : 'Sign up'}
           </button>
-          <button className={`${Button.button} ${Button.outlined} ${Button.round}`}>
-            {languageMode === 'polish' ? 'Dowiedz się więcej' : 'Find out more'}
-          </button>
+          <a
+            href="https://www.facebook.com/events/660013089462906/"
+            target="_blank"
+            rel="noopener noreferrer">
+            <button className={`${Button.button} ${Button.outlined} ${Button.round}`}>
+              {languageMode === 'polish' ? 'Dowiedz się więcej' : 'Find out more'}
+            </button>
+          </a>
         </m.div>
       </div>
       <Clock />
