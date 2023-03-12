@@ -59,14 +59,16 @@ const Footer = () => {
             {languageMode == 'polish' ? 'Kontakt' : 'Contact'}
           </h4>
           <div id="contact-icons-column">
-            <img src={CALL_ICON} className="icon" id="contact-icon"></img>
             <img src={LOCATION_ICON} className="icon" id="contact-icon"></img>
             <img src={MAIL_ICON} className="icon" id="contact-icon"></img>
+            <img src={CALL_ICON} className="icon" id="contact-icon"></img>
+            <img src="" className="icon" id="contact-icon"></img>
           </div>
           <div id="contact-text-column">
-            <p className="footer-paragraph">(+48) 123 456 789</p>
             <p className="footer-paragraph">Stefanowskiego 18/22, Łódź</p>
             <p className="footer-paragraph">dzien.weeia@samorzad.p.lodz.pl</p>
+            <p className="footer-paragraph">(+48) 793 873 382</p>
+            <p className="footer-paragraph">(+48) 793 873 382</p>
           </div>
         </div>
       </div>
