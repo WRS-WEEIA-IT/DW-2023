@@ -1,3 +1,5 @@
+@import '/src/styles/Constants.scss';
+
 #backgroud-photo {
   position: absolute;
   top: 0;
@@ -5,11 +7,21 @@
   width: 100%;
   height: 100%;
   z-index: -4;
-  background: url('../../../public/background/photo1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position-x: center;
   animation: change-photo 40s infinite;
+}
+
+body::after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+  content: url('../../../public/background/photo1.jpg') url('../../../public/background/photo2.jpg')
+    url('../../../public/background/photo3.jpg') url('../../../public/background/photo4.jpg')
+    url('../../../public/background/photo5.jpg') url('../../../public/background/photo6.jpg');
 }
 
 @keyframes change-photo {
@@ -49,7 +61,7 @@
   88% {
     background-image: url('../../../public/background/photo6.jpg');
   }
-  92% {
+  100% {
     background-image: url('../../../public/background/photo1.jpg');
   }
 }
