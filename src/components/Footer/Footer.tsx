@@ -50,10 +50,8 @@ const Footer = () => {
         <div id="partners-column">
           <h4 className="footer-header">{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h4>
           <div id="partners-grid">
-            <p className="footer-paragraph">B/S/H</p>
-            <p className="footer-paragraph">Ericsson</p>
-            <p className="footer-paragraph">JTI</p>
-            <p className="footer-paragraph">HTD</p>
+            <p className="footer-paragraph">ZF</p>
+            <p className="footer-paragraph">Commerzbank</p>
           </div>
         </div>
         <div id="contact-column">
