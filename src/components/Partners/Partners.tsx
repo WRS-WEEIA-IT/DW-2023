@@ -22,7 +22,6 @@ const Partners = () => {
   if (loading) {
     return <h1>loading</h1>;
   }
-  console.log(partners);
 
   let diamondPackage: PartnersInterface[] = [];
   let goldPackage: PartnersInterface[] = [];
