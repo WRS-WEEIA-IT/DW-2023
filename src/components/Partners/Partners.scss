@@ -123,6 +123,10 @@
         width: clamp(6rem, 2rem + 5vw, 8rem);
       }
     }
+
+    .silver-container:last-child {
+      grid-area: 3 / 2;
+    }
   }
 }
 
@@ -149,7 +153,7 @@
     }
 
     .diamond-section {
-      @include section(2, 1rem);
+      @include section(2, 2rem);
 
       .diamond-container {
         .diamond-logo {
@@ -162,7 +166,7 @@
     }
 
     .gold-section {
-      @include section(2, 1rem);
+      @include section(2, 2rem);
 
       .gold-container {
         grid-column: span 1;
@@ -181,12 +185,17 @@
     }
 
     .silver-section {
-      @include section(2, 1rem);
+      @include section(2, 2rem);
 
       .silver-container {
         .silver-logo {
           width: 5.5rem;
         }
+      }
+
+      .silver-container:last-child {
+        grid-column: span 2;
+        grid-row-start: 4;
       }
     }
   }
