@@ -15,9 +15,14 @@ const Partners = () => {
     collection(firebaseDb, 'partners') as Query<PartnersInterface>
   );
 
+  const getImageUrl = (name: string) => {
+    return new URL(`../../../public/logos/${name}.png`, import.meta.url).href;
+  };
+
   if (loading) {
     return <h1>loading</h1>;
   }
+  console.log(partners);
 
   let diamondPackage: PartnersInterface[] = [];
   let goldPackage: PartnersInterface[] = [];
@@ -58,9 +63,7 @@ const Partners = () => {
           variants={createAnimateOnScroll(0.1)}>
           {strategicPackage.map((partner, index) => (
             <div key={index} className="strategic-container">
-              <img
-                src={`../../../public/logos/${partner.imageSource}.png`}
-                className="strategic-logo"></img>
+              <img src={getImageUrl(partner.imageSource)} className="strategic-logo"></img>
             </div>
           ))}
         </m.div>
@@ -73,9 +76,7 @@ const Partners = () => {
           variants={createAnimateOnScroll(0.1)}>
           {diamondPackage.map((partner, index) => (
             <div key={index} className="diamond-container">
-              <img
-                src={`../../../public/logos/${partner.imageSource}.png`}
-                className="diamond-logo"></img>
+              <img src={getImageUrl(partner.imageSource)} className="diamond-logo"></img>
             </div>
           ))}
         </m.div>
@@ -87,9 +88,7 @@ const Partners = () => {
           variants={createAnimateOnScroll(0.1)}>
           {goldPackage.map((partner, index) => (
             <div key={index} className="gold-container">
-              <img
-                src={`../../../public/logos/${partner.imageSource}.png`}
-                className="gold-logo"></img>
+              <img src={getImageUrl(partner.imageSource)} className="gold-logo"></img>
             </div>
           ))}
         </m.div>
@@ -101,9 +100,7 @@ const Partners = () => {
           variants={createAnimateOnScroll(0.1)}>
           {silverPackage.map((partner, index) => (
             <div key={index} className="silver-container">
-              <img
-                src={`../../../public/logos/${partner.imageSource}.png`}
-                className="silver-logo"></img>
+              <img src={getImageUrl(partner.imageSource)} className="silver-logo"></img>
             </div>
           ))}
         </m.div>
@@ -115,7 +112,7 @@ const Partners = () => {
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
           <div className="patrons-container">
-            <img src="../../../public/logos/mlodzi_w_lodzi.png" className="patrons-logo"></img>
+            <img src={getImageUrl('mlodzi_w_lodzi')} className="patrons-logo"></img>
           </div>
         </m.div>
       </div>
