@@ -23,7 +23,7 @@ const AboutSection = () => {
         viewport={viewportProperties}
         variants={createAnimateOnScroll()}>
         <h2 id="about-header-text">{HEADER_TEXT}</h2>
-        <p id="about-description-text">{DESCRIPTION_TEXT()}</p>
+        <div id="about-description-text">{DESCRIPTION_TEXT()}</div>
       </m.div>
     </section>
   );
