@@ -52,8 +52,20 @@ const Footer = () => {
             {languageMode == 'polish' ? 'Partnerzy strategiczni' : 'Strategic partners'}
           </h4>
           <div id="partners-grid">
-            <p className="footer-paragraph">ZF</p>
-            <p className="footer-paragraph">Commerzbank</p>
+            <a
+              className="footer-link"
+              href="https://www.zf.com/poland/pl/home/home.html"
+              target="_blank"
+              rel="noopener noreferrer">
+              <p className="footer-paragraph">ZF</p>
+            </a>
+            <a
+              className="footer-link"
+              href="https://lodz.commerzbank.pl/pl/"
+              target="_blank"
+              rel="noopener noreferrer">
+              <p className="footer-paragraph">Commerzbank</p>
+            </a>
           </div>
         </div>
         <div id="contact-column">
