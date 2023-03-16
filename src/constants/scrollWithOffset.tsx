@@ -1,5 +1,5 @@
 const scrollWithOffset = (element: HTMLElement) => {
-  const elementPosition = element.offsetTop - 70;
+  const elementPosition = element.offsetTop - 40;
   window.scroll({
     top: elementPosition,
     behavior: 'smooth',
