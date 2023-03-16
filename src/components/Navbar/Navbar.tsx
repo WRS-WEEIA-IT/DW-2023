@@ -12,6 +12,7 @@ import { WELCOME_SECTION_ID } from './NavLinks';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
 import scrollWithOffset from '../../constants/scrollWithOffset';
+import { FORM_LINK } from '../../services/FormLink';
 
 const Navbar = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -78,12 +79,14 @@ const Navbar = () => {
         </div>
         <div id="navbar-buttons-container">
           <LanguageSwitch />
-          <button
-            id="navbar-signup-button"
-            className={`${Button.button} ${Button.filled} ${Button.square}`}>
-            {languageMode == 'polish' ? 'Zapisz się' : 'Sign up'}
-            <img className="icon" id="arrow-right-icon" src={ARROW_RIGHT_ICON} />
-          </button>
+          <a href={FORM_LINK} target="_blank" rel="noopener noreferrer" className="button-link">
+            <button
+              id="navbar-signup-button"
+              className={`${Button.button} ${Button.filled} ${Button.square}`}>
+              {languageMode == 'polish' ? 'Zapisz się' : 'Sign up'}
+              <img className="icon" id="arrow-right-icon" src={ARROW_RIGHT_ICON} />
+            </button>
+          </a>
         </div>
       </div>
     </div>

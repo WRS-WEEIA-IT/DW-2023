@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
+import { FORM_LINK } from '../../services/FormLink';
 
 const WelcomePageBanner = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -31,9 +32,11 @@ const WelcomePageBanner = () => {
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.7)}
           id="banner-buttons">
-          <button className={`${Button.button} ${Button.filled} ${Button.round}`}>
-            {languageMode === 'polish' ? 'Zapisz się' : 'Sign up'}
-          </button>
+          <a href={FORM_LINK} target="_blank" rel="noopener noreferrer" className="button-link">
+            <button className={`${Button.button} ${Button.filled} ${Button.round}`}>
+              {languageMode === 'polish' ? 'Zapisz się' : 'Sign up'}
+            </button>
+          </a>
           <a
             href="https://www.facebook.com/events/660013089462906/"
             target="_blank"

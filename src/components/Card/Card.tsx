@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import CardInterface from './CardInterface';
 import { Timestamp } from '@firebase/firestore';
+import { FORM_LINK } from '../../services/FormLink';
 
 const Card = ({ imageSource, eventType, title, timeStart, timeEnd, partner }: CardInterface) => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -34,11 +35,13 @@ const Card = ({ imageSource, eventType, title, timeStart, timeEnd, partner }: Ca
       </div>
       <h6 className="card-event-type">{eventTypeText}</h6>
       <h5 className="card-title">{title}</h5>
-      <button
-        className={`card-signup-button ${Button.button} ${Button.round} ${Button.filled}`}
-        style={{ marginLeft: '0', marginTop: '0' }}>
-        {languageMode === 'polish' ? 'Zapisz Się' : 'Sign Up'}
-      </button>
+      <a href={FORM_LINK} target="_blank" rel="noopener noreferrer" className="button-link">
+        <button
+          className={`card-signup-button ${Button.button} ${Button.round} ${Button.filled}`}
+          style={{ marginLeft: '0', marginTop: '0' }}>
+          {languageMode === 'polish' ? 'Zapisz Się' : 'Sign Up'}
+        </button>
+      </a>
     </div>
   );
 };
