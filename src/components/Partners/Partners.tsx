@@ -62,7 +62,10 @@ const Partners = () => {
           variants={createAnimateOnScroll(0.1)}>
           {strategicPackage.map((partner, index) => (
             <div key={index} className="strategic-container">
-              <img src={getImageUrl(partner.imageSource)} className="strategic-logo"></img>
+              <img
+                src={getImageUrl(partner.imageSource)}
+                className="strategic-logo"
+                id={partner.imageSource}></img>
             </div>
           ))}
         </m.div>
@@ -75,7 +78,10 @@ const Partners = () => {
           variants={createAnimateOnScroll(0.1)}>
           {diamondPackage.map((partner, index) => (
             <div key={index} className="diamond-container">
-              <img src={getImageUrl(partner.imageSource)} className="diamond-logo"></img>
+              <img
+                src={getImageUrl(partner.imageSource)}
+                className="diamond-logo"
+                id={partner.imageSource}></img>
             </div>
           ))}
         </m.div>
@@ -99,7 +105,10 @@ const Partners = () => {
           variants={createAnimateOnScroll(0.1)}>
           {silverPackage.map((partner, index) => (
             <div key={index} className="silver-container">
-              <img src={getImageUrl(partner.imageSource)} className="silver-logo"></img>
+              <img
+                src={getImageUrl(partner.imageSource)}
+                className="silver-logo"
+                id={partner.imageSource}></img>
             </div>
           ))}
         </m.div>
