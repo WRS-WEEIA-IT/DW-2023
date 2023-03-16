@@ -112,7 +112,7 @@ const Partners = () => {
             </div>
           ))}
         </m.div>
-        <h2 id="patrons-header">{languageMode == 'polish' ? 'Patronat' : 'Patronage'}</h2>
+        {/* <h2 id="patrons-header">{languageMode == 'polish' ? 'Patronat' : 'Patronage'}</h2>
         <m.div
           className="patrons-section"
           initial="hidden"
@@ -122,7 +122,7 @@ const Partners = () => {
           <div className="patrons-container">
             <img src={getImageUrl('mlodzi_w_lodzi')} className="patrons-logo"></img>
           </div>
-        </m.div>
+        </m.div> */}
       </div>
     </>
   );
