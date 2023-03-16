@@ -11,6 +11,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 import { WELCOME_SECTION_ID } from './NavLinks';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
+import scrollWithOffset from '../../constants/scrollWithOffset';
 
 const Navbar = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -63,7 +64,12 @@ const Navbar = () => {
               viewport={{ amount: 0.2, once: false }}
               variants={createAnimateOnScroll(0.1)}
               key={index}>
-              <Link to={navLink.sectionId} className="navbar-link" smooth onClick={closeMenu}>
+              <Link
+                to={navLink.sectionId}
+                className="navbar-link"
+                smooth
+                onClick={closeMenu}
+                scroll={scrollWithOffset}>
                 {navLink.title}
               </Link>
             </m.div>
