@@ -11,10 +11,10 @@ const Card = ({ imageSource, eventType, title, timeStart, timeEnd, partner }: Ca
   const eventTypeText =
     eventType === 'lectures'
       ? languageMode === 'polish'
-        ? 'Szkolenie'
+        ? 'Prelekcja'
         : 'Lecture'
       : languageMode === 'polish'
-      ? 'Warsztat'
+      ? 'Szkolenie'
       : 'Workshop';
 
   const convertToClockTime = (time: Timestamp) =>
