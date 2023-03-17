@@ -8,10 +8,10 @@ import { m } from 'framer-motion';
 const EventsSection = () => {
   const { languageMode } = useContext(LanguageModeContext);
 
-  const HEADER_TEXT = languageMode == 'polish' ? 'Szkolenia i warsztaty' : 'Lectures and workshops';
+  const HEADER_TEXT = languageMode == 'polish' ? 'Prelekcje i szkolenia' : 'Lectures and workshops';
   const DESCRIPTION_TEXT =
     languageMode == 'polish'
-      ? 'Zapisz się na najciekawsze szkolenia i warsztaty!'
+      ? 'Zapisz się na najciekawsze prelekcje i szkolenia!'
       : 'Choose the events that suit you the most and sign up for them!';
 
   return (
@@ -19,7 +19,7 @@ const EventsSection = () => {
       <div id="events-content">
         <h2 id="events-header">{HEADER_TEXT}</h2>
         <p id="events-description">{DESCRIPTION_TEXT}</p>
-        <h4 className="card-swiper-label">{languageMode == 'polish' ? 'Szkolenia' : 'Lectures'}</h4>
+        <h4 className="card-swiper-label">{languageMode == 'polish' ? 'Prelekcje' : 'Lectures'}</h4>
         <m.div
           initial="hidden"
           whileInView="visible"
@@ -28,7 +28,7 @@ const EventsSection = () => {
           <CardGrid eventType="lectures" />
         </m.div>
         <h4 className="card-swiper-label">
-          {languageMode == 'polish' ? 'Warsztaty' : 'Workshops'}
+          {languageMode == 'polish' ? 'Szkolenia' : 'Workshops'}
         </h4>
         <m.div
           initial="hidden"
