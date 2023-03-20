@@ -24,17 +24,17 @@ const Card = ({ imageSource, eventType, title, timeStart, timeEnd, partner }: Ca
         : time.toDate().getMinutes()
     }`;
 
-  const startHour = convertToClockTime(timeStart);
-  const endHour = convertToClockTime(timeEnd);
+  const startHour = timeStart ? convertToClockTime(timeStart) : '??';
+  const endHour = timeEnd ? convertToClockTime(timeEnd) : '??';
 
   return (
     <div className="card-container" style={{ backgroundImage: `url(images/${imageSource}.jpg)` }}>
       <div className="card-event-header">
         <p className="card-event-time">{`${startHour} - ${endHour}`}</p>
-        <h6 className="card-event-partner">{partner}</h6>
+        <h6 className="card-event-partner">{partner ? partner : '??'}</h6>
       </div>
       <h6 className="card-event-type">{eventTypeText}</h6>
-      <h5 className="card-title">{title}</h5>
+      <h5 className="card-title">{title ? title : '??'}</h5>
       <a href={FORM_LINK} target="_blank" rel="noopener noreferrer" className="button-link">
         <button
           className={`card-signup-button ${Button.button} ${Button.round} ${Button.filled}`}
