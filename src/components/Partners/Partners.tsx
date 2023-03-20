@@ -1,41 +1,21 @@
 import './Partners.scss';
-import { firebaseDb } from '../../FirebaseConfig';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { collection, Query } from 'firebase/firestore';
-import PartnersInterface from './PartnersInterface';
 import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
+import {
+  SILVER_PARTNERS,
+  GOLD_PARTNERS,
+  DIAMOND_PARTNERS,
+  STRATEGIC_PARTNERS,
+} from './PartnersData';
 
 const Partners = () => {
   const { languageMode } = useContext(LanguageModeContext);
 
-  const [partners, loading] = useCollectionData<PartnersInterface>(
-    collection(firebaseDb, 'partners') as Query<PartnersInterface>
-  );
-
   const getImageUrl = (name: string) => {
     return new URL(`../../../public/logos/${name}.png`, import.meta.url).href;
   };
-
-  if (loading) {
-    return <h1>loading</h1>;
-  }
-
-  let diamondPackage: PartnersInterface[] = [];
-  let goldPackage: PartnersInterface[] = [];
-  let silverPackage: PartnersInterface[] = [];
-  let strategicPackage: PartnersInterface[] = [];
-
-  const filterPartners = () => {
-    diamondPackage = partners!.filter((partner) => partner.package == 'diamond');
-    goldPackage = partners!.filter((partner) => partner.package == 'gold');
-    silverPackage = partners!.filter((partner) => partner.package == 'silver');
-    strategicPackage = partners!.filter((partner) => partner.package == 'strategic');
-  };
-
-  filterPartners();
 
   return (
     <>
@@ -60,7 +40,7 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {strategicPackage.map((partner, index) => (
+          {STRATEGIC_PARTNERS.map((partner, index) => (
             <div key={index} className="strategic-container">
               <img
                 src={getImageUrl(partner.imageSource)}
@@ -76,7 +56,7 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {diamondPackage.map((partner, index) => (
+          {DIAMOND_PARTNERS.map((partner, index) => (
             <div key={index} className="diamond-container">
               <img
                 src={getImageUrl(partner.imageSource)}
@@ -91,7 +71,7 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {goldPackage.map((partner, index) => (
+          {GOLD_PARTNERS.map((partner, index) => (
             <div key={index} className="gold-container">
               <img src={getImageUrl(partner.imageSource)} className="gold-logo"></img>
             </div>
@@ -103,7 +83,7 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {silverPackage.map((partner, index) => (
+          {SILVER_PARTNERS.map((partner, index) => (
             <div key={index} className="silver-container">
               <img
                 src={getImageUrl(partner.imageSource)}
@@ -112,7 +92,7 @@ const Partners = () => {
             </div>
           ))}
         </m.div>
-        {/* <h2 id="patrons-header">{languageMode == 'polish' ? 'Patronat' : 'Patronage'}</h2>
+        <h2 id="patrons-header">{languageMode == 'polish' ? 'Patronat' : 'Patronage'}</h2>
         <m.div
           className="patrons-section"
           initial="hidden"
@@ -122,7 +102,7 @@ const Partners = () => {
           <div className="patrons-container">
             <img src={getImageUrl('mlodzi_w_lodzi')} className="patrons-logo"></img>
           </div>
-        </m.div> */}
+        </m.div>
       </div>
     </>
   );
