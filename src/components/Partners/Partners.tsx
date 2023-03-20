@@ -4,10 +4,10 @@ import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
 import {
-  SILVER_PARTNERS,
-  GOLD_PARTNERS,
-  DIAMOND_PARTNERS,
-  STRATEGIC_PARTNERS,
+  SILVER_PARTNERS as silverPartners,
+  GOLD_PARTNERS as goldPartners,
+  DIAMOND_PARTNERS as diamondPartners,
+  STRATEGIC_PARTNERS as strategicPartners,
 } from './PartnersData';
 
 const Partners = () => {
@@ -40,7 +40,7 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {STRATEGIC_PARTNERS.map((partner, index) => (
+          {strategicPartners.map((partner, index) => (
             <div key={index} className="strategic-container">
               <img
                 src={getImageUrl(partner.imageSource)}
@@ -56,7 +56,7 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {DIAMOND_PARTNERS.map((partner, index) => (
+          {diamondPartners.map((partner, index) => (
             <div key={index} className="diamond-container">
               <img
                 src={getImageUrl(partner.imageSource)}
@@ -71,7 +71,7 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {GOLD_PARTNERS.map((partner, index) => (
+          {goldPartners.map((partner, index) => (
             <div key={index} className="gold-container">
               <img src={getImageUrl(partner.imageSource)} className="gold-logo"></img>
             </div>
@@ -83,7 +83,7 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {SILVER_PARTNERS.map((partner, index) => (
+          {silverPartners.map((partner, index) => (
             <div key={index} className="silver-container">
               <img
                 src={getImageUrl(partner.imageSource)}
