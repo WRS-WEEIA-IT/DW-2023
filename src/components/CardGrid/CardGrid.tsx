@@ -12,6 +12,15 @@ const CardGrid = ({ eventType }: { eventType: 'lectures' | 'workshops' }) => {
     collection(firebaseDb, eventType) as Query<CardInterface>
   );
 
+  const sortEvents = () => {
+    events?.sort(
+      (event1, event2) =>
+        event1.timeStart.toDate().getHours() - event2.timeStart.toDate().getHours()
+    );
+  };
+
+  sortEvents();
+
   return (
     <div className="grid-container">
       <Swiper
