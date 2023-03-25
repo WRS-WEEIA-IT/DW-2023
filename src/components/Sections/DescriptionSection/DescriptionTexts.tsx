@@ -12,6 +12,8 @@ export const descriptionTextPL = () => (
     {
       'W tym roku odbędzie się ono już 31 marca, po raz pierwszy od trzech lat w formie stacjonarnej.'
     }
+    <h4 className="about-description-header">Gdzie?</h4>
+    {'W głównym budynku wydziału EEIA przy ulicy Stefanowskiego 18/22'}
     <h4 className="about-description-header">Dlaczego warto przyjść?</h4>
     {
       'Jako student będziesz miał możliwość zapoznać się z ofertami staży i praktyk, porozmawiać z potencjalnymi pracodawcami oraz nabyć cenne umiejętności podczas organizowanych szkoleń.'
@@ -44,6 +46,8 @@ export const descriptionTextEN = () => (
     {
       'This year it will take place on March 31st, for the first time in three years in a stationary form.'
     }
+    <h4 className="about-description-header">Where?</h4>
+    {'Event will take place in the main EEIA building (Stefanowskiego 18/22)'}
     <h4 className="about-description-header">Why should you come?</h4>
     {
       'Students will have the opportunity to find internship and job offers, talk to potential employers, and gain valuable skills during the organized trainings.'
