@@ -39,7 +39,7 @@ const Card = ({ imageSource, eventType, title, timeStart, timeEnd, partner }: Ca
         <button
           className={`card-signup-button ${Button.button} ${Button.round} ${Button.filled}`}
           style={{ marginLeft: '0', marginTop: '0' }}>
-          {languageMode === 'polish' ? 'Zapisz Się' : 'Sign Up'}
+          {languageMode === 'polish' ? 'Zapisz się' : 'Sign Up'}
         </button>
       </a>
     </div>
