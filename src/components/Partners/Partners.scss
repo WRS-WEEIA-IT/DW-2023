@@ -122,12 +122,12 @@
       }
     }
 
-    .gold-container:last-child {
-      grid-column: span 3;
-    }
-    .gold-container:nth-last-child(2) {
-      grid-column: span 3;
-    }
+    // .gold-container:last-child {
+    //   grid-column: span 3;
+    // }
+    // .gold-container:nth-last-child(2) {
+    //   grid-column: span 3;
+    // }
   }
 
   .silver-section {

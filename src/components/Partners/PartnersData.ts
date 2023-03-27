@@ -61,6 +61,11 @@ export const GOLD_PARTNERS: PartnersInterface[] = [
   },
   {
     imageSource: 'hitachi',
+    name: 'Hitachi',
+    package: 'gold',
+  },
+  {
+    imageSource: 'hitachienergy',
     name: 'Hitachi Energy',
     package: 'gold',
   },
