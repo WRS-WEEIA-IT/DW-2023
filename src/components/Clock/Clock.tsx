@@ -33,7 +33,13 @@ const Clock = () => {
           </p>
           <h1 className="date-counter">{daysLeft}</h1>
           <p className="counter-label">
-            {languageMode == 'polish' ? 'DNI DO WYDARZENIA' : 'DAYS TO EVENT'}
+            {daysLeft == 1
+              ? languageMode == 'polish'
+                ? 'DZIEŃ DO WYDARZENIA'
+                : 'DAY TO EVENT'
+              : languageMode == 'polish'
+              ? 'DNI DO WYDARZENIA'
+              : 'DAYS TO EVENT'}
           </p>
         </>
       );
@@ -55,7 +61,15 @@ const Clock = () => {
             {languageMode == 'polish' ? 'Wydarzenie odbyło się' : 'The event was'}
           </p>
           <h1 className="date-counter">{-daysLeft}</h1>
-          <p className="counter-label">{languageMode == 'polish' ? 'DNI TEMU' : 'DAYS AGO'}</p>
+          <p className="counter-label">
+            {daysLeft == -1
+              ? languageMode == 'polish'
+                ? 'DZIEŃ TEMU'
+                : 'DAY AGO'
+              : languageMode == 'polish'
+              ? 'DNI TEMU'
+              : 'DAYS AGO'}
+          </p>
         </>
       );
     }
