@@ -19,13 +19,26 @@ $border-radius: 3rem;
   white-space: nowrap;
 
   &.filled {
-    background-color: $primary-color;
+    background: $primary-gradient;
     transition: $hover-transition-time;
-    border: 0.1rem solid $primary-color;
+    border: 0.1rem solid transparent;
+    background-clip: padding-box;
     color: $neutral-color-95;
 
+    // &:before {
+    //   content: '';
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   margin: -0.1rem;
+    //   border-radius: inherit;
+    //   background: $primary-gradient-test;
+    //   transition: $hover-transition-time;
+    //   z-index: -1;
+    // }
+
     &:hover {
-      background-color: $primary-color-75;
+      background: $primary-gradient-bright;
       border-color: $primary-color-75;
       transition: $hover-transition-time;
     }

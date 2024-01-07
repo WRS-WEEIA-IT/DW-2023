@@ -15,6 +15,32 @@ $navbar-height: 90px;
 
 //colors
 
+$primary-purple-color-15: hsl(277, 67%, 15%);
+$primary-purple-color-25: hsl(277, 67%, 25%);
+$primary-purple-color-35: hsl(277, 67%, 35%);
+$primary-purple-color-45: hsl(277, 67%, 45%);
+$primary-purple-color-65: hsl(277, 67%, 65%);
+$primary-purple-color-75: hsl(277, 67%, 75%);
+$primary-purple-color-85: hsl(277, 67%, 85%);
+
+$primary-purple-gradient-start: hsl(277, 67%, 21%);
+$primary-purple-gradient-end: hsl(247, 45%, 22%);
+
+$primary-purple-gradient-start-bright: hsl(277, 67%, 35%);
+$primary-purple-gradient-end-bright: hsl(247, 45%, 35%);
+
+$primary-gradient: linear-gradient(
+  to left,
+  $primary-purple-gradient-start,
+  $primary-purple-gradient-end
+);
+$primary-gradient-bright: linear-gradient(
+  to left,
+  $primary-purple-gradient-start-bright,
+  $primary-purple-gradient-end-bright
+);
+$primary-gradient-test: linear-gradient(to left, white, white);
+
 $primary-color: hsl(202, 87%, 55%);
 $primary-color-15: hsl(202, 87%, 15%);
 $primary-color-25: hsl(202, 87%, 25%);
