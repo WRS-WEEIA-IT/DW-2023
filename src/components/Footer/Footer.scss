@@ -46,7 +46,7 @@ $gap-between-content-mobile: 1.5rem;
       flex-direction: column;
 
       .footer-link {
-        @include set-deafult-a-attributes;
+        @include set-default-a-attributes;
       }
 
       #partners-grid {

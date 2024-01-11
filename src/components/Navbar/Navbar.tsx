@@ -50,7 +50,7 @@ const Navbar = () => {
               viewport={cardViewportProperties}
               variants={createAnimateOnScroll(0)}
               id="dw-logo">
-              DW2023
+              DW2024
             </m.h3>
           </Link>
           <div id="burger-container" onClick={handleMenuToggle}>

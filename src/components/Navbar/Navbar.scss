@@ -24,7 +24,7 @@ $link-hover-transition-duration: 0.2s;
       @include flex-center;
 
       #dw-logo-link {
-        @include set-deafult-a-attributes;
+        @include set-default-a-attributes;
 
         #dw-logo {
           display: inline-block;
@@ -43,13 +43,13 @@ $link-hover-transition-duration: 0.2s;
       gap: $button-gap;
 
       .navbar-link {
-        @include set-deafult-a-attributes;
+        @include set-default-a-attributes;
         font-weight: 600;
         margin: 0;
         transition: $link-hover-transition-duration;
 
         &:hover {
-          color: $primary-color;
+          color: $primary-purple-color-30;
           transition: $link-hover-transition-duration;
         }
       }

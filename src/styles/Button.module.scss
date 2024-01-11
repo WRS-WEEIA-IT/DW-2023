@@ -19,32 +19,31 @@ $border-radius: 3rem;
   white-space: nowrap;
 
   &.filled {
-    background: $primary-gradient;
+    background: $primary-gradient border-box;
     transition: $hover-transition-time;
     border: 0.1rem solid transparent;
     background-clip: padding-box;
     color: $neutral-color-95;
 
-    // &:before {
+    // &:before,
+    // &:after {
     //   content: '';
     //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   margin: -0.1rem;
+    //   inset: 0;
+    //   margin: 1rem;
     //   border-radius: inherit;
     //   background: $primary-gradient-test;
     //   transition: $hover-transition-time;
-    //   z-index: -1;
     // }
 
     &:hover {
       background: $primary-gradient-bright;
-      border-color: $primary-color-75;
+      // border-color: $primary-purple-color-75;
       transition: $hover-transition-time;
     }
 
     &:active {
-      background-color: $primary-color-45;
+      background: $primary-gradient-dark;
       border-color: $primary-color-45;
       transition: $click-transition-time;
     }

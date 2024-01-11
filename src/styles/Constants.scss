@@ -17,11 +17,15 @@ $navbar-height: 90px;
 
 $primary-purple-color-15: hsl(277, 67%, 15%);
 $primary-purple-color-25: hsl(277, 67%, 25%);
+$primary-purple-color-30: hsl(277, 67%, 30%);
 $primary-purple-color-35: hsl(277, 67%, 35%);
 $primary-purple-color-45: hsl(277, 67%, 45%);
 $primary-purple-color-65: hsl(277, 67%, 65%);
 $primary-purple-color-75: hsl(277, 67%, 75%);
 $primary-purple-color-85: hsl(277, 67%, 85%);
+
+$primary-purple-gradient-start-dark: hsl(277, 67%, 15%);
+$primary-purple-gradient-end-dark: hsl(247, 45%, 15%);
 
 $primary-purple-gradient-start: hsl(277, 67%, 21%);
 $primary-purple-gradient-end: hsl(247, 45%, 22%);
@@ -30,14 +34,19 @@ $primary-purple-gradient-start-bright: hsl(277, 67%, 35%);
 $primary-purple-gradient-end-bright: hsl(247, 45%, 35%);
 
 $primary-gradient: linear-gradient(
-  to left,
+  to right,
   $primary-purple-gradient-start,
   $primary-purple-gradient-end
 );
 $primary-gradient-bright: linear-gradient(
-  to left,
+  to right,
   $primary-purple-gradient-start-bright,
   $primary-purple-gradient-end-bright
+);
+$primary-gradient-dark: linear-gradient(
+  to right,
+  $primary-purple-gradient-start-dark,
+  $primary-purple-gradient-end-dark
 );
 $primary-gradient-test: linear-gradient(to left, white, white);
 
@@ -160,7 +169,7 @@ button {
 
 .text-link {
   all: unset;
-  color: $primary-color;
+  color: $primary-purple-color-45;
   cursor: pointer;
 }
 
@@ -217,7 +226,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: $primary-color;
+  background: $primary-purple-color-30;
 }
 
 // mixins
@@ -229,7 +238,7 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
 }
 
-@mixin set-deafult-a-attributes() {
+@mixin set-default-a-attributes() {
   all: unset;
   cursor: pointer;
 }
