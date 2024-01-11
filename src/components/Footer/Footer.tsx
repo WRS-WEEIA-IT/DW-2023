@@ -92,7 +92,7 @@ const Footer = () => {
   const allRightsReservedSection = () => {
     return (
       <div id="all-rights-reserved-section">
-        <p>Dzień Wydziału EEIA 2023 - All Rights Reserved</p>
+        <p>Dzień Wydziału EEIA 2024 - All Rights Reserved</p>
         <div id="social-media-icons-container">
           <Link
             className="icon-link"

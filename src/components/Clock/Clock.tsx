@@ -6,7 +6,7 @@ const Clock = () => {
   const ONE_MINUTE = 60000;
   const ONE_HOUR = 3600000;
   const ONE_DAY = 86400000;
-  const DW_EVENT_DATE = '2023-03-31';
+  const DW_EVENT_DATE = '2024-03-20';
   const eventDate = new Date(DW_EVENT_DATE);
 
   const countDaysLeft = () => {
@@ -29,7 +29,7 @@ const Clock = () => {
       return (
         <>
           <p className="date-label">
-            {languageMode == 'polish' ? '31 MARCA 2023' : '31 MARCH 2023'}
+            {languageMode == 'polish' ? '20 MARCA 2024' : '20 MARCH 2024'}
           </p>
           <h1 className="date-counter">{daysLeft}</h1>
           <p className="counter-label">
