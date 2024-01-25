@@ -17,34 +17,24 @@ $border-radius: 3rem;
   background: none;
   font-weight: 700;
   white-space: nowrap;
+  position: relative;
 
   &.filled {
-    background: $primary-gradient border-box;
     transition: $hover-transition-time;
-    border: 0.1rem solid transparent;
+    box-sizing: border-box;
+    outline: none;
     background-clip: padding-box;
     color: $neutral-color-95;
-
-    // &:before,
-    // &:after {
-    //   content: '';
-    //   position: absolute;
-    //   inset: 0;
-    //   margin: 1rem;
-    //   border-radius: inherit;
-    //   background: $primary-gradient-test;
-    //   transition: $hover-transition-time;
-    // }
+    border: 0.1rem solid transparent;
+    background: $primary-gradient padding-box, $primary-gradient border-box;
 
     &:hover {
-      background: $primary-gradient-bright;
-      // border-color: $primary-purple-color-75;
+      background: $primary-gradient-bright padding-box, $primary-gradient-bright border-box;
       transition: $hover-transition-time;
     }
 
     &:active {
-      background: $primary-gradient-dark;
-      border-color: $primary-color-45;
+      background: $primary-gradient-dark padding-box, $primary-gradient-dark border-box;
       transition: $click-transition-time;
     }
   }
