@@ -33,7 +33,7 @@ const CardGrid = ({ eventType }: { eventType: 'lectures' | 'workshops' }) => {
           events.map((event, index: number) => (
             <SwiperSlide key={index}>
               <Card
-                imageSource={event.imageSource}
+                imageSrc={event.imageSrc}
                 eventType={eventType}
                 title={event.title}
                 timeStart={event.timeStart}
