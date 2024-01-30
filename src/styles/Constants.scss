@@ -38,16 +38,19 @@ $primary-gradient: linear-gradient(
   $primary-purple-gradient-start,
   $primary-purple-gradient-end
 );
+
 $primary-gradient-bright: linear-gradient(
   to right,
   $primary-purple-gradient-start-bright,
   $primary-purple-gradient-end-bright
 );
+
 $primary-gradient-dark: linear-gradient(
   to right,
   $primary-purple-gradient-start-dark,
   $primary-purple-gradient-end-dark
 );
+
 $primary-gradient-test: linear-gradient(to left, white, white);
 
 $primary-color: hsl(202, 87%, 55%);
