@@ -76,13 +76,11 @@ const Footer = () => {
             <img src={LOCATION_ICON} className="icon" id="contact-icon"></img>
             <img src={MAIL_ICON} className="icon" id="contact-icon"></img>
             <img src={CALL_ICON} className="icon" id="contact-icon"></img>
-            <img src="" className="icon" id="contact-icon"></img>
           </div>
           <div id="contact-text-column">
             <p className="footer-paragraph">Stefanowskiego 18/22, Łódź</p>
             <p className="footer-paragraph">dzien.weeia@samorzad.p.lodz.pl</p>
-            <p className="footer-paragraph">(+48) 793 873 382 - Dawid</p>
-            <p className="footer-paragraph">(+48) 504 572 932 - Ola</p>
+            <p className="footer-paragraph">(+48) 733 487 452 - Dawid</p>
           </div>
         </div>
       </div>
