@@ -34,8 +34,8 @@ const Email = {
       'withCredentials' in t
         ? t.open(e, n, !0)
         : 'undefined' != typeof XDomainRequest
-        ? (t = new XMLHttpRequest()).open(e, n)
-        : (t = null),
+          ? (t = new XMLHttpRequest()).open(e, n)
+          : (t = null),
       t
     );
   },

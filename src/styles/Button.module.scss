@@ -26,15 +26,21 @@ $border-radius: 3rem;
     background-clip: padding-box;
     color: $neutral-color-95;
     border: 0.1rem solid transparent;
-    background: $primary-gradient padding-box, $primary-gradient border-box;
+    background:
+      linear-gradient(to right, $primary-purple-color-30, $primary-purple-color-35) padding-box,
+      linear-gradient(to right, $primary-purple-color-30, $primary-purple-color-35) border-box;
 
     &:hover {
-      background: $primary-gradient-bright padding-box, $primary-gradient-bright border-box;
+      background:
+        $primary-gradient-bright padding-box,
+        $primary-gradient-bright border-box;
       transition: $hover-transition-time;
     }
 
     &:active {
-      background: $primary-gradient-dark padding-box, $primary-gradient-dark border-box;
+      background:
+        $primary-gradient-dark padding-box,
+        $primary-gradient-dark border-box;
       transition: $click-transition-time;
     }
   }
