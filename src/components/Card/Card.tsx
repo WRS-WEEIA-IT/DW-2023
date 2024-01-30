@@ -6,7 +6,7 @@ import CardInterface from './CardInterface';
 import { Timestamp } from '@firebase/firestore';
 import { FORM_LINK } from '../../services/FormLink';
 
-const Card = ({ imageSource, eventType, title, timeStart, timeEnd, partner }: CardInterface) => {
+const Card = ({ imageSrc, eventType, title, timeStart, timeEnd, partner }: CardInterface) => {
   const { languageMode } = useContext(LanguageModeContext);
   const eventTypeText =
     eventType === 'lectures'
@@ -14,8 +14,8 @@ const Card = ({ imageSource, eventType, title, timeStart, timeEnd, partner }: Ca
         ? 'Prelekcja'
         : 'Lecture'
       : languageMode === 'polish'
-      ? 'Szkolenie'
-      : 'Workshop';
+        ? 'Szkolenie'
+        : 'Workshop';
 
   const convertToClockTime = (time: Timestamp) =>
     `${time.toDate().getHours()}:${
@@ -28,7 +28,7 @@ const Card = ({ imageSource, eventType, title, timeStart, timeEnd, partner }: Ca
   const endHour = timeEnd ? convertToClockTime(timeEnd) : '??';
 
   return (
-    <div className="card-container" style={{ backgroundImage: `url(images/${imageSource}.jpg)` }}>
+    <div className="card-container" style={{ backgroundImage: `url(images/${imageSrc}.jpg)` }}>
       <div className="card-event-header">
         <p className="card-event-time">{`${startHour} - ${endHour}`}</p>
         <h6 className="card-event-partner">{partner ? partner : '??'}</h6>
