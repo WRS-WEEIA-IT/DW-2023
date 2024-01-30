@@ -27,8 +27,8 @@ $border-radius: 3rem;
     color: $neutral-color-95;
     border: 0.1rem solid transparent;
     background:
-      linear-gradient(to right, $primary-purple-color-30, $primary-purple-color-35) padding-box,
-      linear-gradient(to right, $primary-purple-color-30, $primary-purple-color-35) border-box;
+      $primary-gradient padding-box,
+      $primary-gradient border-box;
 
     &:hover {
       background:
@@ -42,6 +42,7 @@ $border-radius: 3rem;
         $primary-gradient-dark padding-box,
         $primary-gradient-dark border-box;
       transition: $click-transition-time;
+      color: $neutral-color-85;
     }
   }
 
