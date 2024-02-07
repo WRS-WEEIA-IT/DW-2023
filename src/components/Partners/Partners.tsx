@@ -1,17 +1,64 @@
 import './Partners.scss';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
-import {
-  SILVER_PARTNERS as silverPartners,
-  GOLD_PARTNERS as goldPartners,
-  DIAMOND_PARTNERS as diamondPartners,
-  STRATEGIC_PARTNERS as strategicPartners,
-} from './PartnersData';
+import { STRATEGIC_PARTNERS as strategicPartners } from './PartnersData';
+import { firebaseDb } from '../../FirebaseConfig';
+import { getDocs, collection } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref } from 'firebase/storage';
+
+type Partner = {
+  imageSrc: string;
+  name: string;
+  package: string;
+  url: string;
+};
 
 const Partners = () => {
   const { languageMode } = useContext(LanguageModeContext);
+  const storage = getStorage();
+  const partnersRef = collection(firebaseDb, 'partners');
+  const [silverPartners, setSilverPartners] = useState<Partner[]>([]);
+  const [goldPartners, setGoldPartners] = useState<Partner[]>([]);
+  const [diamondPartners, setDiamondPartners] = useState<Partner[]>([]);
+
+  useEffect(() => {
+    const getPartners = async () => {
+      try {
+        const data = await getDocs(partnersRef);
+        const partnersArray: Partner[] = [];
+
+        const promises = data.docs.map(async (doc) => {
+          const partner = { ...doc.data() };
+          const imgRef = ref(storage, `partnerzy/${partner.name.toLowerCase()}.png`);
+
+          try {
+            const url = await getDownloadURL(imgRef);
+            partner.url = url;
+          } catch (error) {
+            console.error(error);
+          }
+
+          partnersArray.push(partner as Partner);
+        });
+
+        await Promise.all(promises);
+
+        const diamondPartners = partnersArray.filter((partner) => partner.package === 'diamond');
+        const goldPartners = partnersArray.filter((partner) => partner.package === 'gold');
+        const silverPartners = partnersArray.filter((partner) => partner.package === 'silver');
+
+        setDiamondPartners(diamondPartners);
+        setGoldPartners(goldPartners);
+        setSilverPartners(silverPartners);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getPartners();
+  }, []);
 
   const getImageUrl = (name: string) => {
     return new URL(`../../../public/logos/${name}.png`, import.meta.url).href;
@@ -56,14 +103,15 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {diamondPartners.map((partner, index) => (
-            <div key={index} className="diamond-container">
-              <img
-                src={getImageUrl(partner.imageSource)}
-                className="diamond-logo"
-                id={partner.imageSource}></img>
-            </div>
-          ))}
+          {diamondPartners &&
+            diamondPartners.map((partner, index) => (
+              <div key={index} className="diamond-container">
+                <img
+                  src={`${partner.url}`}
+                  className="diamond-logo"
+                  id={partner.name.toLowerCase()}></img>
+              </div>
+            ))}
         </m.div>
         <m.div
           className="gold-section"
@@ -71,11 +119,15 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {goldPartners.map((partner, index) => (
-            <div key={index} className="gold-container">
-              <img src={getImageUrl(partner.imageSource)} className="gold-logo"></img>
-            </div>
-          ))}
+          {goldPartners &&
+            goldPartners.map((partner, index) => (
+              <div key={index} className="gold-container">
+                <img
+                  src={`${partner.url}`}
+                  className="gold-logo"
+                  id={partner.name.toLowerCase()}></img>
+              </div>
+            ))}
         </m.div>
         <m.div
           className="silver-section"
@@ -83,14 +135,15 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {silverPartners.map((partner, index) => (
-            <div key={index} className="silver-container">
-              <img
-                src={getImageUrl(partner.imageSource)}
-                className="silver-logo"
-                id={partner.imageSource}></img>
-            </div>
-          ))}
+          {silverPartners &&
+            silverPartners.map((partner, index) => (
+              <div key={index} className="silver-container">
+                <img
+                  src={`${partner.url}`}
+                  className="silver-logo"
+                  id={partner.name.toLowerCase()}></img>
+              </div>
+            ))}
         </m.div>
         <h2 id="patrons-header">{languageMode == 'polish' ? 'Patronat' : 'Patronage'}</h2>
         <m.div
