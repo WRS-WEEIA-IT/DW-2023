@@ -85,7 +85,7 @@
   .diamond-section {
     @include section(3);
 
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 
     .diamond-container {
       @include container();
@@ -95,17 +95,20 @@
       }
     }
 
-    .diamond-container:last-child {
-      grid-column: span 3;
+    // .diamond-container:last-child {
+    //   grid-column: span 3;
+    // }
+
+    #ericsson {
+      width: clamp(5rem, 2rem + 8vw, 9rem);
     }
 
     #pg {
       width: clamp(5rem, 2rem + 8vw, 8.5rem);
     }
 
-    #rossmann,
     #scanfil {
-      width: clamp(6rem, 4rem + 8vw, 12rem);
+      width: clamp(6.5rem, 4rem + 8vw, 12rem);
     }
   }
 
@@ -128,6 +131,14 @@
     // .gold-container:nth-last-child(2) {
     //   grid-column: span 3;
     // }
+
+    #eficode {
+      width: clamp(4rem, 1rem + 6vw, 9rem);
+    }
+
+    #rossmann {
+      width: clamp(7rem, 2rem + 7vw, 12rem);
+    }
   }
 
   .silver-section {
@@ -182,9 +193,9 @@
           width: 7rem;
         }
       }
-      .diamond-container:last-child {
-        grid-column: span 2;
-      }
+      // .diamond-container:last-child {
+      //   grid-column: span 2;
+      // }
 
       #scanfil {
         width: clamp(5rem, 4.5rem + 10vw, 10rem);
