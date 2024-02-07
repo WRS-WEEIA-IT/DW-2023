@@ -115,7 +115,7 @@
   .gold-section {
     @include section(6);
     margin-top: 0;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 
     .gold-container {
       @include container();
@@ -125,19 +125,27 @@
       }
     }
 
-    // .gold-container:last-child {
-    //   grid-column: span 3;
-    // }
+    .gold-container:last-child {
+      grid-column: span 6;
+    }
     // .gold-container:nth-last-child(2) {
     //   grid-column: span 3;
     // }
 
     #eficode {
-      width: clamp(4rem, 1rem + 6vw, 9rem);
+      width: clamp(4rem, 2rem + 5vw, 9rem);
     }
 
     #rossmann {
       width: clamp(7rem, 2rem + 7vw, 12rem);
+    }
+
+    #hitachienergy {
+      width: clamp(7rem, 2rem + 12vw, 16rem);
+    }
+
+    #hitachi {
+      width: clamp(7rem, 2rem + 8vw, 16rem);
     }
   }
 
@@ -208,12 +216,17 @@
 
     .gold-section {
       @include section(2, 2rem);
+      grid-template-rows: repeat(4, 1fr);
 
       .gold-container {
         grid-column: span 1;
         .gold-logo {
           width: 6rem;
         }
+      }
+
+      .gold-container:last-child {
+        grid-column: span none;
       }
     }
 
