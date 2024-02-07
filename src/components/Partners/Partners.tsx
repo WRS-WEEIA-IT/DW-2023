@@ -49,9 +49,11 @@ const Partners = () => {
         const goldPartners = partnersArray.filter((partner) => partner.package === 'gold');
         const silverPartners = partnersArray.filter((partner) => partner.package === 'silver');
 
-        setDiamondPartners(diamondPartners);
-        setGoldPartners(goldPartners);
-        setSilverPartners(silverPartners);
+        setDiamondPartners(
+          diamondPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]
+        );
+        setGoldPartners(goldPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]);
+        setSilverPartners(silverPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]);
       } catch (error) {
         console.error(error);
       }
