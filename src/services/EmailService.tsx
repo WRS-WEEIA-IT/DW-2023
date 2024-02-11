@@ -1,3 +1,4 @@
+'use strict';
 import Email from './SMTP';
 
 const createFormEmailBody = (name: string, email: string, message: string) => {
@@ -22,5 +23,3 @@ export const sendEmail = async (name: string, email: string, message: string): P
   })) as string;
   return returnMessage;
 };
-
-// API KEY re_NHmmRUL8_Zosk5Qs9koSjCnRHtGbSDvvg

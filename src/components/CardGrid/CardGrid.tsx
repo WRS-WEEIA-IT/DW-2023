@@ -39,6 +39,7 @@ const CardGrid = ({ eventType }: { eventType: 'lectures' | 'workshops' }) => {
                 timeStart={event.timeStart}
                 timeEnd={event.timeEnd}
                 partner={event.partner}
+                room={event.room}
               />
             </SwiperSlide>
           ))}
