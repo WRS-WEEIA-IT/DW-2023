@@ -10,6 +10,10 @@ $card-size-mobile: 100%;
   .swiper-slide {
     width: calc($card-size-pc - 20px);
   }
+
+  .no-events-paragraph {
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: $screen-size-laptop) {
