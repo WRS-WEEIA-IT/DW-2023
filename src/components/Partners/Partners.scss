@@ -55,13 +55,15 @@
   }
 
   .patrons-section {
-    @include section(1);
-
     .patrons-container {
-      @include container();
+      @include section(3, 3rem);
+
+      #mlodzi_w_lodzi {
+        width: clamp(7rem, 0.5rem + 10vw, 20rem);
+      }
 
       .patrons-logo {
-        width: clamp(11rem, 2rem + 10vw, 15rem);
+        width: clamp(11rem, 4rem + 14vw, 20rem);
       }
     }
   }
@@ -177,8 +179,18 @@
 
     .patrons-section {
       .patrons-container {
+        @include section(1, 2rem);
+
         .patrons-logo {
           width: 9rem;
+        }
+
+        #marszalek {
+          width: 10rem;
+        }
+
+        #mlodzi_w_lodzi {
+          width: 7rem;
         }
       }
     }
