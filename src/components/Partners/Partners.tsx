@@ -15,6 +15,11 @@ type Partner = {
   url: string;
 };
 
+type Patron = {
+  name: string;
+  url: string;
+};
+
 const Partners = () => {
   const { languageMode } = useContext(LanguageModeContext);
   const storage = getStorage();
@@ -22,6 +27,7 @@ const Partners = () => {
   const [silverPartners, setSilverPartners] = useState<Partner[]>([]);
   const [goldPartners, setGoldPartners] = useState<Partner[]>([]);
   const [diamondPartners, setDiamondPartners] = useState<Partner[]>([]);
+  const [patrons, setPatrons] = useState<Patron[]>([]);
 
   useEffect(() => {
     const getPartners = async () => {
@@ -59,7 +65,37 @@ const Partners = () => {
       }
     };
 
+    const getPatrons = async () => {
+      try {
+        const patronsArray: Patron[] = [];
+        const data = await getDocs(collection(firebaseDb, 'patrons'));
+        const patronsPromises = data.docs.map(async (doc) => {
+          const patron = { ...doc.data() };
+          const imgRef = ref(
+            storage,
+            `patrons/${patron.name.replaceAll(' ', '_').toLowerCase()}.png`
+          );
+
+          try {
+            const url = await getDownloadURL(imgRef);
+            patron.url = url;
+          } catch (error) {
+            console.error(error);
+          }
+
+          patronsArray.push(patron as Patron);
+        });
+
+        await Promise.all(patronsPromises);
+
+        setPatrons(patronsArray.sort((a, b) => a.name.localeCompare(b.name)) as Patron[]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getPartners();
+    getPatrons();
   }, []);
 
   const getImageUrl = (name: string) => {
@@ -155,7 +191,13 @@ const Partners = () => {
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
           <div className="patrons-container">
-            <img src={getImageUrl('mlodzi_w_lodzi')} className="patrons-logo"></img>
+            {patrons &&
+              patrons.map((patron) => (
+                <img
+                  src={patron.url}
+                  className="patrons-logo"
+                  id={patron.name.replaceAll(' ', '_').toLowerCase()}></img>
+              ))}
           </div>
         </m.div>
       </div>
