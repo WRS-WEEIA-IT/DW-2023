@@ -38,13 +38,15 @@ const Card = ({ imageSrc, eventType, title, timeStart, timeEnd, partner, room }:
       </div>
       <h6 className="card-event-type">{eventTypeText}</h6>
       <h5 className="card-title">{title ? title : '??'}</h5>
-      <a href={FORM_LINK} target="_blank" rel="noopener noreferrer" className="button-link">
-        <button
-          className={`card-signup-button ${Button.button} ${Button.round} ${Button.filled}`}
-          style={{ marginLeft: '0', marginTop: '0' }}>
-          {languageMode === 'polish' ? 'Zapisz się' : 'Sign Up'}
-        </button>
-      </a>
+      {eventType == 'workshops' && (
+        <a href={FORM_LINK} target="_blank" rel="noopener noreferrer" className="button-link">
+          <button
+            className={`card-signup-button ${Button.button} ${Button.round} ${Button.filled}`}
+            style={{ marginLeft: '0', marginTop: '0' }}>
+            {languageMode === 'polish' ? 'Zapisz się' : 'Sign Up'}
+          </button>
+        </a>
+      )}
     </div>
   );
 };
