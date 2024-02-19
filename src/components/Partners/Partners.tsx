@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
-import { STRATEGIC_PARTNERS as strategicPartners } from './PartnersData';
 import { firebaseDb } from '../../FirebaseConfig';
 import { getDocs, collection } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
@@ -27,6 +26,7 @@ const Partners = () => {
   const [silverPartners, setSilverPartners] = useState<Partner[]>([]);
   const [goldPartners, setGoldPartners] = useState<Partner[]>([]);
   const [diamondPartners, setDiamondPartners] = useState<Partner[]>([]);
+  const [strategicPartners, setStrategicPartners] = useState<Partner[]>([]);
   const [patrons, setPatrons] = useState<Patron[]>([]);
 
   useEffect(() => {
@@ -37,7 +37,10 @@ const Partners = () => {
 
         const promises = data.docs.map(async (doc) => {
           const partner = { ...doc.data() };
-          const imgRef = ref(storage, `partnerzy/${partner.name.toLowerCase()}.png`);
+          const imgRef = ref(
+            storage,
+            `partnerzy/${partner.name.replace(' ', '_').toLowerCase()}.png`
+          );
 
           try {
             const url = await getDownloadURL(imgRef);
@@ -54,12 +57,18 @@ const Partners = () => {
         const diamondPartners = partnersArray.filter((partner) => partner.package === 'diamond');
         const goldPartners = partnersArray.filter((partner) => partner.package === 'gold');
         const silverPartners = partnersArray.filter((partner) => partner.package === 'silver');
+        const strategicPartners = partnersArray.filter(
+          (partner) => partner.package === 'strategic'
+        );
 
         setDiamondPartners(
           diamondPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]
         );
         setGoldPartners(goldPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]);
         setSilverPartners(silverPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]);
+        setStrategicPartners(
+          strategicPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]
+        );
       } catch (error) {
         console.error(error);
       }
@@ -98,10 +107,6 @@ const Partners = () => {
     getPatrons();
   }, []);
 
-  const getImageUrl = (name: string) => {
-    return new URL(`../../../public/logos/${name}.png`, import.meta.url).href;
-  };
-
   return (
     <>
       <div className="partners-container">
@@ -128,9 +133,9 @@ const Partners = () => {
           {strategicPartners.map((partner, index) => (
             <div key={index} className="strategic-container">
               <img
-                src={getImageUrl(partner.imageSource)}
+                src={`${partner.url}`}
                 className="strategic-logo"
-                id={partner.imageSource}></img>
+                id={partner.name.toLowerCase()}></img>
             </div>
           ))}
         </m.div>
@@ -163,7 +168,7 @@ const Partners = () => {
                 <img
                   src={`${partner.url}`}
                   className="gold-logo"
-                  id={partner.name.toLowerCase()}></img>
+                  id={partner.name.replace(' ', '_').toLowerCase()}></img>
               </div>
             ))}
         </m.div>
