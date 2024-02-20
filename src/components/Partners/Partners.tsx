@@ -17,11 +17,11 @@ type Partner = {
 type Patron = {
   name: string;
   url: string;
+  imageSrc: string;
 };
 
 const Partners = () => {
   const { languageMode } = useContext(LanguageModeContext);
-  const storage = getStorage();
   const partnersRef = collection(firebaseDb, 'partners');
   const [silverPartners, setSilverPartners] = useState<Partner[]>([]);
   const [goldPartners, setGoldPartners] = useState<Partner[]>([]);
@@ -37,18 +37,6 @@ const Partners = () => {
 
         const promises = data.docs.map(async (doc) => {
           const partner = { ...doc.data() };
-          const imgRef = ref(
-            storage,
-            `partnerzy/${partner.name.replace(' ', '_').toLowerCase()}.png`
-          );
-
-          try {
-            const url = await getDownloadURL(imgRef);
-            partner.url = url;
-          } catch (error) {
-            console.error(error);
-          }
-
           partnersArray.push(partner as Partner);
         });
 
@@ -80,18 +68,6 @@ const Partners = () => {
         const data = await getDocs(collection(firebaseDb, 'patrons'));
         const patronsPromises = data.docs.map(async (doc) => {
           const patron = { ...doc.data() };
-          const imgRef = ref(
-            storage,
-            `patrons/${patron.name.replaceAll(' ', '_').toLowerCase()}.png`
-          );
-
-          try {
-            const url = await getDownloadURL(imgRef);
-            patron.url = url;
-          } catch (error) {
-            console.error(error);
-          }
-
           patronsArray.push(patron as Patron);
         });
 
@@ -133,7 +109,7 @@ const Partners = () => {
           {strategicPartners.map((partner, index) => (
             <div key={index} className="strategic-container">
               <img
-                src={`${partner.url}`}
+                src={`${partner.imageSrc}`}
                 className="strategic-logo"
                 id={partner.name.toLowerCase()}></img>
             </div>
@@ -150,7 +126,7 @@ const Partners = () => {
             diamondPartners.map((partner, index) => (
               <div key={index} className="diamond-container">
                 <img
-                  src={`${partner.url}`}
+                  src={`${partner.imageSrc}`}
                   className="diamond-logo"
                   id={partner.name.toLowerCase()}></img>
               </div>
@@ -166,7 +142,7 @@ const Partners = () => {
             goldPartners.map((partner, index) => (
               <div key={index} className="gold-container">
                 <img
-                  src={`${partner.url}`}
+                  src={`${partner.imageSrc}`}
                   className="gold-logo"
                   id={partner.name.replace(' ', '_').toLowerCase()}></img>
               </div>
@@ -182,7 +158,7 @@ const Partners = () => {
             silverPartners.map((partner, index) => (
               <div key={index} className="silver-container">
                 <img
-                  src={`${partner.url}`}
+                  src={`${partner.imageSrc}`}
                   className="silver-logo"
                   id={partner.name.toLowerCase()}></img>
               </div>
@@ -199,7 +175,7 @@ const Partners = () => {
             {patrons &&
               patrons.map((patron) => (
                 <img
-                  src={patron.url}
+                  src={patron.imageSrc}
                   className="patrons-logo"
                   id={patron.name.replaceAll(' ', '_').toLowerCase()}></img>
               ))}
