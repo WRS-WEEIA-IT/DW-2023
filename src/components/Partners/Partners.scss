@@ -218,18 +218,31 @@
       #scanfil {
         width: clamp(5rem, 4.5rem + 10vw, 10rem);
       }
+
+      .diamond-container:last-child {
+        grid-column: span 1;
+      }
     }
 
     .gold-section {
-      @include section(6, 2rem);
-      grid-template-rows: repeat(4, 1fr);
+      @include section(2, 2rem);
+      grid-template-rows: repeat(6, 1fr);
 
       .gold-container {
-        grid-column: span 2;
+        @include container();
+        grid-column: span 1;
 
         .gold-logo {
           width: 6rem;
         }
+      }
+
+      .gold-container:nth-last-child(-n + 2) {
+        grid-column: span 1;
+      }
+
+      .gold-container:last-child {
+        grid-column: span 2;
       }
     }
 
