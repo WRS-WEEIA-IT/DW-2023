@@ -15,9 +15,9 @@ export const sendEmail = async (name: string, email: string, message: string): P
   const emailSubject = createFormEmailSubject(email);
   const emailBody = createFormEmailBody(name, email, message);
   const returnMessage: string = (await Email.send({
-    SecureToken: 'f4df08d5-c2da-49db-a670-8ef2979207e4',
-    To: 'a.golus@samorzad.p.lodz.pl',
-    From: 'a.golus@samorzad.p.lodz.pl',
+    SecureToken: '92dc0f81-03a8-4df9-8e18-46db71b9d140',
+    To: 'j.misko@samorzad.p.lodz.pl',
+    From: 'j.misko@samorzad.p.lodz.pl',
     Subject: emailSubject,
     Body: emailBody,
   })) as string;
