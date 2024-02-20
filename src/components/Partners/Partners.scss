@@ -127,7 +127,7 @@
       }
     }
 
-    .gold-container:nth-last-child(2) {
+    .gold-container:nth-last-child(-n + 2) {
       grid-column: span 3;
     }
 
