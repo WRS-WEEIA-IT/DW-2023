@@ -54,10 +54,10 @@ const Footer = () => {
           <div id="partners-grid">
             <a
               className="footer-link"
-              href="https://www.zf.com/poland/pl/home/home.html"
+              href="https://pl.pg.com/"
               target="_blank"
               rel="noopener noreferrer">
-              <p className="footer-paragraph">ZF</p>
+              <p className="footer-paragraph">P&G</p>
             </a>
             <a
               className="footer-link"

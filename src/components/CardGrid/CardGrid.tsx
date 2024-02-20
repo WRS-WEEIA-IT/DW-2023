@@ -11,18 +11,19 @@ import { LanguageModeContext } from '../../contexts/LanguageContext';
 
 const CardGrid = ({ eventType }: { eventType: 'lectures' | 'workshops' }) => {
   const { languageMode } = useContext(LanguageModeContext);
-  const [events] = useCollectionData<CardInterface>(
-    collection(firebaseDb, eventType) as Query<CardInterface>
-  );
+  // const [events] = useCollectionData<CardInterface>(
+  //   collection(firebaseDb, eventType) as Query<CardInterface>
+  // );
+  const events: CardInterface[] = [];
 
-  const sortEvents = () => {
-    events?.sort(
-      (event1, event2) =>
-        event1.timeStart.toDate().getHours() - event2.timeStart.toDate().getHours()
-    );
-  };
+  // const sortEvents = () => {
+  //   events?.sort(
+  //     (event1, event2) =>
+  //       event1.timeStart.toDate().getHours() - event2.timeStart.toDate().getHours()
+  //   );
+  // };
 
-  sortEvents();
+  // sortEvents();
 
   return (
     <div className="grid-container">
