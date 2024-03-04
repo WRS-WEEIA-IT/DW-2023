@@ -9,9 +9,38 @@ import { LanguageModeContext } from '../../contexts/LanguageContext';
 import '../../styles/Constants.scss';
 import { HashLink as Link } from 'react-router-hash-link';
 import Modal from '../Modal/Modal';
+import APP_STORE_ICON_PL from '../../assets/icons/app-store-pl.svg';
+import APP_STORE_ICON_EN from '../../assets/icons/app-store-en.svg';
+import GOOGLE_PLAY_ICON_PL from '../../assets/icons/google-play-pl.png';
+import GOOGLE_PLAY_ICON_EN from '../../assets/icons/google-play-en.png';
 
 const Footer = () => {
   const { languageMode } = useContext(LanguageModeContext);
+
+  const mobileAppsSection = () => {
+    return (
+      <div id="mobile-apps-section">
+        <div>
+          <h4 id="mobile-apps-section-label">
+            {languageMode == 'polish' ? 'Pobierz naszą aplikację!' : 'Download our app!'}
+          </h4>
+          <p className="section-description">
+            {languageMode == 'polish'
+              ? 'Wykonuj zadania i walcz o nagrody!'
+              : 'Complete tasks and fight for prizes!'}
+          </p>
+        </div>
+        <div id="mobile-apps-icons-container">
+          <img
+            src={languageMode == 'polish' ? APP_STORE_ICON_PL : APP_STORE_ICON_EN}
+            id="apple-icon"></img>
+          <img
+            src={languageMode == 'polish' ? GOOGLE_PLAY_ICON_PL : GOOGLE_PLAY_ICON_EN}
+            id={languageMode == 'polish' ? 'google-icon-pl' : 'google-icon-en'}></img>
+        </div>
+      </div>
+    );
+  };
 
   const contactSection = () => {
     return (
@@ -22,7 +51,7 @@ const Footer = () => {
               ? 'Masz jakieś pytania do organizatorów?'
               : 'Have you got any questions to organizers?'}
           </h4>
-          <p id="contact-section-description">
+          <p className="section-description">
             {languageMode == 'polish' ? 'Skontaktuj się z nami!' : 'Contact us!'}
           </p>
         </div>
@@ -113,6 +142,7 @@ const Footer = () => {
 
   return (
     <div id="footer-section">
+      {mobileAppsSection()}
       {contactSection()}
       {mainFooterSection()}
       {allRightsReservedSection()}

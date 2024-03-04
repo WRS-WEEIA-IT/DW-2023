@@ -14,8 +14,44 @@ $gap-between-content-mobile: 1.5rem;
   }
 
   margin-bottom: 0;
-  #contact-section-description {
+  .section-description {
     margin: 0.5rem 0;
+  }
+
+  #mobile-apps-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2rem var(--screen-side-margin);
+    background-color: $neutral-color-95;
+    color: $neutral-color-05;
+
+    #mobile-apps-section-label {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    #mobile-apps-icons-container {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+
+      #google-icon-pl {
+        width: 10rem;
+        height: auto;
+      }
+
+      #apple-icon {
+        width: 9rem;
+        height: auto;
+      }
+
+      #google-icon-en {
+        width: 11.4rem;
+        height: auto;
+      }
+    }
   }
 
   #contact-section {
@@ -26,7 +62,7 @@ $gap-between-content-mobile: 1.5rem;
     justify-content: space-between;
     align-items: center;
     padding: 2rem var(--screen-side-margin);
-    background-color: $neutral-color-95;
+    background-color: white;
   }
 
   #main-footer-section {
