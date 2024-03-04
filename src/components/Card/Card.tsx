@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import CardInterface from './CardInterface';
 import { Timestamp } from '@firebase/firestore';
-import { FORM_LINK } from '../../services/FormLink';
+import { FORM_LINK } from '../../services/Links';
 
 const Card = ({ imageSrc, eventType, title, timeStart, timeEnd, partner, room }: CardInterface) => {
   const { languageMode } = useContext(LanguageModeContext);

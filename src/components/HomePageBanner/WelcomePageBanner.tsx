@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
-import { FORM_LINK } from '../../services/FormLink';
+import { FORM_LINK } from '../../services/Links';
 
 const WelcomePageBanner = () => {
   const { languageMode } = useContext(LanguageModeContext);

@@ -12,7 +12,7 @@ import { WELCOME_SECTION_ID } from './NavLinks';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
 import scrollWithOffset from '../../constants/scrollWithOffset';
-import { FORM_LINK } from '../../services/FormLink';
+import { FORM_LINK } from '../../services/Links';
 
 const Navbar = () => {
   const { languageMode } = useContext(LanguageModeContext);

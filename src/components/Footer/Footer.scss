@@ -152,6 +152,36 @@ $gap-between-content-mobile: 1.5rem;
       gap: $gap-between-sections-mobile;
     }
 
+    #mobile-apps-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: $gap-between-sections-mobile;
+
+      #mobile-apps-icons-container {
+        display: flex;
+        gap: $gap-between-content-mobile;
+        justify-content: center;
+        align-items: center;
+
+        #apple-icon {
+          width: 6rem;
+          height: auto;
+        }
+
+        #google-icon-pl {
+          width: 6.7rem;
+          height: auto;
+        }
+
+        #google-icon-en {
+          width: 7.8rem;
+          height: auto;
+        }
+      }
+    }
+
     #main-footer-section {
       display: flex;
       flex-direction: column;
