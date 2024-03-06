@@ -13,7 +13,11 @@ import APP_STORE_ICON_PL from '../../assets/icons/app-store-pl.svg';
 import APP_STORE_ICON_EN from '../../assets/icons/app-store-en.svg';
 import GOOGLE_PLAY_ICON_PL from '../../assets/icons/google-play-pl.png';
 import GOOGLE_PLAY_ICON_EN from '../../assets/icons/google-play-en.png';
-import { APP_STORE_APP_LINK, GOOGLE_PLAY_APP_LINK } from '../../services/Links';
+import {
+  APP_STORE_APP_LINK,
+  GOOGLE_PLAY_APP_LINK,
+  FACEBOOK_EVENT_LINK,
+} from '../../services/Links';
 
 const Footer = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -32,13 +36,13 @@ const Footer = () => {
           </p>
         </div>
         <div id="mobile-apps-icons-container">
-          <a href={APP_STORE_APP_LINK} target="blank">
+          <a href={APP_STORE_APP_LINK} target="_blank">
             <img
               src={languageMode == 'polish' ? APP_STORE_ICON_PL : APP_STORE_ICON_EN}
               id="apple-icon"
             />
           </a>
-          <a href={GOOGLE_PLAY_APP_LINK} target="blank">
+          <a href={GOOGLE_PLAY_APP_LINK} target="_blank">
             <img
               src={languageMode == 'polish' ? GOOGLE_PLAY_ICON_PL : GOOGLE_PLAY_ICON_EN}
               id={languageMode == 'polish' ? 'google-icon-pl' : 'google-icon-en'}
@@ -132,7 +136,7 @@ const Footer = () => {
             className="icon-link"
             target="_blank"
             rel="noopener noreferrer"
-            to="https://www.facebook.com/events/660013089462906/">
+            to={FACEBOOK_EVENT_LINK}>
             <img src={FACEBOOK_ICON} />
           </Link>
           <Link

@@ -1,4 +1,5 @@
 import OPEN_LINK_ICON from '../../../assets/icons/arrow-top-right.svg';
+import { FACEBOOK_EVENT_LINK } from '../../../services/Links';
 
 export const headerTextPL = 'Czym jest Dzień Wydziału EEIA?';
 export const headerTextEN = "What is EEIA's department day?";
@@ -23,11 +24,7 @@ export const descriptionTextPL = () => (
     }
     <h4 className="about-description-header">Dowiedz się więcej</h4>
     {'Zachęcamy do dołączenia do '}
-    <a
-      className="text-link"
-      href="https://www.facebook.com/events/877959140777840/"
-      target="_blank"
-      rel="noopener noreferrer">
+    <a className="text-link" href={FACEBOOK_EVENT_LINK} target="_blank" rel="noopener noreferrer">
       wydarzenia na Facebooku
       <img className="open-link-icon" src={OPEN_LINK_ICON} />
     </a>
@@ -55,11 +52,7 @@ export const descriptionTextEN = () => (
     }
     <h4 className="about-description-header">Find out more</h4>
     {'We encourage you to join '}
-    <a
-      className="text-link"
-      href="https://www.facebook.com/events/877959140777840/"
-      target="_blank"
-      rel="noopener noreferrer">
+    <a className="text-link" href={FACEBOOK_EVENT_LINK} target="_blank" rel="noopener noreferrer">
       the event on Facebook
       <img className="open-link-icon" src={OPEN_LINK_ICON} />
     </a>

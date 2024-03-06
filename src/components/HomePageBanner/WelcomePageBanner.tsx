@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
-import { FORM_LINK } from '../../services/Links';
+import { FACEBOOK_EVENT_LINK, FORM_LINK } from '../../services/Links';
 
 const WelcomePageBanner = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -37,10 +37,7 @@ const WelcomePageBanner = () => {
               {languageMode === 'polish' ? 'Zapisz się' : 'Sign up'}
             </button>
           </a>
-          <a
-            href="https://www.facebook.com/events/660013089462906/"
-            target="_blank"
-            rel="noopener noreferrer">
+          <a href={FACEBOOK_EVENT_LINK} target="_blank" rel="noopener noreferrer">
             <button className={`${Button.button} ${Button.outlined} ${Button.round}`}>
               {languageMode === 'polish' ? 'Dowiedz się więcej' : 'Find out more'}
             </button>
