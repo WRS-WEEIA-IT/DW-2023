@@ -1,7 +1,7 @@
 @import '/src/styles/Constants.scss';
 
 $spinner-size: calc(var(--button-font-size) + 2rem);
-$spinner-color: $primary-color;
+$spinner-color: $primary-color-55;
 
 .lds-ring {
   display: flex;

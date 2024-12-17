@@ -27,20 +27,17 @@ $border-radius: 3rem;
     color: $neutral-color-95;
     border: 0.1rem solid transparent;
     background:
-      $primary-gradient padding-box,
-      $primary-gradient border-box;
+      $primary-color-55 padding-box;
 
     &:hover {
       background:
-        $primary-gradient-bright padding-box,
-        $primary-gradient-bright border-box;
+        $primary-color-65 padding-box;
       transition: $hover-transition-time;
     }
 
     &:active {
       background:
-        $primary-gradient-dark padding-box,
-        $primary-gradient-dark border-box;
+        $primary-color-45 padding-box;
       transition: $click-transition-time;
       color: $neutral-color-85;
     }
@@ -68,6 +65,22 @@ $border-radius: 3rem;
   &.square {
     border-radius: 0.5rem;
     padding: 1rem 1.5rem;
+
+    background:
+      $secondary-color-35 padding-box;
+
+    &:hover {
+      background:
+        $secondary-color-45 padding-box;
+      transition: $hover-transition-time;
+    }
+
+    &:active {
+      background:
+        $secondary-color-25 padding-box;
+      transition: $click-transition-time;
+      color: $neutral-color-85;
+    }
   }
 
   &.round {

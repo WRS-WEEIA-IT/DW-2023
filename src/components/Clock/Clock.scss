@@ -3,6 +3,7 @@
 :root {
   --counter-font-size: 12rem;
   --smaller-label-size: 2.5rem;
+  --smallest-label-size: 1.2rem;
   --bigger-label-size: 6rem;
 }
 
@@ -45,7 +46,13 @@ $lebel-counter-font-weight: 500;
 
   .ongoing-event-header {
     margin-top: 0.2rem;
+    margin-bottom: 2rem;
     font-size: var(--bigger-label-size);
+  }
+
+  .ongoing-event-footer {
+    font-weight: $lebel-counter-font-weight;
+    font-size: var(--smallest-label-size);
   }
 }
 

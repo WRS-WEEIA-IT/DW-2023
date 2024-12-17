@@ -1,18 +1,21 @@
-import './Navbar.scss';
-import { navLinksEN, navLinksPL } from './NavLinks';
-import Button from '../../styles/Button.module.scss';
-import { useContext, useState } from 'react';
-import { LanguageModeContext } from './../../contexts/LanguageContext';
-import ARROW_RIGHT_ICON from '../../assets/icons/arrow-right.svg';
-import BURGER_OPEN_ICON from '../../assets/icons/burger-open.svg';
-import BURGER_CLOSE_ICON from '../../assets/icons/burger-close.svg';
-import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
-import { HashLink as Link } from 'react-router-hash-link';
-import { WELCOME_SECTION_ID } from './NavLinks';
-import { m } from 'framer-motion';
-import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
-import scrollWithOffset from '../../constants/scrollWithOffset';
-import { FORM_LINK } from '../../services/Links';
+import "./Navbar.scss";
+import { navLinksEN, navLinksPL } from "./NavLinks";
+import Button from "../../styles/Button.module.scss";
+import { useContext, useState } from "react";
+import { LanguageModeContext } from "./../../contexts/LanguageContext";
+import ARROW_RIGHT_ICON from "../../assets/icons/arrow-right.svg";
+import BURGER_OPEN_ICON from "../../assets/icons/burger-open.svg";
+import BURGER_CLOSE_ICON from "../../assets/icons/burger-close.svg";
+import LanguageSwitch from "../LanguageSwitch/LanguageSwitch";
+import { HashLink as Link } from "react-router-hash-link";
+import { WELCOME_SECTION_ID } from "./NavLinks";
+import { m } from "framer-motion";
+import {
+  cardViewportProperties,
+  createAnimateOnScroll,
+} from "../../animations/animateOnScroll";
+import scrollWithOffset from "../../constants/scrollWithOffset";
+import { FORM_LINK } from "../../services/Links";
 
 const Navbar = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -35,12 +38,15 @@ const Navbar = () => {
   };
 
   const addScrollHandler = () => {
-    window.addEventListener('scroll', handleNavbarColorChange);
+    window.addEventListener("scroll", handleNavbarColorChange);
   };
   addScrollHandler();
 
   return (
-    <div id="navbar-container" style={{ backgroundColor: `hsl(0, 0%, 5%, ${navbarTransparency})` }}>
+    <div
+      id="navbar-container"
+      style={{ backgroundColor: `hsl(0, 0%, 5%, ${navbarTransparency})` }}
+    >
       <div id="navbar-content">
         <div id="mobile-header-container">
           <Link to={WELCOME_SECTION_ID} id="dw-logo-link" smooth>
@@ -49,28 +55,40 @@ const Navbar = () => {
               whileInView="visible"
               viewport={cardViewportProperties}
               variants={createAnimateOnScroll(0)}
-              id="dw-logo">
-              DW2024
+              id="dw-logo"
+            >
+              DW2025
             </m.h3>
           </Link>
           <div id="burger-container" onClick={handleMenuToggle}>
-            <img id="burger-icon" src={isMenuOpen ? BURGER_CLOSE_ICON : BURGER_OPEN_ICON} />
+            <img
+              id="burger-icon"
+              src={isMenuOpen ? BURGER_CLOSE_ICON : BURGER_OPEN_ICON}
+            />
           </div>
         </div>
-        <div id="navbar-links-container" className={isMenuOpen ? 'menu-open' : ''}>
-          {(languageMode == 'polish' ? navLinksPL : navLinksEN).map((navLink, index) => (
+        <div
+          id="navbar-links-container"
+          className={isMenuOpen ? "menu-open" : ""}
+        >
+          {(languageMode == "polish" ? navLinksPL : navLinksEN).map((
+            navLink,
+            index,
+          ) => (
             <m.div
               initial="hidden"
               whileInView="visible"
               viewport={{ amount: 0.2, once: false }}
               variants={createAnimateOnScroll(0.1)}
-              key={index}>
+              key={index}
+            >
               <Link
                 to={navLink.sectionId}
                 className="navbar-link"
                 smooth
                 onClick={closeMenu}
-                scroll={scrollWithOffset}>
+                scroll={scrollWithOffset}
+              >
                 {navLink.title}
               </Link>
             </m.div>
@@ -79,12 +97,22 @@ const Navbar = () => {
         </div>
         <div id="navbar-buttons-container">
           <LanguageSwitch />
-          <a href={FORM_LINK} target="_blank" rel="noopener noreferrer" className="button-link">
+          <a
+            href={FORM_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button-link"
+          >
             <button
               id="navbar-signup-button"
-              className={`${Button.button} ${Button.filled} ${Button.square}`}>
-              {languageMode == 'polish' ? 'Zapisz się' : 'Sign up'}
-              <img className="icon" id="arrow-right-icon" src={ARROW_RIGHT_ICON} />
+              className={`${Button.button} ${Button.filled} ${Button.square}`}
+            >
+              {languageMode == "polish" ? "Zapisz się" : "Sign up"}
+              <img
+                className="icon"
+                id="arrow-right-icon"
+                src={ARROW_RIGHT_ICON}
+              />
             </button>
           </a>
         </div>
