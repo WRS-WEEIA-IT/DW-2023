@@ -4,6 +4,7 @@ import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
 import useFetchPartnersAndPatrons from '../../hooks/useFetchPartnersAndPatrons';
+import { isInfoHidden } from '../../supabaseConfig';
 
 const Partners = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -48,14 +49,26 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {strategicPartners.map((partner, index) => (
-            <div key={index} className="strategic-container">
-              <img
-                src={`${partner.imageSrc}`}
-                className="strategic-logo"
-                id={partner.name.toLowerCase()}></img>
+          {isInfoHidden ? (
+            languageMode == 'polish' ? (
+              <p className="text-center" id="info-hidden-text">
+                Informacje o partnerach zostaną udostępnione wkrótce!
+              </p>
+            ) : (
+              <p className="text-center" id="info-hidden-text">
+                Information about partners will be available soon!
+              </p>
+            )
+          ) : (
+            <div className="strategic-container">
+              {strategicPartners.map((partner, index) => (
+                <img
+                  src={`${partner.imageSrc}`}
+                  className="strategic-logo"
+                  id={partner.name.toLowerCase()}></img>
+              ))}
             </div>
-          ))}
+          )}
         </m.div>
         <h2 id="partners-header">{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h2>
         <m.div
@@ -64,7 +77,18 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {diamondPartners &&
+          {isInfoHidden ? (
+            languageMode == 'polish' ? (
+              <p className="text-center" id="info-hidden-text">
+                Informacje o partnerach strategicznych zostaną udostępnione wkrótce!
+              </p>
+            ) : (
+              <p className="text-center" id="info-hidden-text">
+                Information about strategic partners will be available soon!
+              </p>
+            )
+          ) : (
+            diamondPartners &&
             diamondPartners.map((partner, index) => (
               <div key={index} className="diamond-container">
                 <img
@@ -72,7 +96,8 @@ const Partners = () => {
                   className="diamond-logo"
                   id={partner.name.toLowerCase()}></img>
               </div>
-            ))}
+            ))
+          )}
         </m.div>
         <m.div
           className="gold-section"
@@ -80,15 +105,17 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {goldPartners &&
-            goldPartners.map((partner, index) => (
-              <div key={index} className="gold-container">
-                <img
-                  src={`${partner.imageSrc}`}
-                  className="gold-logo"
-                  id={partner.name.replace(' ', '_').toLowerCase()}></img>
-              </div>
-            ))}
+          {isInfoHidden
+            ? null
+            : goldPartners &&
+              goldPartners.map((partner, index) => (
+                <div key={index} className="gold-container">
+                  <img
+                    src={`${partner.imageSrc}`}
+                    className="gold-logo"
+                    id={partner.name.replace(' ', '_').toLowerCase()}></img>
+                </div>
+              ))}
         </m.div>
         <m.div
           className="silver-section"
@@ -96,15 +123,17 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {silverPartners &&
-            silverPartners.map((partner, index) => (
-              <div key={index} className="silver-container">
-                <img
-                  src={`${partner.imageSrc}`}
-                  className="silver-logo"
-                  id={partner.name.toLowerCase()}></img>
-              </div>
-            ))}
+          {isInfoHidden
+            ? null
+            : silverPartners &&
+              silverPartners.map((partner, index) => (
+                <div key={index} className="silver-container">
+                  <img
+                    src={`${partner.imageSrc}`}
+                    className="silver-logo"
+                    id={partner.name.toLowerCase()}></img>
+                </div>
+              ))}
         </m.div>
         <h2 id="patrons-header">{languageMode == 'polish' ? 'Patronat' : 'Patronage'}</h2>
         <m.div
@@ -113,15 +142,27 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          <div className="patrons-container">
-            {patrons &&
-              patrons.map((patron) => (
-                <img
-                  src={patron.imageSrc}
-                  className="patrons-logo"
-                  id={patron.name.replaceAll(' ', '_').toLowerCase()}></img>
-              ))}
-          </div>
+          {isInfoHidden ? (
+            languageMode == 'polish' ? (
+              <p className="text-center" id="info-hidden-text">
+                Informacje o patronach zostaną udostępnione wkrótce!
+              </p>
+            ) : (
+              <p className="text-center" id="info-hidden-text">
+                Information about patrons will be available soon!
+              </p>
+            )
+          ) : (
+            <div className="patrons-container">
+              {patrons &&
+                patrons.map((patron) => (
+                  <img
+                    src={patron.imageSrc}
+                    className="patrons-logo"
+                    id={patron.name.replaceAll(' ', '_').toLowerCase()}></img>
+                ))}
+            </div>
+          )}
         </m.div>
       </div>
     </>
