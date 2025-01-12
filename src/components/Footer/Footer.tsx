@@ -154,7 +154,7 @@ const Footer = () => {
 
   return (
     <div id="footer-section">
-      {mobileAppsSection()}
+      {/* {mobileAppsSection()} */}
       {contactSection()}
       {mainFooterSection()}
       {allRightsReservedSection()}
