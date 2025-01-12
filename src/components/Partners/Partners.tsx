@@ -1,87 +1,29 @@
 import './Partners.scss';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { m } from 'framer-motion';
 import { cardViewportProperties, createAnimateOnScroll } from '../../animations/animateOnScroll';
-import { firebaseDb } from '../../FirebaseConfig';
-import { getDocs, collection } from 'firebase/firestore';
-import { getDownloadURL, getStorage, ref } from 'firebase/storage';
-
-type Partner = {
-  imageSrc: string;
-  name: string;
-  package: string;
-  url: string;
-};
-
-type Patron = {
-  name: string;
-  url: string;
-  imageSrc: string;
-};
+import useFetchPartnersAndPatrons from '../../hooks/useFetchPartnersAndPatrons';
 
 const Partners = () => {
   const { languageMode } = useContext(LanguageModeContext);
-  const partnersRef = collection(firebaseDb, 'partners');
-  const [silverPartners, setSilverPartners] = useState<Partner[]>([]);
-  const [goldPartners, setGoldPartners] = useState<Partner[]>([]);
-  const [diamondPartners, setDiamondPartners] = useState<Partner[]>([]);
-  const [strategicPartners, setStrategicPartners] = useState<Partner[]>([]);
-  const [patrons, setPatrons] = useState<Patron[]>([]);
+  const {
+    silverPartners,
+    goldPartners,
+    diamondPartners,
+    strategicPartners,
+    patrons,
+    loading,
+    error,
+  } = useFetchPartnersAndPatrons();
 
-  useEffect(() => {
-    const getPartners = async () => {
-      try {
-        const data = await getDocs(partnersRef);
-        const partnersArray: Partner[] = [];
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-        const promises = data.docs.map(async (doc) => {
-          const partner = { ...doc.data() };
-          partnersArray.push(partner as Partner);
-        });
-
-        await Promise.all(promises);
-
-        const diamondPartners = partnersArray.filter((partner) => partner.package === 'diamond');
-        const goldPartners = partnersArray.filter((partner) => partner.package === 'gold');
-        const silverPartners = partnersArray.filter((partner) => partner.package === 'silver');
-        const strategicPartners = partnersArray.filter(
-          (partner) => partner.package === 'strategic'
-        );
-
-        setDiamondPartners(
-          diamondPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]
-        );
-        setGoldPartners(goldPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]);
-        setSilverPartners(silverPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]);
-        setStrategicPartners(
-          strategicPartners.sort((a, b) => a.name.localeCompare(b.name)) as Partner[]
-        );
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const getPatrons = async () => {
-      try {
-        const patronsArray: Patron[] = [];
-        const data = await getDocs(collection(firebaseDb, 'patrons'));
-        const patronsPromises = data.docs.map(async (doc) => {
-          const patron = { ...doc.data() };
-          patronsArray.push(patron as Patron);
-        });
-
-        await Promise.all(patronsPromises);
-
-        setPatrons(patronsArray.sort((a, b) => a.name.localeCompare(b.name)) as Patron[]);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getPartners();
-    getPatrons();
-  }, []);
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <>

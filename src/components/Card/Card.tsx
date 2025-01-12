@@ -3,7 +3,6 @@ import './Card.scss';
 import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import CardInterface from './CardInterface';
-import { Timestamp } from '@firebase/firestore';
 import { FORM_LINK } from '../../services/Links';
 
 const Card = ({ imageSrc, eventType, title, timeStart, timeEnd, partner, room }: CardInterface) => {
@@ -17,15 +16,13 @@ const Card = ({ imageSrc, eventType, title, timeStart, timeEnd, partner, room }:
         ? 'Szkolenie'
         : 'Workshop';
 
-  const convertToClockTime = (time: Timestamp) =>
-    `${time.toDate().getHours()}:${
-      time.toDate().getMinutes() < 10
-        ? '0' + time.toDate().getMinutes()
-        : time.toDate().getMinutes()
-    }`;
+  const formatTime = (timestamp: string) => {
+    const date = new Date(timestamp);
+    return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+  };
 
-  const startHour = timeStart ? convertToClockTime(timeStart) : '??';
-  const endHour = timeEnd ? convertToClockTime(timeEnd) : '??';
+  const startHour = formatTime(timeStart);
+  const endHour = formatTime(timeEnd);
 
   return (
     <div className="card-container" style={{ backgroundImage: `url(images/${imageSrc}.jpg)` }}>

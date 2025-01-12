@@ -43,7 +43,7 @@ const Clock = () => {
           </p>
         </>
       );
-    } else if (daysLeft === 0) { //-1 is for the second day of the event
+    } else if (daysLeft === 0) { //0 is for the first day of the event
       return (
         <>
           <h3 className="ongoing-event-label">
