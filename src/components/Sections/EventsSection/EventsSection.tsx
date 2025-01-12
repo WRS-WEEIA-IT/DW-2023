@@ -4,6 +4,7 @@ import CardGrid from '../../CardGrid/CardGrid';
 import './EventsSection.scss';
 import { createAnimateOnScroll, cardViewportProperties } from '../../../animations/animateOnScroll';
 import { m } from 'framer-motion';
+import { isInfoHidden } from '../../../supabaseConfig';
 
 const EventsSection = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -19,23 +20,24 @@ const EventsSection = () => {
       <div id="events-content">
         <h2 id="events-header">{HEADER_TEXT}</h2>
         <p id="events-description">{DESCRIPTION_TEXT}</p>
-        <h4 className="card-swiper-label">{languageMode == 'polish' ? 'Prelekcje' : 'Lectures'}</h4>
         <m.div
           initial="hidden"
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll()}>
-          <CardGrid eventType="lectures" />
-        </m.div>
-        <h4 className="card-swiper-label">
-          {languageMode == 'polish' ? 'Szkolenia' : 'Workshops'}
-        </h4>
-        <m.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={cardViewportProperties}
-          variants={createAnimateOnScroll()}>
-          <CardGrid eventType="workshops" />
+          {isInfoHidden ? (
+            languageMode == 'polish' ? (
+              <p className="text-center" id="info-hidden-text">
+                Informacje o wydarzeniach zostaną udostępnione wkrótce!
+              </p>
+            ) : (
+              <p className="text-center" id="info-hidden-text">
+                Information about events will be available soon!
+              </p>
+            )
+          ) : (
+            <CardGrid />
+          )}
         </m.div>
       </div>
     </section>

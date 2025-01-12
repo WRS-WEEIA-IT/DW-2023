@@ -1,28 +1,22 @@
 import Card from '../Card/Card';
 import './CardGrid.scss';
-import { firebaseDb } from '../../FirebaseConfig';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { collection, Query } from 'firebase/firestore';
-import CardInterface from './../Card/CardInterface';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
+import useFetchEvents from '../../hooks/useFetchEvents';
 
-const CardGrid = ({ eventType }: { eventType: 'lectures' | 'workshops' }) => {
+const CardGrid = () => {
   const { languageMode } = useContext(LanguageModeContext);
-  const [events] = useCollectionData<CardInterface>(
-    collection(firebaseDb, eventType) as Query<CardInterface>
-  );
+  const { events, loading, error } = useFetchEvents();
 
-  const sortEvents = () => {
-    events?.sort(
-      (event1, event2) =>
-        event1.timeStart.toDate().getHours() - event2.timeStart.toDate().getHours()
-    );
-  };
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-  sortEvents();
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className="grid-container">
@@ -37,7 +31,7 @@ const CardGrid = ({ eventType }: { eventType: 'lectures' | 'workshops' }) => {
             <SwiperSlide key={index}>
               <Card
                 imageSrc={event.imageSrc}
-                eventType={eventType}
+                eventType={event.eventType}
                 title={event.title}
                 timeStart={event.timeStart}
                 timeEnd={event.timeEnd}
@@ -47,11 +41,9 @@ const CardGrid = ({ eventType }: { eventType: 'lectures' | 'workshops' }) => {
             </SwiperSlide>
           ))
         ) : languageMode === 'polish' ? (
-          <p className="no-events-paragraph">
-            Wkrótce pojawią się nowe {eventType === 'lectures' ? 'prelekcje' : 'szkolenia'}
-          </p>
+          <p className="no-events-paragraph">Wkrótce pojawią się nowe szkolenia</p>
         ) : (
-          <p className="no-events-paragraph">New {eventType} will appear soon</p>
+          <p className="no-events-paragraph">New workshops will appear soon</p>
         )}
       </Swiper>
     </div>

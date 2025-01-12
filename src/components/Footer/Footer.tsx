@@ -15,8 +15,8 @@ import GOOGLE_PLAY_ICON_PL from '../../assets/icons/google-play-pl.png';
 import GOOGLE_PLAY_ICON_EN from '../../assets/icons/google-play-en.png';
 import {
   APP_STORE_APP_LINK,
-  GOOGLE_PLAY_APP_LINK,
   FACEBOOK_EVENT_LINK,
+  GOOGLE_PLAY_APP_LINK,
 } from '../../services/Links';
 
 const Footer = () => {
@@ -97,15 +97,16 @@ const Footer = () => {
               href="https://pl.pg.com/"
               target="_blank"
               rel="noopener noreferrer">
-              <p className="footer-paragraph">P&G</p>
+              <p className="footer-paragraph">To be announced</p>
             </a>
-            <a
+            {/* <a
               className="footer-link"
               href="https://lodz.commerzbank.pl/pl/"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               <p className="footer-paragraph">Commerzbank</p>
-            </a>
+            </a> */}
           </div>
         </div>
         <div id="contact-column">
@@ -130,7 +131,7 @@ const Footer = () => {
   const allRightsReservedSection = () => {
     return (
       <div id="all-rights-reserved-section">
-        <p>Dzień Wydziału EEIA 2024 - All Rights Reserved</p>
+        <p>Dzień Wydziału EEIA 2025 - All Rights Reserved</p>
         <div id="social-media-icons-container">
           <Link
             className="icon-link"
@@ -153,7 +154,7 @@ const Footer = () => {
 
   return (
     <div id="footer-section">
-      {mobileAppsSection()}
+      {/* {mobileAppsSection()} */}
       {contactSection()}
       {mainFooterSection()}
       {allRightsReservedSection()}

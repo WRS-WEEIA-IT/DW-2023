@@ -6,7 +6,7 @@ const createFormEmailBody = (name: string, email: string, message: string) => {
 };
 
 const createFormEmailSubject = (email: string) => {
-  return `DW 2023 - Email od ${email}`;
+  return `DW 2025 - Email od ${email}`;
 };
 
 export const sendEmail = async (name: string, email: string, message: string): Promise<string> => {

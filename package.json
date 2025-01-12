@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js,.ts,.jsx,.tsx src"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.47.12",
     "firebase": "^9.17.1",
     "framer-motion": "^9.0.4",
     "localforage": "^1.10.0",

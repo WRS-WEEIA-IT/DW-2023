@@ -16,7 +16,7 @@ const HomePage = () => {
 
   return (
     <LazyMotion features={domAnimation}>
-      <div id="homepage-container">
+      <div>
         <div id="backgroud-photo" />
         <Navbar />
         <WelcomeSection />
