@@ -12,7 +12,7 @@ const WelcomePageBanner = () => {
   const { languageMode } = useContext(LanguageModeContext);
 
   const BANNER_TEXT =
-    languageMode == 'polish' ? 'Twoja nowa perspektywa na EEIA' : 'Your new perspective on EEIA';
+    languageMode == 'polish' ? 'Znajdź swoją drogę z WEEIA' : 'Find your way with WEEIA';
 
   return (
     <div id="welcome-page-banner">
