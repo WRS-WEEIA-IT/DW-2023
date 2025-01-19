@@ -9,10 +9,10 @@ import { isInfoHidden } from '../../../supabaseConfig';
 const EventsSection = () => {
   const { languageMode } = useContext(LanguageModeContext);
 
-  const HEADER_TEXT = languageMode == 'polish' ? 'Prelekcje i szkolenia' : 'Lectures and workshops';
+  const HEADER_TEXT = languageMode == 'polish' ? 'Szkolenia' : 'Workshops';
   const DESCRIPTION_TEXT =
     languageMode == 'polish'
-      ? 'Zapisz się na najciekawsze prelekcje i szkolenia!'
+      ? 'Zapisz się na najciekawsze szkolenia!'
       : 'Choose the events that suit you the most and sign up for them!';
 
   return (
