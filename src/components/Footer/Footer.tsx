@@ -4,6 +4,7 @@ import LOCATION_ICON from '../../assets/icons/location.svg';
 import MAIL_ICON from '../../assets/icons/mail.svg';
 import FACEBOOK_ICON from '../../assets/icons/fb-purple.svg';
 import INSTAGRAM_ICON from '../../assets/icons/insta-purple.svg';
+import LINKEDIN_ICON from '../../assets/icons/linked-in.svg';
 import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import '../../styles/Constants.scss';
@@ -94,7 +95,7 @@ const Footer = () => {
           <div id="partners-grid">
             <a
               className="footer-link"
-              href="https://pl.pg.com/"
+              // href="https://pl.pg.com/"
               target="_blank"
               rel="noopener noreferrer">
               <p className="footer-paragraph">To be announced</p>
@@ -146,6 +147,13 @@ const Footer = () => {
             rel="noopener noreferrer"
             to="https://www.instagram.com/weeia_/">
             <img src={INSTAGRAM_ICON} />
+          </Link>
+          <Link
+            className="icon-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            to="https://www.linkedin.com/company/wrs-weeia/posts/?feedView=all">
+            <img src={LINKEDIN_ICON} />
           </Link>
         </div>
       </div>

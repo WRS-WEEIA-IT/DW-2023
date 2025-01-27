@@ -32,12 +32,16 @@ const WelcomePageBanner = () => {
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.7)}
           id="banner-buttons">
-          <a href={FORM_LINK} target="_blank" rel="noopener noreferrer" className="button-link">
+          <a 
+          // href={FORM_LINK}
+           target="_blank" rel="noopener noreferrer" className="button-link">
             <button className={`${Button.button} ${Button.filled} ${Button.round}`}>
-              {languageMode === 'polish' ? 'Zapisz się' : 'Sign up'}
+              {languageMode === 'polish' ? 'Zapisy wkrótce!' : 'Registration soon!'}
             </button>
           </a>
-          <a href={FACEBOOK_EVENT_LINK} target="_blank" rel="noopener noreferrer">
+          <a 
+          // href={FACEBOOK_EVENT_LINK}
+           target="_blank" rel="noopener noreferrer">
             <button className={`${Button.button} ${Button.outlined} ${Button.round}`}>
               {languageMode === 'polish' ? 'Dowiedz się więcej' : 'Find out more'}
             </button>
