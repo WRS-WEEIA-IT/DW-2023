@@ -27,6 +27,22 @@
   <meta name="apple-mobile-web-app-title" content="dw_flutter_app">
   
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Fix for text rendering */
+    * {
+      text-rendering: optimizeLegibility;
+    }
+  </style>
+
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
   
   <!-- Add SDKs for Firebase products you need -->
@@ -39,14 +55,14 @@
 
   <title>dw_flutter_app</title>
   <link rel="manifest" href="manifest.json">
-  <script>
+  <!-- <script>
     // Service worker registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=4230138358');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=155293577');
       });
     }
-  </script>
+  </script> -->
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
