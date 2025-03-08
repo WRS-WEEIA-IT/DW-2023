@@ -14,6 +14,37 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
+  <script>
+    // Check if user is on mobile
+    function isMobileDevice() {
+      const userAgent = navigator.userAgent.toLowerCase();
+      return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(userAgent) || 
+             (window.innerWidth <= 1000);
+    }
+    
+    // If not mobile, show blocking page and prevent Flutter from loading
+    if (!isMobileDevice()) {
+      window.addEventListener('DOMContentLoaded', function() {
+        document.body.innerHTML = `
+          <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #000000; color: white; padding: 20px; text-align: center;">
+            <div style="font-size: 70px; margin-bottom: 24px;">📱</div>
+            <h1 style="font-size: 28px; margin-bottom: 16px;">Mobile Only Application</h1>
+            <p style="font-size: 16px; max-width: 500px; color: #cccccc;">
+              This application is optimized for mobile devices only. Please open it on your smartphone or tablet.
+            </p>
+          </div>
+        `;
+        
+        // Stop any Flutter loading scripts
+        const scripts = document.querySelectorAll('script');
+        scripts.forEach(script => {
+          if (script.src && script.src.includes('flutter')) {
+            script.remove();
+          }
+        });
+      });
+    }
+  </script>
   <base href="/app/">
 
   <meta name="google-signin-client_id" content="615740456848-qh2klp595m5qlvo66es3tvi36e3jka4k.apps.googleusercontent.com">
@@ -59,7 +90,7 @@
     // Service worker registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=155293577');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=3445412870');
       });
     }
   </script> -->
