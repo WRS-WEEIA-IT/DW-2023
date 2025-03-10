@@ -5,4 +5,4 @@ export const anonSupabaseAPIKey =
 export const dbUrl = 'https://zosayoqrngvrydnexaek.supabase.co';
 
 export const supabase = createClient(dbUrl, anonSupabaseAPIKey);
-export const isInfoHidden = true;
+export const isInfoHidden = false;

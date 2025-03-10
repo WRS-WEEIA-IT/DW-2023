@@ -51,6 +51,11 @@ $gap-between-content-mobile: 1.5rem;
         width: 11.4rem;
         height: auto;
       }
+
+      #web-icon {
+        width: 10rem;
+        height: auto;
+      }
     }
   }
 
@@ -161,6 +166,7 @@ $gap-between-content-mobile: 1.5rem;
 
       #mobile-apps-icons-container {
         display: flex;
+        flex-direction: column;
         gap: $gap-between-content-mobile;
         justify-content: center;
         align-items: center;
@@ -177,6 +183,11 @@ $gap-between-content-mobile: 1.5rem;
 
         #google-icon-en {
           width: 7.8rem;
+          height: auto;
+        }
+
+        #web-icon {
+          width: 6.7rem;
           height: auto;
         }
       }

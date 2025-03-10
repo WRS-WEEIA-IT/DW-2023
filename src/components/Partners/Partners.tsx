@@ -60,14 +60,14 @@ const Partners = () => {
               </p>
             )
           ) : (
-            <div className="strategic-container">
-              {strategicPartners.map((partner, index) => (
+            strategicPartners.map((partner, index) => (
+              <div key={index} className="strategic-container">
                 <img
                   src={`${partner.imageSrc}`}
                   className="strategic-logo"
                   id={partner.name.toLowerCase()}></img>
-              ))}
-            </div>
+              </div>
+            ))
           )}
         </m.div>
         <h2 id="partners-header">{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h2>
@@ -142,7 +142,7 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {isInfoHidden ? (
+          {true ? (
             languageMode == 'polish' ? (
               <p className="text-center" id="info-hidden-text">
                 Informacje o patronach zostaną udostępnione wkrótce!

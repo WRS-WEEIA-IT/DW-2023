@@ -14,11 +14,15 @@ import APP_STORE_ICON_PL from '../../assets/icons/app-store-pl.svg';
 import APP_STORE_ICON_EN from '../../assets/icons/app-store-en.svg';
 import GOOGLE_PLAY_ICON_PL from '../../assets/icons/google-play-pl.png';
 import GOOGLE_PLAY_ICON_EN from '../../assets/icons/google-play-en.png';
+import WEB_ICON_PL from '../../assets/icons/web-pl.svg';
+import WEB_ICON_EN from '../../assets/icons/web-en.svg';
 import {
   APP_STORE_APP_LINK,
   FACEBOOK_EVENT_LINK,
   GOOGLE_PLAY_APP_LINK,
+  WEB_APP_LINK,
 } from '../../services/Links';
+import { Globe } from 'lucide-react';
 
 const Footer = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -43,11 +47,14 @@ const Footer = () => {
               id="apple-icon"
             />
           </a>
-          <a href={GOOGLE_PLAY_APP_LINK} target="_blank">
+          {/* <a href={GOOGLE_PLAY_APP_LINK} target="_blank">
             <img
               src={languageMode == 'polish' ? GOOGLE_PLAY_ICON_PL : GOOGLE_PLAY_ICON_EN}
               id={languageMode == 'polish' ? 'google-icon-pl' : 'google-icon-en'}
             />
+          </a> */}
+          <a href={WEB_APP_LINK} target="_blank">
+            <img src={languageMode == 'polish' ? WEB_ICON_PL : WEB_ICON_EN} id="web-icon" />
           </a>
         </div>
       </div>
@@ -85,7 +92,7 @@ const Footer = () => {
             </p>
           </Link>
           <Link to="#events-section" className="footer-link" smooth>
-            <p>{languageMode == 'polish' ? 'Szkolenia i warsztaty' : 'Lectures and workshops'}</p>
+            <p>{languageMode == 'polish' ? 'Szkolenia' : 'Workshops'}</p>
           </Link>
         </div>
         <div id="partners-column">
@@ -95,19 +102,20 @@ const Footer = () => {
           <div id="partners-grid">
             <a
               className="footer-link"
-              // href="https://pl.pg.com/"
-              target="_blank"
-              rel="noopener noreferrer">
-              <p className="footer-paragraph">To be announced</p>
-            </a>
-            {/* <a
-              className="footer-link"
-              href="https://lodz.commerzbank.pl/pl/"
+              href="https://pl.pg.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <p className="footer-paragraph">Commerzbank</p>
-            </a> */}
+              <p className="footer-paragraph">P&G</p>
+            </a>
+            <a
+              className="footer-link"
+              href="https://www.mpk.lodz.pl/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <p className="footer-paragraph">MPK Łódź</p>
+            </a>
           </div>
         </div>
         <div id="contact-column">
@@ -162,7 +170,7 @@ const Footer = () => {
 
   return (
     <div id="footer-section">
-      {/* {mobileAppsSection()} */}
+      {mobileAppsSection()}
       {contactSection()}
       {mainFooterSection()}
       {allRightsReservedSection()}

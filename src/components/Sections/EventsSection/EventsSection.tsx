@@ -25,7 +25,7 @@ const EventsSection = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll()}>
-          {isInfoHidden ? (
+          {true ? (
             languageMode == 'polish' ? (
               <p className="text-center" id="info-hidden-text">
                 Informacje o wydarzeniach zostaną udostępnione wkrótce!
