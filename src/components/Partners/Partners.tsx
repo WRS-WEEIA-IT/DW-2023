@@ -142,7 +142,7 @@ const Partners = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll(0.1)}>
-          {true ? (
+          {isInfoHidden ? (
             languageMode == 'polish' ? (
               <p className="text-center" id="info-hidden-text">
                 Informacje o patronach zostaną udostępnione wkrótce!
