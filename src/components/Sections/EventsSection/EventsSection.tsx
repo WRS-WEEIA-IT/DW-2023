@@ -1,19 +1,21 @@
-import { useContext } from 'react';
-import { LanguageModeContext } from '../../../contexts/LanguageContext';
-import CardGrid from '../../CardGrid/CardGrid';
-import './EventsSection.scss';
-import { createAnimateOnScroll, cardViewportProperties } from '../../../animations/animateOnScroll';
-import { m } from 'framer-motion';
-import { isInfoHidden } from '../../../supabaseConfig';
+import { useContext } from "react";
+import { LanguageModeContext } from "../../../contexts/LanguageContext";
+import CardGrid from "../../CardGrid/CardGrid";
+import "./EventsSection.scss";
+import {
+  cardViewportProperties,
+  createAnimateOnScroll,
+} from "../../../animations/animateOnScroll";
+import { m } from "framer-motion";
+import { isInfoHidden } from "../../../supabaseConfig";
 
 const EventsSection = () => {
   const { languageMode } = useContext(LanguageModeContext);
 
-  const HEADER_TEXT = languageMode == 'polish' ? 'Szkolenia' : 'Workshops';
-  const DESCRIPTION_TEXT =
-    languageMode == 'polish'
-      ? 'Zapisz się na najciekawsze szkolenia!'
-      : 'Choose the events that suit you the most and sign up for them!';
+  const HEADER_TEXT = languageMode == "polish" ? "Szkolenia" : "Workshops";
+  const DESCRIPTION_TEXT = languageMode == "polish"
+    ? "Zapisz się na najciekawsze szkolenia!"
+    : "Choose the events that suit you the most and sign up for them!";
 
   return (
     <section id="events-section">
@@ -24,20 +26,23 @@ const EventsSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={cardViewportProperties}
-          variants={createAnimateOnScroll()}>
-          {true ? (
-            languageMode == 'polish' ? (
-              <p className="text-center" id="info-hidden-text">
-                Informacje o wydarzeniach zostaną udostępnione wkrótce!
-              </p>
-            ) : (
-              <p className="text-center" id="info-hidden-text">
-                Information about events will be available soon!
-              </p>
+          variants={createAnimateOnScroll()}
+        >
+          {isInfoHidden
+            ? (
+              languageMode == "polish"
+                ? (
+                  <p className="text-center" id="info-hidden-text">
+                    Informacje o wydarzeniach zostaną udostępnione wkrótce!
+                  </p>
+                )
+                : (
+                  <p className="text-center" id="info-hidden-text">
+                    Information about events will be available soon!
+                  </p>
+                )
             )
-          ) : (
-            <CardGrid />
-          )}
+            : <CardGrid />}
         </m.div>
       </div>
     </section>
