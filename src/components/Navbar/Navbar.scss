@@ -1,4 +1,4 @@
-@import '../../styles/Constants.scss';
+@import "../../styles/Constants.scss";
 
 $button-gap: 20px;
 $button-gap-mobile: 30px;
@@ -69,7 +69,7 @@ $link-hover-transition-duration: 0.2s;
         gap: 10px;
         margin-left: auto;
         margin-right: 0;
-        width: 11.5rem;
+        width: 9.5rem;
       }
     }
   }
@@ -94,7 +94,8 @@ $link-hover-transition-duration: 0.2s;
         padding: $menu-padding 0;
         gap: $button-gap-mobile;
         transform: translateY(-100%);
-        transition: transform $menu-open-transition-duration,
+        transition:
+          transform $menu-open-transition-duration,
           visibility $menu-open-transition-duration;
         .navbar-link {
           font-size: var(--h3-font-size);

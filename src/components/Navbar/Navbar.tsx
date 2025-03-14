@@ -98,7 +98,7 @@ const Navbar = () => {
         <div id="navbar-buttons-container">
           <LanguageSwitch />
           <a
-            // href={FORM_LINK}
+            href={FORM_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="button-link"
@@ -106,9 +106,8 @@ const Navbar = () => {
             <button
               id="navbar-signup-button"
               className={`${Button.button} ${Button.filled} ${Button.square}`}
-              disabled
             >
-              {languageMode == "polish" ? "Zapisy wkrótce!" : "Registration soon!"}
+              {languageMode == "polish" ? "Zapisz się" : "Sign up"}
               <img
                 className="icon"
                 id="arrow-right-icon"
