@@ -14,6 +14,34 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
+
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#FFFFFF">
+  
+  <!-- Add this style to prevent dark mode color inversion -->
+  <style>
+    /* Force light mode */
+    html {
+      color-scheme: light only;
+    }
+    
+    /* Prevent SVGs from being inverted in dark mode */
+    svg, img[src$=".svg"] {
+      filter: none !important;
+    }
+    
+    /* Dark mode media query override */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: light;
+      }
+      
+      body, html {
+        background-color: #FFFFFF !important;
+      }
+    }
+  </style>
+
   <script>
     // Check if user is on mobile
     function isMobileDevice() {
@@ -43,8 +71,118 @@
           }
         });
       });
-    }
-  </script>
+    } else {
+    // Custom "Add to Home Screen" prompt for mobile users
+    let deferredPrompt;
+    const addToHomeScreen = {
+      shown: false,
+      
+      // Check if already prompted (using localStorage)
+      wasPromptShown() {
+        return localStorage.getItem('a2hs_prompted') === 'true';
+      },
+      
+      // Mark as prompted
+      markPromptShown() {
+        localStorage.setItem('a2hs_prompted', 'true');
+        this.shown = true;
+      },
+      
+      // Show custom prompt
+      showCustomPrompt() {
+        // Wait for Flutter to initialize
+        setTimeout(() => {
+          if (this.shown || this.wasPromptShown()) return;
+          
+          // Create and show floating prompt UI
+          const promptDiv = document.createElement('div');
+          promptDiv.innerHTML = `
+            <div id="a2hs-prompt" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
+                        background-color: white; color: black; padding: 16px; border-radius: 12px; 
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 9999; display: flex; flex-direction: column;
+                        align-items: center; width: 80%; max-width: 320px;">
+              <div style="font-size: 18px; margin-bottom: 10px;">📱 Add to Home Screen</div>
+              <div style="font-size: 14px; margin-bottom: 15px; text-align: center;">
+                Add this app to your home screen for a better experience
+              </div>
+              <div style="display: flex; gap: 10px; width: 100%;">
+                <button id="a2hs-later" style="flex: 1; padding: 10px; border: none; background: #eee; border-radius: 8px;">
+                  Later
+                </button>
+                <button id="a2hs-add" style="flex: 1; padding: 10px; border: none; background: #0066cc; color: white; border-radius: 8px;">
+                  Add
+                </button>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(promptDiv);
+          
+          // Handle "Later" button
+          document.getElementById('a2hs-later').addEventListener('click', () => {
+            document.getElementById('a2hs-prompt').remove();
+            this.markPromptShown();
+          });
+          
+          // Handle "Add" button
+          document.getElementById('a2hs-add').addEventListener('click', () => {
+            document.getElementById('a2hs-prompt').remove();
+            this.markPromptShown();
+            
+            if (deferredPrompt) {
+              // For Chrome/Android - show native prompt
+              deferredPrompt.prompt();
+            } else {
+              // For iOS - show instructions
+              const iosPrompt = document.createElement('div');
+              iosPrompt.innerHTML = `
+                <div id="ios-prompt" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+                            background-color: rgba(0,0,0,0.8); z-index: 9999; display: flex; 
+                            justify-content: center; align-items: center; padding: 20px;">
+                  <div style="background: white; padding: 20px; border-radius: 12px; max-width: 320px; text-align: center;">
+                    <div style="font-size: 18px; margin-bottom: 15px;">How to add to Home Screen:</div>
+                    <div style="font-size: 14px; margin-bottom: 15px; text-align: left;">
+                      1. Tap the share icon <span style="font-size: 18px;">⎙</span> at the bottom of your browser<br>
+                      2. Scroll and select "Add to Home Screen"
+                    </div>
+                    <button id="ios-ok" style="padding: 10px 20px; border: none; background: #0066cc; color: white; border-radius: 8px;">
+                      OK
+                    </button>
+                  </div>
+                </div>
+              `;
+              document.body.appendChild(iosPrompt);
+              document.getElementById('ios-ok').addEventListener('click', () => {
+                document.getElementById('ios-prompt').remove();
+              });
+            }
+          });
+          
+        }, 3000); // Show after 3 seconds
+      }
+    };
+    
+    // Listen for "beforeinstallprompt" event (Chrome/Android)
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // Don't show if this is a subsequent visit
+      if (!addToHomeScreen.wasPromptShown()) {
+        addToHomeScreen.showCustomPrompt();
+      }
+    });
+    
+    // For iOS (which doesn't trigger beforeinstallprompt)
+    window.addEventListener('load', () => {
+      // Check if on iOS
+      const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+      
+      if (isIOS && !addToHomeScreen.wasPromptShown() && !navigator.standalone) {
+        addToHomeScreen.showCustomPrompt();
+      }
+    });
+  }
+</script>
   <base href="/app/">
 
   <meta name="google-signin-client_id" content="615740456848-qh2klp595m5qlvo66es3tvi36e3jka4k.apps.googleusercontent.com">
@@ -86,14 +224,14 @@
 
   <title>Dzień Wydziału EEIA</title>
   <link rel="manifest" href="manifest.json">
-  <!-- <script>
+  <script>
     // Service worker registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('flutter_service_worker.js?v=2347998273');
       });
     }
-  </script> -->
+  </script>
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
