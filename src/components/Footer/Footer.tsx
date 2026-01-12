@@ -131,7 +131,7 @@ const Footer = () => {
           <div id="contact-text-column">
             <p className="footer-paragraph">Stefanowskiego 18/22, Łódź</p>
             <p className="footer-paragraph">dzien.weeia@samorzad.p.lodz.pl</p>
-            <p className="footer-paragraph">(+48) 518 654 373 - Maciej</p>
+            <p className="footer-paragraph">(+48) 504 556 808 - Aleksandra</p>
           </div>
         </div>
       </div>
