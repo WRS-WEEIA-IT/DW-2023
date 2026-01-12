@@ -57,7 +57,7 @@ const Navbar = () => {
               variants={createAnimateOnScroll(0)}
               id="dw-logo"
             >
-              DW2025
+              DW2026
             </m.h3>
           </Link>
           <div id="burger-container" onClick={handleMenuToggle}>
@@ -97,7 +97,7 @@ const Navbar = () => {
         </div>
         <div id="navbar-buttons-container">
           <LanguageSwitch />
-          <a
+          {/* <a
             href={FORM_LINK}
             target="_blank"
             rel="noopener noreferrer"
@@ -114,7 +114,7 @@ const Navbar = () => {
                 src={ARROW_RIGHT_ICON}
               />
             </button>
-          </a>
+          </a> */}
         </div>
       </div>
     </div>

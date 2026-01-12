@@ -11,7 +11,7 @@ export const descriptionTextPL = () => (
     }
     <h4 className="about-description-header">Kiedy?</h4>
     {
-      'W tym roku odbędzie się ono już 26 marca i będzie trwało dwa dni. Pierwszego dnia (26 marca) zapraszamy firmy oraz studentów, natomiast drugiego dnia (27 marca) zapraszamy wyłącznie szkoły.'
+      'W tym roku odbędzie się ono już 18 marca i będzie trwało dwa dni. Pierwszego dnia (18 marca) zapraszamy firmy oraz studentów, natomiast drugiego dnia (19 marca) zapraszamy wyłącznie szkoły.'
     }
     <h4 className="about-description-header">Gdzie?</h4>
     {'W głównym budynku wydziału EEIA przy ulicy Stefanowskiego 18/22'}
@@ -30,7 +30,7 @@ export const descriptionTextPL = () => (
       wydarzenia na Facebooku
       <img className="open-link-icon" src={OPEN_LINK_ICON} />
     </a>
-    {' gdzie można znaleźć wszystkie najważniejsze informacje dotyczące DW EEIA 2025.'}
+    {' gdzie można znaleźć wszystkie najważniejsze informacje dotyczące DW EEIA 2026.'}
   </>
 );
 
@@ -41,7 +41,7 @@ export const descriptionTextEN = () => (
     }
     <h4 className="about-description-header">When?</h4>
     {
-      'This year it will take place on March 26 and will last two days. On the first day (March 26), we invite companies and students, and on the second day (March 27), we invite only schools.'
+      'This year it will take place on March 18 and will last two days. On the first day (March 18), we invite companies and students, and on the second day (March 19), we invite only schools.'
     }
     <h4 className="about-description-header">Where?</h4>
     {'Event will take place in the main EEIA building (Stefanowskiego 18/22)'}
@@ -60,6 +60,6 @@ export const descriptionTextEN = () => (
       the event on Facebook
       <img className="open-link-icon" src={OPEN_LINK_ICON} />
     </a>
-    {' where you can find all the important information about DW EEIA 2025.'}
+    {' where you can find all the important information about DW EEIA 2026.'}
   </>
 );

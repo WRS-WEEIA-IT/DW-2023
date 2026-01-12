@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { LanguageModeContext } from "../../../contexts/LanguageContext";
-import CardGrid from "../../CardGrid/CardGrid";
+// import CardGrid from "../../CardGrid/CardGrid";
 import "./EventsSection.scss";
 import {
   cardViewportProperties,
   createAnimateOnScroll,
 } from "../../../animations/animateOnScroll";
 import { m } from "framer-motion";
-import { isInfoHidden } from "../../../supabaseConfig";
+// import { isInfoHidden } from "../../../supabaseConfig";
 
 const EventsSection = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -27,22 +27,24 @@ const EventsSection = () => {
           whileInView="visible"
           viewport={cardViewportProperties}
           variants={createAnimateOnScroll()}
+          className="coming-soon-container"
         >
-          {isInfoHidden
-            ? (
-              languageMode == "polish"
-                ? (
-                  <p className="text-center" id="info-hidden-text">
-                    Informacje o wydarzeniach zostaną udostępnione wkrótce!
-                  </p>
-                )
-                : (
-                  <p className="text-center" id="info-hidden-text">
-                    Information about events will be available soon!
-                  </p>
-                )
-            )
-            : <CardGrid />}
+          <div className="coming-soon-card">
+            <div className="coming-soon-icon">⏰</div>
+            <h3 className="coming-soon-title">
+              {languageMode == "polish" ? "Wkrótce dostępne" : "Coming Soon"}
+            </h3>
+            <p className="coming-soon-text">
+              {languageMode == "polish"
+                ? "Szkolenia będą dostępne wkrótce. Obserwuj nas na Facebooku, aby być na bieżąco!"
+                : "Workshops will be available soon. Follow us on Facebook to stay updated!"}
+            </p>
+            <div className="coming-soon-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
         </m.div>
       </div>
     </section>

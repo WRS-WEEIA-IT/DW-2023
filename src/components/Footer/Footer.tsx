@@ -96,8 +96,9 @@ const Footer = () => {
           </Link>
         </div>
         <div id="partners-column">
+          {/* do zmiany na aktualnych */}
           <h4 className="footer-header">
-            {languageMode == 'polish' ? 'Partnerzy strategiczni' : 'Strategic partners'}
+            {languageMode == 'polish' ? 'Partnerzy strategiczni DW2025' : 'Strategic partners DW2025'}
           </h4>
           <div id="partners-grid">
             <a
@@ -140,7 +141,7 @@ const Footer = () => {
   const allRightsReservedSection = () => {
     return (
       <div id="all-rights-reserved-section">
-        <p>Dzień Wydziału EEIA 2025 - All Rights Reserved</p>
+        <p>Dzień Wydziału EEIA 2026 - All Rights Reserved</p>
         <div id="social-media-icons-container">
           <Link
             className="icon-link"
@@ -170,7 +171,7 @@ const Footer = () => {
 
   return (
     <div id="footer-section">
-      {mobileAppsSection()}
+      {/* {mobileAppsSection()} */}
       {contactSection()}
       {mainFooterSection()}
       {allRightsReservedSection()}

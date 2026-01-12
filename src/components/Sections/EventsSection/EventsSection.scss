@@ -21,12 +21,121 @@
     padding-top: 2rem;
     text-align: center;
   }
+
+  .coming-soon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    min-height: 300px;
+
+    .coming-soon-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      max-width: 500px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .coming-soon-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+        animation: bounce 2s infinite;
+      }
+
+      .coming-soon-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin: 1rem 0;
+        color: $neutral-color-95;
+      }
+
+      .coming-soon-text {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 1rem 0 2rem 0;
+      }
+
+      .coming-soon-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+
+        span {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: rgba(255, 255, 255, 0.6);
+          animation: pulse 1.5s infinite;
+
+          &:nth-child(2) {
+            animation-delay: 0.2s;
+          }
+
+          &:nth-child(3) {
+            animation-delay: 0.4s;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 @media screen and (max-width: $screen-size-tablet) {
   #events-section {
     #events-content {
       padding: 7vh 0 10vh 0;
+    }
+
+    .coming-soon-container {
+      padding: 2rem 1rem;
+      min-height: 250px;
+
+      .coming-soon-card {
+        padding: 2rem 1.5rem;
+
+        .coming-soon-icon {
+          font-size: 3rem;
+        }
+
+        .coming-soon-title {
+          font-size: 1.4rem;
+        }
+
+        .coming-soon-text {
+          font-size: 0.9rem;
+        }
+      }
     }
   }
 
