@@ -13,8 +13,8 @@ const RegulaminSection = () => {
   const HEADER_TEXT = languageMode === "polish" ? "Regulamin" : "Terms & Conditions";
   const DESCRIPTION_TEXT =
     languageMode === "polish"
-      ? "Przed uczestnictwem w naszym wydarzeniu, prosimy o zapoznanie się z regulaminem. Pobierz dokument i przeczytaj wszystkie warunki."
-      : "Before participating in our event, please read our terms and conditions. Download the document to review all the details.";
+      ? "Przed uczestnictwem w naszym wydarzeniu, prosimy o zapoznanie się z regulaminem."
+      : "Before participating in our event, please read our terms and conditions.";
   const BUTTON_TEXT = languageMode === "polish" ? "Przeczytaj regulamin" : "Read Terms";
 
   const regulaminLink =
