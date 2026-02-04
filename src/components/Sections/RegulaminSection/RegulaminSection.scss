@@ -1,0 +1,54 @@
+@import '/src/styles/Constants.scss';
+
+#regulamin-section {
+  background-color: $neutral-color-05;
+  padding: 10vh calc(2 * var(--screen-side-margin)) 0 calc(2 * var(--screen-side-margin));
+  color: $neutral-color-95;
+  text-align: center;
+
+  #regulamin-header {
+    margin-bottom: 1rem;
+  }
+
+  #regulamin-description {
+    margin: 0 0 2rem 0;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .regulamin-button {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    color: $neutral-color-95;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 4rem;
+
+    &:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+@media screen and (max-width: $screen-size-tablet) {
+  #regulamin-section {
+    padding-left: var(--screen-side-margin);
+    padding-right: var(--screen-side-margin);
+  }
+}
+
