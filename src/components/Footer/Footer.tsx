@@ -98,9 +98,17 @@ const Footer = () => {
         <div id="partners-column">
           {/* do zmiany na aktualnych */}
           <h4 className="footer-header">
-            {languageMode == 'polish' ? 'Partnerzy strategiczni DW2025' : 'Strategic partners DW2025'}
+            {languageMode == 'polish' ? 'Partnerzy strategiczni' : 'Strategic partners'}
           </h4>
           <div id="partners-grid">
+            <a
+              className="footer-link"
+              href="https://www.ericsson.com/en"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <p className="footer-paragraph">Ericsson</p>
+            </a>
             <a
               className="footer-link"
               href="https://pl.pg.com/"
@@ -108,14 +116,6 @@ const Footer = () => {
               rel="noopener noreferrer"
             >
               <p className="footer-paragraph">P&G</p>
-            </a>
-            <a
-              className="footer-link"
-              href="https://www.mpk.lodz.pl/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <p className="footer-paragraph">MPK Łódź</p>
             </a>
           </div>
         </div>
