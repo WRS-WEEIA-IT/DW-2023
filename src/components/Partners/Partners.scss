@@ -229,7 +229,7 @@
 
     .gold-section {
       @include section(2, 2rem);
-      grid-template-rows: repeat(6, 1fr);
+      /*grid-template-rows: repeat(5, 1fr);*/
 
       .gold-container {
         @include container();
@@ -240,13 +240,13 @@
         }
       }
 
-      .gold-container:nth-last-child(-n + 2) {
+      /*.gold-container:nth-last-child(-n + 2) {
         grid-column: span 1;
       }
 
       .gold-container:last-child {
         grid-column: span 2;
-      }
+      }*/
     }
 
     .silver-section {
@@ -258,10 +258,10 @@
         }
       }
 
-      .silver-container:last-child {
+      /*.silver-container:last-child {
         grid-column: span 2;
         grid-row-start: 4;
-      }
+      }*/
     }
   }
 }
