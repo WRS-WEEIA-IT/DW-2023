@@ -12,6 +12,7 @@ type Patron = {
   name: string;
   url: string;
   imageSrc: string;
+  category: 'honorary' | 'media';
 };
 
 const useFetchPartnersAndPatrons = () => {

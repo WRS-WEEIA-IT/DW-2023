@@ -26,6 +26,9 @@ const Partners = () => {
     return <p>Error: {error}</p>;
   }
 
+  const honoraryPatrons = patrons.filter((patron) => patron.category === 'honorary');
+  const mediaPatrons = patrons.filter((patron) => patron.category === 'media');
+
   return (
     <>
       <div className="partners-container">
@@ -156,15 +159,32 @@ const Partners = () => {
               </p>
             )
           ) : (
-            <div className="patrons-container">
-              {patrons &&
-                patrons.map((patron) => (
+            <>
+              <h3 className="patrons-subheader">
+                {languageMode == 'polish' ? 'Patronaty honorowe' : 'Honorary patronage'}
+              </h3>
+              <div className="patrons-container">
+                {honoraryPatrons.map((patron) => (
                   <img
+                    key={patron.name}
                     src={patron.imageSrc}
                     className="patrons-logo"
                     id={patron.name.replaceAll(' ', '_').toLowerCase()}></img>
                 ))}
-            </div>
+              </div>
+              <h3 className="patrons-subheader">
+                {languageMode == 'polish' ? 'Patronaty medialne' : 'Media patronage'}
+              </h3>
+              <div className="patrons-container">
+                {mediaPatrons.map((patron) => (
+                  <img
+                    key={patron.name}
+                    src={patron.imageSrc}
+                    className="patrons-logo"
+                    id={patron.name.replaceAll(' ', '_').toLowerCase()}></img>
+                ))}
+              </div>
+            </>
           )}
         </m.div>
       </div>

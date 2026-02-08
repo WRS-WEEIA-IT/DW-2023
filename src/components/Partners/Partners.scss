@@ -72,6 +72,12 @@
   }
 
   .patrons-section {
+    .patrons-subheader {
+      text-align: center;
+      margin: 0;
+      padding: 0.5rem 0 1rem;
+    }
+
     .patrons-container {
       @include flex-section(3);
 
