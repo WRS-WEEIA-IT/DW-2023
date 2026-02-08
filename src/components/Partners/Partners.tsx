@@ -140,8 +140,6 @@ const Partners = () => {
                 </div>
               ))}
         </m.div>
-        {/* do zmiany na aktualnych */}
-        <h2 id="patrons-header">{languageMode == 'polish' ? 'Patronaty' : 'Patronage'}</h2>
         <m.div
           className="patrons-section"
           initial="hidden"
