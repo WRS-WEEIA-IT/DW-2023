@@ -166,6 +166,10 @@
         .strategic-logo {
           width: 8rem;
         }
+
+        &:last-child:nth-child(odd) {
+          grid-column: span 2;
+        }
       }
     }
 
@@ -176,16 +180,15 @@
         .diamond-logo {
           width: 8rem;
         }
-      }
 
-      .diamond-container:last-child {
-        grid-column: span 1;
+        &:last-child:nth-child(odd) {
+          grid-column: span 2;
+        }
       }
     }
 
     .gold-section {
       @include section(2, 2rem);
-      /*grid-template-rows: repeat(5, 1fr);*/
 
       .gold-container {
         @include container();
@@ -194,15 +197,11 @@
         .gold-logo {
           width: 6rem;
         }
-      }
 
-      /*.gold-container:nth-last-child(-n + 2) {
-        grid-column: span 1;
+        &:last-child:nth-child(odd) {
+          grid-column: span 2;
+        }
       }
-
-      .gold-container:last-child {
-        grid-column: span 2;
-      }*/
     }
 
     .silver-section {
@@ -212,12 +211,11 @@
         .silver-logo {
           width: 5.5rem;
         }
-      }
 
-      /*.silver-container:last-child {
-        grid-column: span 2;
-        grid-row-start: 4;
-      }*/
+        &:last-child:nth-child(odd) {
+          grid-column: span 2;
+        }
+      }
     }
   }
 }
