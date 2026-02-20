@@ -81,10 +81,7 @@
 
     .patrons-container {
       @include flex-section(3);
-
-      #mlodzi_w_lodzi {
-        width: clamp(7rem, 0.5rem + 10vw, 20rem);
-      }
+      padding-bottom: 4rem;
 
       .patrons-logo {
         width: clamp(11rem, 4rem + 14vw, 20rem);
@@ -100,10 +97,6 @@
         width: clamp(11rem, 2rem + 10vw, 15rem);
       }
     }
-
-    #pg {
-      width: clamp(6rem, 2rem + 10vw, 12rem);
-    }
   }
 
   .diamond-section {
@@ -113,18 +106,6 @@
       .diamond-logo {
         width: clamp(14rem, 2rem + 8vw, 18rem);
       }
-    }
-
-    #ericsson {
-      width: clamp(5rem, 2rem + 8vw, 9rem);
-    }
-
-    #pg {
-      width: clamp(5rem, 2rem + 8vw, 8.5rem);
-    }
-
-    #scanfil {
-      width: clamp(6.5rem, 4rem + 8vw, 12rem);
     }
   }
 
@@ -136,26 +117,6 @@
         width: clamp(7rem, 2rem + 7vw, 10rem);
       }
     }
-
-    #dp_system {
-      width: clamp(5rem, 1rem + 5.5vw, 10rem);
-    }
-
-    #eficode {
-      width: clamp(4rem, 2rem + 5vw, 9rem);
-    }
-
-    #rossmann {
-      width: clamp(7rem, 2rem + 7vw, 12rem);
-    }
-
-    #hitachienergy {
-      width: clamp(7rem, 2rem + 12vw, 16rem);
-    }
-
-    #hitachi {
-      width: clamp(7rem, 2rem + 8vw, 16rem);
-    }
   }
 
   .silver-section {
@@ -166,16 +127,13 @@
         width: clamp(6rem, 2rem + 5vw, 8rem);
       }
     }
-
-    #hutchinson {
-      width: clamp(7rem, 4rem + 6vw, 10rem);
-    }
   }
 }
 
 @media (max-width: $screen-size-mobile) {
   .partners-container {
     gap: 2rem;
+    padding-bottom: 2rem;
 
     .patrons-section,
     .strategic-section,
@@ -191,17 +149,11 @@
     .patrons-section {
       .patrons-container {
         @include section(1, 2rem);
+        padding-bottom: 2rem;
 
         .patrons-logo {
           width: 9rem;
-        }
-
-        #marszalek {
-          width: 10rem;
-        }
-
-        #mlodzi_w_lodzi {
-          width: 7rem;
+          padding: 0.5rem 0;
         }
       }
     }
@@ -223,10 +175,6 @@
         .diamond-logo {
           width: 8rem;
         }
-      }
-
-      #scanfil {
-        width: clamp(5rem, 4.5rem + 10vw, 10rem);
       }
 
       .diamond-container:last-child {
