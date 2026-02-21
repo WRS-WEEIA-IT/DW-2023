@@ -11,7 +11,7 @@ const animateOnScroll: Variants = {
     transition: {
       duration: 0.8,
       delay: 0.1,
-      type: 'cubic-bezier(0.17, 0.55, 0.55, 1)',
+      ease: [0.17, 0.55, 0.55, 1],
     },
   },
 };
