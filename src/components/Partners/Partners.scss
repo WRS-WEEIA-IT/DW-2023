@@ -1,4 +1,4 @@
-@import '../../styles/Constants.scss';
+@use '../../styles/Constants.scss' as *;
 
 @mixin section($columns: 4, $gap: 3rem) {
   margin: 0 9vw;
@@ -24,7 +24,7 @@
   justify-content: center;
   align-items: center;
 
-  > div {
+  >div {
     flex: 0 1 calc((100% - (#{$max-items-per-row - 1} * 3rem)) / #{$max-items-per-row});
     min-width: 200px;
     display: flex;
@@ -141,7 +141,7 @@
     .diamond-section,
     .gold-section,
     .silver-section {
-      > div {
+      >div {
         min-width: 150px;
         flex: 0 1 calc((100% - 2rem) / 2);
       }

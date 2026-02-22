@@ -1,4 +1,4 @@
-@import '../../styles/Constants.scss';
+@use '../../styles/Constants.scss' as *;
 
 .card-container {
   background-size: cover;

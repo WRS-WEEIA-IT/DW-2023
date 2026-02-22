@@ -1,4 +1,4 @@
-@import '../../styles/Constants.scss';
+@use '../../styles/Constants.scss' as *;
 
 :root {
   --counter-font-size: 12rem;

@@ -1,4 +1,4 @@
-@import '../../styles/Constants.scss';
+@use '../../styles/Constants.scss' as *;
 
 $card-grid-container-padding: 10vh;
 $card-size-pc: 22%;

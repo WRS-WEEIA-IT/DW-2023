@@ -1,4 +1,4 @@
-@import '../../styles/Constants.scss';
+@use '../../styles/Constants.scss' as *;
 
 $form-open-animation-duration: 0.3s;
 $backdrop-color: $neutral-color-45;
@@ -103,6 +103,7 @@ $input-border-width: 0.1rem;
       &[data-animation='false'] {
         animation: show-desktop-form $form-open-animation-duration forwards;
       }
+
       &[data-animation='true'] {
         animation: hide-desktop-form $form-open-animation-duration forwards;
       }
@@ -130,6 +131,7 @@ $input-border-width: 0.1rem;
       &[data-animation='false'] {
         animation: show-mobile-form $form-open-animation-duration forwards;
       }
+
       &[data-animation='true'] {
         animation: hide-mobile-form $form-open-animation-duration forwards;
       }
@@ -141,6 +143,7 @@ $input-border-width: 0.1rem;
   0% {
     transform: translateY(100%);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -150,6 +153,7 @@ $input-border-width: 0.1rem;
   0% {
     transform: translateY(0);
   }
+
   100% {
     transform: translateY(100%);
   }
@@ -160,6 +164,7 @@ $input-border-width: 0.1rem;
     transform: translateY(70px);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -171,6 +176,7 @@ $input-border-width: 0.1rem;
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(70px);
     opacity: 0;

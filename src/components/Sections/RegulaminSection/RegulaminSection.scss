@@ -1,4 +1,4 @@
-@import '/src/styles/Constants.scss';
+@use '/src/styles/Constants.scss' as *;
 
 #regulamin-section {
   background-color: $neutral-color-05;
@@ -51,4 +51,3 @@
     padding-right: var(--screen-side-margin);
   }
 }
-
