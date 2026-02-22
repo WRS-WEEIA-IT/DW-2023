@@ -119,6 +119,21 @@ const Footer = () => {
             </a>
           </div>
         </div>
+        <div id="partners-column">
+          <h4 className="footer-header">
+            {languageMode == 'polish' ? 'Patronaty honorowe' : 'Honorary patronage'}
+          </h4>
+          <div id="partners-grid">
+            <a
+              className="footer-link"
+              href="https://www.gov.pl/web/uw-lodzki"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <p className="footer-paragraph">Wojewoda Łódzki</p>
+            </a>
+          </div>
+        </div>
         <div id="contact-column">
           <h4 className="footer-header" id="contact-header">
             {languageMode == 'polish' ? 'Kontakt' : 'Contact'}
@@ -131,7 +146,7 @@ const Footer = () => {
           <div id="contact-text-column">
             <p className="footer-paragraph">Stefanowskiego 18/22, Łódź</p>
             <p className="footer-paragraph">dzien.weeia@samorzad.p.lodz.pl</p>
-            <p className="footer-paragraph">(+48) 504 556 808 - Ola</p>
+            <p className="footer-paragraph">(+48) 504 556 808 - Ola ({languageMode == 'polish' ? 'Koordynator' : 'Coordinator'})</p>
           </div>
         </div>
       </div>

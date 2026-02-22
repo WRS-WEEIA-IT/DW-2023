@@ -162,6 +162,14 @@ const Partners = () => {
                 {languageMode == 'polish' ? 'Patronaty honorowe' : 'Honorary patronage'}
               </h3>
               <div className="patrons-container">
+              <a href="https://www.gov.pl/web/uw-lodzki">
+                <img
+                  key="Wojewoda Łódzki"
+                  src="https://zosayoqrngvrydnexaek.supabase.co/storage/v1/object/public/DW-Bucket/wojewoda%20(1).png"
+                  className="patrons-logo"
+                  id="wojewoda_łódzki">
+                </img>
+              </a>
                 {honoraryPatrons.map((patron) => (
                   <img
                     key={patron.name}
