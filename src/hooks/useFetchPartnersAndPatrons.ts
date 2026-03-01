@@ -6,6 +6,8 @@ type Partner = {
   name: string;
   package: string;
   url: string;
+  hasLink?: boolean;
+  website?: string;
 };
 
 type Patron = {
@@ -13,6 +15,8 @@ type Patron = {
   url: string;
   imageSrc: string;
   category: 'honorary' | 'media';
+  hasLink?: boolean;
+  website?: string;
 };
 
 const useFetchPartnersAndPatrons = () => {

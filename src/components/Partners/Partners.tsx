@@ -66,10 +66,21 @@ const Partners = () => {
           ) : (
             strategicPartners.map((partner, index) => (
               <div key={index} className="strategic-container">
-                <img
-                  src={`${partner.imageSrc}`}
-                  className="strategic-logo"
-                  id={partner.name.toLowerCase()}></img>
+                {partner.hasLink && partner.website ? (
+                  <a href={partner.website} target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={`${partner.imageSrc}`}
+                      className="strategic-logo"
+                      id={partner.name.toLowerCase()}>
+                    </img>
+                  </a>
+                ) : (
+                  <img
+                    src={`${partner.imageSrc}`}
+                    className="strategic-logo"
+                    id={partner.name.toLowerCase()}>
+                  </img>
+                )}
               </div>
             ))
           )}
@@ -96,10 +107,21 @@ const Partners = () => {
             diamondPartners &&
             diamondPartners.map((partner, index) => (
               <div key={index} className="diamond-container">
-                <img
-                  src={`${partner.imageSrc}`}
-                  className="diamond-logo"
-                  id={partner.name.toLowerCase()}></img>
+                {partner.hasLink && partner.website ? (
+                  <a href={partner.website} target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={`${partner.imageSrc}`}
+                      className="diamond-logo"
+                      id={partner.name.toLowerCase()}>
+                    </img>
+                  </a>
+                ) : (
+                  <img
+                    src={`${partner.imageSrc}`}
+                    className="diamond-logo"
+                    id={partner.name.toLowerCase()}>
+                  </img>
+                )}
               </div>
             ))
           )}
@@ -115,10 +137,21 @@ const Partners = () => {
             : goldPartners &&
               goldPartners.map((partner, index) => (
                 <div key={index} className="gold-container">
-                  <img
-                    src={`${partner.imageSrc}`}
-                    className="gold-logo"
-                    id={partner.name.replace(' ', '_').toLowerCase()}></img>
+                  {partner.hasLink && partner.website ? (
+                    <a href={partner.website} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src={`${partner.imageSrc}`}
+                        className="gold-logo"
+                        id={partner.name.replace(' ', '_').toLowerCase()}>
+                      </img>
+                    </a>
+                  ) : (
+                    <img
+                      src={`${partner.imageSrc}`}
+                      className="gold-logo"
+                      id={partner.name.replace(' ', '_').toLowerCase()}>
+                    </img>
+                  )}
                 </div>
               ))}
         </m.div>
@@ -133,10 +166,21 @@ const Partners = () => {
             : silverPartners &&
               silverPartners.map((partner, index) => (
                 <div key={index} className="silver-container">
-                  <img
-                    src={`${partner.imageSrc}`}
-                    className="silver-logo"
-                    id={partner.name.toLowerCase()}></img>
+                  {partner.hasLink && partner.website ? (
+                    <a href={partner.website} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src={`${partner.imageSrc}`}
+                        className="silver-logo"
+                        id={partner.name.toLowerCase()}>
+                      </img>
+                    </a>
+                  ) : (
+                    <img
+                      src={`${partner.imageSrc}`}
+                      className="silver-logo"
+                      id={partner.name.toLowerCase()}>
+                    </img>
+                  )}
                 </div>
               ))}
         </m.div>
@@ -162,20 +206,23 @@ const Partners = () => {
                 {languageMode == 'polish' ? 'Patronaty honorowe' : 'Honorary patronage'}
               </h3>
               <div className="patrons-container">
-              <a href="https://www.gov.pl/web/uw-lodzki">
-                <img
-                  key="Wojewoda Łódzki"
-                  src="https://zosayoqrngvrydnexaek.supabase.co/storage/v1/object/public/DW-Bucket/wojewoda%20(1).png"
-                  className="patrons-logo"
-                  id="wojewoda_łódzki">
-                </img>
-              </a>
                 {honoraryPatrons.map((patron) => (
-                  <img
-                    key={patron.name}
-                    src={patron.imageSrc}
-                    className="patrons-logo"
-                    id={patron.name.replaceAll(' ', '_').toLowerCase()}></img>
+                  patron.hasLink && patron.website ? (
+                    <a key={patron.name} href={patron.website} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src={patron.imageSrc}
+                        className="patrons-logo"
+                        id={patron.name.replaceAll(' ', '_').toLowerCase()}>
+                      </img>
+                    </a>
+                  ) : (
+                    <img
+                      key={patron.name}
+                      src={patron.imageSrc}
+                      className="patrons-logo"
+                      id={patron.name.replaceAll(' ', '_').toLowerCase()}>
+                    </img>
+                  )
                 ))}
               </div>
               <h3 className="patrons-subheader">
@@ -183,11 +230,22 @@ const Partners = () => {
               </h3>
               <div className="patrons-container">
                 {mediaPatrons.map((patron) => (
-                  <img
-                    key={patron.name}
-                    src={patron.imageSrc}
-                    className="patrons-logo"
-                    id={patron.name.replaceAll(' ', '_').toLowerCase()}></img>
+                  patron.hasLink && patron.website ? (
+                    <a key={patron.name} href={patron.website} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src={patron.imageSrc}
+                        className="patrons-logo"
+                        id={patron.name.replaceAll(' ', '_').toLowerCase()}>
+                      </img>
+                    </a>
+                  ) : (
+                    <img
+                      key={patron.name}
+                      src={patron.imageSrc}
+                      className="patrons-logo"
+                      id={patron.name.replaceAll(' ', '_').toLowerCase()}>
+                    </img>
+                  )
                 ))}
               </div>
             </>
