@@ -1,4 +1,4 @@
-@import './Constants.scss';
+@use './Constants.scss' as *;
 
 @mixin disableDefaultButtonStyles {
   font-family: inherit;

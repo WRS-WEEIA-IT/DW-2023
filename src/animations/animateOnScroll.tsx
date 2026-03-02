@@ -22,7 +22,7 @@ export const createAnimateOnScroll = (
       transition: {
         duration: animationDuration,
         delay: delay,
-        type: 'ease-out',
+        ease: 'easeOut',
       },
     },
   };

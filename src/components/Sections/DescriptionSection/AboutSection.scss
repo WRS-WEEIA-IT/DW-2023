@@ -1,4 +1,4 @@
-@import '/src/styles/Constants.scss';
+@use '/src/styles/Constants.scss' as *;
 
 #about-section {
   background-color: $neutral-color-05;
@@ -9,6 +9,7 @@
   #about-description-text {
     margin: 0;
     text-align: center;
+
     .about-description-header {
       margin: 2rem 0 1rem 0;
     }

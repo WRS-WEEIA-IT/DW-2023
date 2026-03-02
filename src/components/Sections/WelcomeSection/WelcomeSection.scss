@@ -1,4 +1,4 @@
-@import '/src/styles/Constants.scss';
+@use '/src/styles/Constants.scss' as *;
 
 #welcome-section {
   height: calc(100 * var(--vh));

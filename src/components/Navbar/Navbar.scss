@@ -1,4 +1,4 @@
-@import "../../styles/Constants.scss";
+@use '../../styles/Constants.scss' as *;
 
 $button-gap: 20px;
 $button-gap-mobile: 30px;
@@ -97,6 +97,7 @@ $link-hover-transition-duration: 0.2s;
         transition:
           transform $menu-open-transition-duration,
           visibility $menu-open-transition-duration;
+
         .navbar-link {
           font-size: var(--h3-font-size);
           text-align: center;

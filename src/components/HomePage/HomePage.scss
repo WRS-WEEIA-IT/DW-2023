@@ -1,4 +1,4 @@
-@import '/src/styles/Constants.scss';
+@use '/src/styles/Constants.scss' as *;
 
 #backgroud-photo {
   position: absolute;
@@ -20,48 +20,58 @@ body::after {
   height: 0;
   overflow: hidden;
   z-index: -1;
-  content: url('../../../public/background/photo1.jpg') url('../../../public/background/photo2.jpg')
-    url('../../../public/background/photo3.jpg') url('../../../public/background/photo4.jpg')
-    url('../../../public/background/photo5.jpg') url('../../../public/background/photo6.jpg');
+  content: url('../../../public/background/photo1.jpg') url('../../../public/background/photo2.jpg') url('../../../public/background/photo3.jpg') url('../../../public/background/photo4.jpg') url('../../../public/background/photo5.jpg') url('../../../public/background/photo6.jpg');
 }
 
 @keyframes change-photo {
   0% {
     background-image: url('../../../public/background/photo1.jpg');
   }
+
   8% {
     background-image: url('../../../public/background/photo1.jpg');
   }
+
   12% {
     background-image: url('../../../public/background/photo2.jpg');
   }
+
   24% {
     background-image: url('../../../public/background/photo2.jpg');
   }
+
   28% {
     background-image: url('../../../public/background/photo3.jpg');
   }
+
   40% {
     background-image: url('../../../public/background/photo3.jpg');
   }
+
   44% {
     background-image: url('../../../public/background/photo4.jpg');
   }
+
   56% {
     background-image: url('../../../public/background/photo4.jpg');
   }
+
   60% {
     background-image: url('../../../public/background/photo5.jpg');
   }
+
   72% {
     background-image: url('../../../public/background/photo5.jpg');
   }
+
   76% {
     background-image: url('../../../public/background/photo6.jpg');
   }
+
   88% {
     background-image: url('../../../public/background/photo6.jpg');
   }
+
   100% {
     background-image: url('../../../public/background/photo1.jpg');
   }
