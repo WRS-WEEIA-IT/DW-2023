@@ -6,6 +6,7 @@ import './LoginPage.scss';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [nickname, setNickname] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSignUp, setIsSignUp] = useState(false);
@@ -18,13 +19,32 @@ const LoginPage = () => {
 
     try {
       if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
+        if (nickname.length > 15) {
+          throw new Error('Nickname może mieć maksymalnie 15 znaków');
+        }
+        if (nickname.trim().length === 0) {
+          throw new Error('Nickname jest wymagany');
+        }
+
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              display_name: nickname.trim()
+            }
+          }
+        });
+        if (error) throw error;
+        
+        // Automatyczne logowanie po rejestracji
+        const { error: signInError } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
-        if (error) throw error;
-        setEmail('');
-        setPassword('');
+        if (signInError) throw signInError;
+        
+        navigate('/game');
       } else {
         const { error } = await supabase.auth.signInWithPassword({
           email,
@@ -69,6 +89,25 @@ const LoginPage = () => {
             />
           </div>
           
+          {isSignUp && (
+            <div className="form-group">
+              <label htmlFor="nickname">Nickname (max 15 znaków)</label>
+              <input
+                id="nickname"
+                type="text"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value.slice(0, 15))}
+                placeholder="Twój nickname"
+                required
+                disabled={loading}
+                maxLength={15}
+              />
+              <small className="character-count">
+                {nickname.length}/15 znaków
+              </small>
+            </div>
+          )}
+          
           <div className="form-group">
             <label htmlFor="password">Hasło</label>
             <input
@@ -94,6 +133,7 @@ const LoginPage = () => {
             setError(null);
             setEmail('');
             setPassword('');
+            setNickname('');
           }}
           className="toggle-button"
         >

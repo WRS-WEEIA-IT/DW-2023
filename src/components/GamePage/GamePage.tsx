@@ -88,7 +88,7 @@ const GamePage = () => {
         <div className="game-header">
           <h1>Game Page</h1>
           <div className="user-info">
-            <span>{session?.user?.email}</span>
+            <span>{session?.user?.user_metadata?.display_name || session?.user?.email}</span>
             <button 
               onClick={async () => {
                 await signOut();

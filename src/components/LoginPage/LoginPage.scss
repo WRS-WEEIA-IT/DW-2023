@@ -118,6 +118,14 @@ form {
   opacity: 0.6;
 }
 
+.character-count {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: right;
+  margin-top: 4px;
+}
+
 .submit-button {
   padding: 12px 16px;
   background: $primary-gradient;
