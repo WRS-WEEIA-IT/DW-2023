@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import HomePage from '../HomePage/HomePage';
 import GamePage from '../GamePage/GamePage';
+import LoginPage from '../LoginPage/LoginPage';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HOME_PATH, GAME_PATH } from '../../constants/RouterConstants';
 import '../../styles/Constants.scss';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
+import { AuthProvider } from '../../contexts/AuthContext';
 import { LANGUAGE_MODE } from '../../constants/LocalStorageConstants';
 
 const MainProvider = () => {
@@ -16,7 +19,15 @@ const MainProvider = () => {
     },
     {
       path: GAME_PATH,
-      element: <GamePage />,
+      element: (
+        <ProtectedRoute>
+          <GamePage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: '/login',
+      element: <LoginPage />,
     },
   ]);
 
@@ -36,9 +47,11 @@ const MainProvider = () => {
 
   return (
     <React.StrictMode>
-      <LanguageModeContext.Provider value={{ languageMode, setLanguageMode }}>
-        <RouterProvider router={router} />
-      </LanguageModeContext.Provider>
+      <AuthProvider>
+        <LanguageModeContext.Provider value={{ languageMode, setLanguageMode }}>
+          <RouterProvider router={router} />
+        </LanguageModeContext.Provider>
+      </AuthProvider>
     </React.StrictMode>
   );
 };

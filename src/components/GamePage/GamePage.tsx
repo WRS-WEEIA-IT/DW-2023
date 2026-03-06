@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import { Scanner, IDetectedBarcode } from '@yudiel/react-qr-scanner';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabaseConfig';
+import { useAuth } from '../../contexts/AuthContext';
 import './GamePage.scss';
 
 interface KnownCode {
@@ -21,6 +23,8 @@ const GamePage = () => {
   const [points, setPoints] = useState<number | null>(null);
   const [question, setQuestion] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const { session, signOut } = useAuth();
+  const navigate = useNavigate();
 
   const getRandomQuestion = (questions: string[]): string => {
     return questions[Math.floor(Math.random() * questions.length)];
@@ -81,7 +85,21 @@ const GamePage = () => {
   return (
     <div className="game-page">
       <div className="game-container">
-        <h1>Game Page</h1>
+        <div className="game-header">
+          <h1>Game Page</h1>
+          <div className="user-info">
+            <span>{session?.user?.email}</span>
+            <button 
+              onClick={async () => {
+                await signOut();
+                navigate('/');
+              }}
+              className="logout-button"
+            >
+              Wyloguj się
+            </button>
+          </div>
+        </div>
         <p>Witaj na stronie gry!</p>
 
         <div className="qr-scanner-section">
