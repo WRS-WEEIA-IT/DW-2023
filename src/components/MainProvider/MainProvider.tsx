@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import HomePage from '../HomePage/HomePage';
+import GamePage from '../GamePage/GamePage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HOME_PATH } from '../../constants/RouterConstants';
+import { HOME_PATH, GAME_PATH } from '../../constants/RouterConstants';
 import '../../styles/Constants.scss';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { LANGUAGE_MODE } from '../../constants/LocalStorageConstants';
@@ -12,6 +13,10 @@ const MainProvider = () => {
       path: HOME_PATH,
       element: <HomePage />,
       errorElement: <HomePage />,
+    },
+    {
+      path: GAME_PATH,
+      element: <GamePage />,
     },
   ]);
 

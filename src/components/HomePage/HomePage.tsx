@@ -5,6 +5,7 @@ import EventsSection from '../Sections/EventsSection/EventsSection';
 import AboutSection from '../Sections/DescriptionSection/AboutSection';
 import PartnersSection from '../Sections/PartnersSection/PartnersSection';
 import RegulaminSection from '../Sections/RegulaminSection/RegulaminSection';
+import GameSection from '../Sections/GameSection/GameSection';
 import Footer from '../Footer/Footer';
 import { LazyMotion, domAnimation } from 'framer-motion';
 
@@ -23,6 +24,7 @@ const HomePage = () => {
         <WelcomeSection />
         <AboutSection />
         <RegulaminSection />
+        <GameSection />
         <EventsSection />
         <PartnersSection />
         <Footer />
