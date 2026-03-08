@@ -13,7 +13,7 @@ interface KnownCode {
   questions: string[] | null;
 }
 
-type ModalType = 'notFound' | 'points' | 'question' | null;
+type ModalType = 'notFound' | 'points' | 'question' | 'alreadyUsed' | null;
 
 const GamePage = () => {
   const [scannedData, setScannedData] = useState<string | null>(null);
@@ -38,25 +38,98 @@ const GamePage = () => {
       setLoading(true);
 
       try {
+        // Krok 1: Sprawdź czy kod istnieje w known_codes
+        console.log('Zeskanowany kod:', code);
+        console.log('Długość kodu:', code.length);
+        
         const { data, error } = await supabase
           .from('known_codes')
           .select('code, points, hasQuestions, questions')
           .eq('code', code)
           .maybeSingle();
 
+        console.log('Zapytanie known_codes - error:', error);
+        console.log('Zapytanie known_codes - data:', data);
+
         if (error || !data) {
+          console.error('Kod nie znaleziony w bazie. Error:', error, 'Data:', data);
           setModalType('notFound');
         } else {
           const knownCode = data as KnownCode;
-          
-          if (knownCode.hasQuestions && knownCode.questions && knownCode.questions.length > 0) {
-            const randomQuestion = getRandomQuestion(knownCode.questions);
-            setQuestion(randomQuestion);
-            setPoints(knownCode.points);
-            setModalType('question');
+          const userId = session?.user?.id;
+
+          if (!userId) {
+            console.error('Brak użytkownika');
+            setModalType('notFound');
+            return;
+          }
+
+          // Krok 2: Pobierz dane tego użytkownika z used_codes
+          const { data: userData, error: userError } = await supabase
+            .from('used_codes')
+            .select('usedCode, points')
+            .eq('userID', userId)
+            .maybeSingle();
+
+          if (userError && userError.code !== 'PGRST116') {
+            console.error('Błąd pobierania danych użytkownika:', userError);
+            setModalType('notFound');
+            return;
+          }
+
+          // Krok 3: Sprawdź czy TEN użytkownik już zeskanował ten kod
+          const userAlreadyScannedThisCode = userData?.usedCode?.includes(code);
+
+          if (userAlreadyScannedThisCode) {
+            // Ten użytkownik już ten kod zeskanował
+            setModalType('alreadyUsed');
           } else {
-            setPoints(knownCode.points);
-            setModalType('points');
+            // Krok 4: Ten użytkownik nie skanował jeszcze tego kodu - zapisz
+            if (userData) {
+              // Użytkownik już istnieje - zaktualizuj
+              const updatedCodes = [...userData.usedCode, code];
+              const updatedPoints = (userData.points || 0) + knownCode.points;
+
+              const { error: updateError } = await supabase
+                .from('used_codes')
+                .update({
+                  usedCode: updatedCodes,
+                  points: updatedPoints
+                })
+                .eq('userID', userId);
+
+              if (updateError) {
+                console.error('Błąd aktualizacji punktów:', updateError);
+                setModalType('notFound');
+                return;
+              }
+            } else {
+              // Nowy użytkownik - utwórz rekord
+              const { error: insertError } = await supabase
+                .from('used_codes')
+                .insert({
+                  userID: userId,
+                  usedCode: [code],
+                  points: knownCode.points
+                });
+
+              if (insertError) {
+                console.error('Błąd dodawania punktów:', insertError);
+                setModalType('notFound');
+                return;
+              }
+            }
+
+            // Krok 5: Pokaż pytanie lub punkty
+            if (knownCode.hasQuestions && knownCode.questions && knownCode.questions.length > 0) {
+              const randomQuestion = getRandomQuestion(knownCode.questions);
+              setQuestion(randomQuestion);
+              setPoints(knownCode.points);
+              setModalType('question');
+            } else {
+              setPoints(knownCode.points);
+              setModalType('points');
+            }
           }
         }
       } catch (err) {
@@ -137,6 +210,15 @@ const GamePage = () => {
                   <h2>❌ Nie znaleziono QR-kodu</h2>
                   <div className="modal-data">
                     <p>Ten kod QR nie jest zarejestrowany w systemie.</p>
+                  </div>
+                </>
+              )}
+
+              {!loading && modalType === 'alreadyUsed' && (
+                <>
+                  <h2>⚠️ Kod już został użyty</h2>
+                  <div className="modal-data">
+                    <p>Zeskanowałeś już ten kod QR wcześniej.</p>
                   </div>
                 </>
               )}
