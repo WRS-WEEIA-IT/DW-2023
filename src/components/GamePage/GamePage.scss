@@ -1,358 +1,420 @@
 @use '/src/styles/Constants.scss' as *;
 
 .game-page {
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #2d2d2d;
+  overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: $neutral-color-05;
-  padding: 2rem;
+  flex-direction: column;
 
-  .game-container {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 3rem;
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
+  .scanner-header {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(0.75rem + env(safe-area-inset-top)) calc(1rem + env(safe-area-inset-right)) 0.75rem calc(1rem + env(safe-area-inset-left));
+    background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 
-    .game-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-
-      h1 {
-        font-size: 2.5rem;
-        margin: 0;
-        color: $neutral-color-95;
-        flex: 1;
-      }
-
-      .user-info {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 0.5rem 1rem;
-        border-radius: 25px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-
-        span {
-          color: rgba(255, 255, 255, 0.8);
-          font-size: 0.9rem;
-          max-width: 150px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-
-        .logout-button {
-          background: rgba(239, 68, 68, 0.8);
-          color: white;
-          border: none;
-          padding: 0.4rem 1rem;
-          border-radius: 20px;
-          cursor: pointer;
-          font-size: 0.85rem;
-          font-weight: 600;
-          transition: all 0.3s ease;
-
-          &:hover {
-            background: rgba(239, 68, 68, 1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
-          }
-
-          &:active {
-            transform: translateY(0);
-          }
-        }
-      }
+    h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: $neutral-color-95;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
-    p {
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 2rem;
-    }
-
-    .qr-scanner-section {
-      margin: 2rem 0;
-      padding: 2rem;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-
-      h2 {
-        font-size: 1.8rem;
-        color: $neutral-color-95;
-        margin-bottom: 1.5rem;
-      }
-
-      .scanner-container {
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto 1.5rem;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-
-        :global(.qr-scanner) {
-          width: 100%;
-          border-radius: 10px;
-        }
-      }
-    }
-
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.7);
+    .user-icon {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-    }
+      transition: all 0.3s ease;
+      border-radius: 50%;
 
-    .modal-content {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 2.5rem;
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-
-      h2 {
-        font-size: 1.8rem;
+      svg {
+        width: 32px;
+        height: 32px;
         color: $neutral-color-95;
-        margin-bottom: 1.5rem;
-        margin-top: 0;
+        transition: all 0.3s ease;
       }
 
-      .loading-spinner {
-        width: 50px;
-        height: 50px;
-        margin: 1.5rem auto;
-        border: 4px solid rgba(255, 255, 255, 0.2);
-        border-top-color: $neutral-color-95;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        
+        svg {
+          color: rgba(239, 68, 68, 0.9);
         }
       }
 
-      .modal-data {
-        background: rgba(0, 0, 0, 0.3);
-        padding: 1.5rem;
-        border-radius: 10px;
-        border-left: 3px solid $primary-gradient;
-        margin-bottom: 1.5rem;
-        min-height: 60px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .scanner-fullscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    :global(video) {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+
+    // Custom finder overlay styling
+    :global(.qr-scanner) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    // Override library styles for fullscreen
+    :global([data-qr-scanner]) {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    // Custom finder frame styling to match mobile app
+    :global(.qr-scanner__finder) {
+      border: 3px solid rgba(100, 200, 255, 0.8) !important;
+      border-radius: 24px !important;
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    // Style torch and control buttons
+    :global(.qr-scanner__controls) {
+      z-index: 10;
+    }
+
+    :global(.qr-scanner__controls button) {
+      background: rgba(255, 255, 255, 0.2) !important;
+      backdrop-filter: blur(10px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      border-radius: 50% !important;
+      width: 48px !important;
+      height: 48px !important;
+      transition: all 0.3s ease !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.3) !important;
+        transform: scale(1.05) !important;
+      }
+
+      svg {
+        color: white !important;
+      }
+    }
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+  }
+
+  .modal-content {
+    background: linear-gradient(135deg, rgba(50, 50, 50, 0.98) 0%, rgba(30, 30, 30, 0.98) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+
+    h2 {
+      font-size: 1.5rem;
+      color: $neutral-color-95;
+      margin-bottom: 1.5rem;
+      margin-top: 0;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      margin: 1.5rem auto;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top-color: $neutral-color-95;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .modal-data {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 3px solid $primary-gradient;
+      margin-bottom: 1.5rem;
+      min-height: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        color: $neutral-color-95;
+        word-break: break-all;
+        font-family: monospace;
+        font-size: 1rem;
+        margin: 0;
+        line-height: 1.6;
+
+        &.points-text {
+          font-family: inherit;
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.6);
+          margin-bottom: 0.5rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        &.points-value {
+          font-family: inherit;
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: #4ade80;
+          text-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
+          margin: 0;
+        }
+      }
+
+      &.question-box {
+        min-height: 100px;
+        background: rgba(59, 130, 246, 0.15);
+        border-left-color: #3b82f6;
 
         p {
+          font-family: inherit;
+          font-size: 1.05rem;
           color: $neutral-color-95;
-          word-break: break-all;
-          font-family: monospace;
-          font-size: 1rem;
-          margin: 0;
-          line-height: 1.6;
-
-          &.points-text {
-            font-family: inherit;
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-          }
-
-          &.points-value {
-            font-family: inherit;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #4ade80;
-            text-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
-            margin: 0;
-          }
-        }
-
-        &.question-box {
-          min-height: 100px;
-          background: rgba(59, 130, 246, 0.1);
-          border-left-color: #3b82f6;
-
-          p {
-            font-family: inherit;
-            font-size: 1.1rem;
-            color: $neutral-color-95;
-            line-height: 1.8;
-          }
-        }
-      }
-
-      .points-info {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 0.95rem;
-        margin-bottom: 1.5rem;
-        
-        strong {
-          color: #4ade80;
-          font-weight: 600;
-        }
-      }
-
-      .modal-close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: $neutral-color-95;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-
-        &:hover {
-          background: rgba(255, 255, 255, 0.2);
-          border-color: rgba(255, 255, 255, 0.3);
-          transform: scale(1.1);
-        }
-      }
-
-      .modal-button {
-        padding: 0.75rem 2rem;
-        background: $primary-gradient;
-        color: $neutral-color-95;
-        border: none;
-        border-radius: 50px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        font-size: 1rem;
-
-        &:hover {
-          background: $primary-gradient-bright;
-          transform: translateY(-2px);
-          box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        &:active {
-          transform: translateY(0);
+          line-height: 1.8;
         }
       }
     }
 
-    .back-button {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
+    .points-info {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      
+      strong {
+        color: #4ade80;
+        font-weight: 600;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: $neutral-color-95;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    .modal-button {
+      padding: 0.875rem 2rem;
       background: $primary-gradient;
       color: $neutral-color-95;
-      text-decoration: none;
+      border: none;
       border-radius: 50px;
       font-weight: 600;
+      cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      font-size: 1rem;
+      width: 100%;
 
       &:hover {
         background: $primary-gradient-bright;
         transform: translateY(-2px);
-        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
       }
 
       &:active {
-        background: $primary-gradient-dark;
         transform: translateY(0);
       }
     }
   }
 
+  // Mobile responsiveness
   @media (max-width: $screen-size-tablet) {
-    padding: 1.5rem;
+    .scanner-header {
+      padding: calc(0.625rem + env(safe-area-inset-top)) calc(0.875rem + env(safe-area-inset-right)) 0.625rem calc(0.875rem + env(safe-area-inset-left));
 
-    .game-container {
-      padding: 2rem;
-
-      .game-header {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: flex-start;
-
-        h1 {
-          font-size: 2rem;
-        }
-
-        .user-info {
-          width: 100%;
-          justify-content: space-between;
-        }
+      h1 {
+        font-size: 1.375rem;
       }
 
-      p {
-        font-size: 1rem;
+      .user-icon svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    .modal-content {
+      padding: 1.75rem;
+      max-width: 90%;
+
+      h2 {
+        font-size: 1.35rem;
       }
 
-      .back-button {
-        padding: 0.65rem 1.25rem;
-        font-size: 0.95rem;
+      .modal-data {
+        padding: 1.25rem;
+
+        p.points-value {
+          font-size: 2.25rem;
+        }
       }
     }
   }
 
   @media (max-width: $screen-size-mobile) {
-    padding: 1rem;
+    .scanner-header {
+      padding: calc(0.5rem + env(safe-area-inset-top)) calc(0.75rem + env(safe-area-inset-right)) 0.5rem calc(0.75rem + env(safe-area-inset-left));
 
-    .game-container {
+      h1 {
+        font-size: 1.25rem;
+      }
+
+      .user-icon {
+        padding: 0.375rem;
+
+        svg {
+          width: 26px;
+          height: 26px;
+        }
+      }
+    }
+
+    .modal-content {
       padding: 1.5rem;
+      border-radius: 16px;
 
-      .game-header {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: left;
+      h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1.25rem;
+      }
 
-        h1 {
-          font-size: 1.75rem;
-          margin: 0;
+      .modal-data {
+        padding: 1rem;
+
+        p.points-value {
+          font-size: 2rem;
         }
 
-        .user-info {
-          width: 100%;
-          flex-wrap: wrap;
-
-          span {
-            max-width: 100%;
-          }
+        p.points-text {
+          font-size: 0.85rem;
         }
       }
 
-      p {
+      .points-info {
+        font-size: 0.9rem;
+      }
+
+      .modal-button {
+        padding: 0.75rem 1.5rem;
         font-size: 0.95rem;
+      }
+
+      .modal-close {
+        width: 32px;
+        height: 32px;
+        font-size: 1.35rem;
+      }
+    }
+  }
+
+  // Landscape mobile orientation
+  @media (max-height: 600px) and (orientation: landscape) {
+    .scanner-header {
+      padding: calc(0.4rem + env(safe-area-inset-top)) calc(0.65rem + env(safe-area-inset-right)) 0.4rem calc(0.65rem + env(safe-area-inset-left));
+
+      h1 {
+        font-size: 1.125rem;
+      }
+
+      .user-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .modal-content {
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 1.25rem;
+
+      h2 {
+        font-size: 1.125rem;
+        margin-bottom: 1rem;
+      }
+
+      .modal-data {
+        padding: 0.875rem;
+        min-height: 50px;
+
+        p.points-value {
+          font-size: 1.75rem;
+        }
+      }
+
+      .modal-button {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9rem;
       }
     }
   }
