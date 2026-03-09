@@ -10,9 +10,22 @@ interface KnownCode {
   points: number;
   hasQuestions: boolean;
   questions: string[] | null;
+  answers: string[] | null;
 }
 
-type ModalType = 'notFound' | 'points' | 'question' | 'alreadyUsed' | null;
+interface UsedCodesRow {
+  usedCode: string[];
+  points: number | null;
+}
+
+interface PendingQuestion {
+  userId: string;
+  code: string;
+  points: number;
+  expectedAnswer: string;
+}
+
+type ModalType = 'notFound' | 'points' | 'question' | 'alreadyUsed' | 'wrongAnswer' | null;
 
 const GamePage = () => {
   const [isScanning, setIsScanning] = useState(true);
@@ -20,14 +33,76 @@ const GamePage = () => {
   const [modalType, setModalType] = useState<ModalType>(null);
   const [points, setPoints] = useState<number | null>(null);
   const [question, setQuestion] = useState<string | null>(null);
+  const [userAnswer, setUserAnswer] = useState('');
+  const [answerError, setAnswerError] = useState<string | null>(null);
+  const [pendingQuestion, setPendingQuestion] = useState<PendingQuestion | null>(null);
   const [loading, setLoading] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
   const { session, signOut } = useAuth();
   const navigate = useNavigate();
 
-  const getRandomQuestion = (questions: string[]): string => {
-    const randomIndex = Math.floor(Math.random() * questions.length);
-    return questions[randomIndex] || '';
+  const getRandomQuestionIndex = (questions: string[]): number => {
+    return Math.floor(Math.random() * questions.length);
+  };
+
+  const normalizeAnswer = (value: string): string => {
+    return value
+      .trim()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  };
+
+  const saveUsedCodeForUser = async (
+    userId: string,
+    userData: UsedCodesRow | null,
+    code: string,
+    pointsToAdd: number
+  ): Promise<boolean> => {
+    console.log('[saveUsedCodeForUser] Parametry:', { userId, userData, code, pointsToAdd });
+
+    if (userData) {
+      const updatedCodes = [...(userData.usedCode || []), code];
+      const updatedPoints = (userData.points || 0) + pointsToAdd;
+
+      console.log('[saveUsedCodeForUser] UPDATE - updatedCodes:', updatedCodes, 'updatedPoints:', updatedPoints);
+
+      const { error: updateError, data: updateData } = await supabase
+        .from('used_codes')
+        .update({
+          usedCode: updatedCodes,
+          points: updatedPoints
+        })
+        .eq('userID', userId);
+
+      console.log('[saveUsedCodeForUser] UPDATE result - error:', updateError, 'data:', updateData);
+
+      if (updateError) {
+        console.error('Blad aktualizacji punktow:', updateError);
+        return false;
+      }
+
+      return true;
+    }
+
+    console.log('[saveUsedCodeForUser] INSERT - userId:', userId, 'code:', code, 'points:', pointsToAdd);
+
+    const { error: insertError, data: insertData } = await supabase
+      .from('used_codes')
+      .insert({
+        userID: userId,
+        usedCode: [code],
+        points: pointsToAdd
+      });
+
+    console.log('[saveUsedCodeForUser] INSERT result - error:', insertError, 'data:', insertData);
+
+    if (insertError) {
+      console.error('Blad dodawania punktow:', insertError);
+      return false;
+    }
+
+    return true;
   };
 
   const playScanBeep = async () => {
@@ -92,7 +167,7 @@ const GamePage = () => {
         
         const { data, error } = await supabase
           .from('known_codes')
-          .select('code, points, hasQuestions, questions')
+          .select('code, points, hasQuestions, questions, answers')
           .eq('code', code)
           .maybeSingle();
 
@@ -132,49 +207,42 @@ const GamePage = () => {
             // Ten użytkownik już ten kod zeskanował
             setModalType('alreadyUsed');
           } else {
-            // Krok 4: Ten użytkownik nie skanował jeszcze tego kodu - zapisz
-            if (userData) {
-              // Użytkownik już istnieje - zaktualizuj
-              const updatedCodes = [...userData.usedCode, code];
-              const updatedPoints = (userData.points || 0) + knownCode.points;
-
-              const { error: updateError } = await supabase
-                .from('used_codes')
-                .update({
-                  usedCode: updatedCodes,
-                  points: updatedPoints
-                })
-                .eq('userID', userId);
-
-              if (updateError) {
-                console.error('Błąd aktualizacji punktów:', updateError);
-                setModalType('notFound');
-                return;
-              }
-            } else {
-              // Nowy użytkownik - utwórz rekord
-              const { error: insertError } = await supabase
-                .from('used_codes')
-                .insert({
-                  userID: userId,
-                  usedCode: [code],
-                  points: knownCode.points
-                });
-
-              if (insertError) {
-                console.error('Błąd dodawania punktów:', insertError);
-                setModalType('notFound');
-                return;
-              }
-            }
-
-            // Krok 5: Pokaż pytanie lub punkty
+            // Krok 4: Dla kodów z pytaniem przyznaj punkty dopiero po poprawnej odpowiedzi.
             if (knownCode.hasQuestions && knownCode.questions && knownCode.questions.length > 0) {
-              const randomQuestion = getRandomQuestion(knownCode.questions);
+              const randomIndex = getRandomQuestionIndex(knownCode.questions);
+              const randomQuestion = knownCode.questions[randomIndex] || '';
+              const expectedAnswer = knownCode.answers?.[randomIndex] || '';
+
+              if (!randomQuestion || !expectedAnswer) {
+                console.error('Brak pary pytanie/odpowiedz dla kodu:', knownCode.code);
+                setModalType('notFound');
+                return;
+              }
+
               setQuestion(randomQuestion);
               setPoints(knownCode.points);
+              setUserAnswer('');
+              setAnswerError(null);
+              setPendingQuestion({
+                userId,
+                code,
+                points: knownCode.points,
+                expectedAnswer
+              });
               setModalType('question');
             } else {
+              const saved = await saveUsedCodeForUser(
+                userId,
+                (userData as UsedCodesRow | null) || null,
+                code,
+                knownCode.points
+              );
+
+              if (!saved) {
+                setModalType('notFound');
+                return;
+              }
+
               setPoints(knownCode.points);
               setModalType('points');
             }
@@ -199,7 +267,79 @@ const GamePage = () => {
     setModalType(null);
     setPoints(null);
     setQuestion(null);
+    setUserAnswer('');
+    setAnswerError(null);
+    setPendingQuestion(null);
     setIsScanning(true);
+  };
+
+  const submitQuestionAnswer = async () => {
+    if (!pendingQuestion) {
+      return;
+    }
+
+    if (!userAnswer.trim()) {
+      setAnswerError('Wpisz odpowiedz przed zatwierdzeniem.');
+      return;
+    }
+
+    setAnswerError(null);
+    setLoading(true);
+
+    try {
+      console.log('[submitQuestionAnswer] Początek - pendingQuestion:', pendingQuestion);
+      
+      const isCorrect = normalizeAnswer(userAnswer) === normalizeAnswer(pendingQuestion.expectedAnswer);
+      const pointsToAdd = isCorrect ? pendingQuestion.points : 0;
+      
+      console.log('[submitQuestionAnswer] Walidacja:', { userAnswer, expectedAnswer: pendingQuestion.expectedAnswer, isCorrect, pointsToAdd });
+
+      // Pobierz swieze dane uzytkownika tuz przed zapisem punktow.
+      const { data: freshUserData, error: freshUserError } = await supabase
+        .from('used_codes')
+        .select('usedCode, points')
+        .eq('userID', pendingQuestion.userId)
+        .maybeSingle();
+
+      console.log('[submitQuestionAnswer] Pobieranie swiezych danych - error:', freshUserError, 'data:', freshUserData);
+
+      if (freshUserError && freshUserError.code !== 'PGRST116') {
+        console.error('Blad pobierania swiezych danych uzytkownika:', freshUserError);
+        setModalType('notFound');
+        return;
+      }
+
+      const saved = await saveUsedCodeForUser(
+        pendingQuestion.userId,
+        (freshUserData as UsedCodesRow | null) || null,
+        pendingQuestion.code,
+        pointsToAdd
+      );
+
+      console.log('[submitQuestionAnswer] Po saveUsedCodeForUser - saved:', saved);
+
+      if (!saved) {
+        console.error('[submitQuestionAnswer] Nie udało się zapisać');
+        setModalType('notFound');
+        return;
+      }
+
+      if (isCorrect) {
+        setPoints(pendingQuestion.points);
+        setModalType('points');
+      } else {
+        setPoints(0);
+        setModalType('wrongAnswer');
+      }
+
+      setPendingQuestion(null);
+      setUserAnswer('');
+    } catch (error) {
+      console.error('Blad podczas sprawdzania odpowiedzi:', error);
+      setModalType('notFound');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -241,7 +381,9 @@ const GamePage = () => {
                 objectFit: 'cover',
               },
             }}
-          />
+          >
+            <div className="scanner-outside-blur" aria-hidden="true" />
+          </Scanner>
         </div>
       )}
 
@@ -291,7 +433,30 @@ const GamePage = () => {
                 <div className="modal-data question-box">
                   <p>{question}</p>
                 </div>
-                <p className="points-info">Odpowiedź na pytanie daje Ci <strong>{points} {points === 1 ? 'punkt' : (points || 0) < 5 ? 'punkty' : 'punktów'}</strong></p>
+                <p className="points-info">Poprawna odpowiedz daje Ci <strong>{points} {points === 1 ? 'punkt' : (points || 0) < 5 ? 'punkty' : 'punktów'}</strong></p>
+
+                <div className="answer-form">
+                  <input
+                    type="text"
+                    value={userAnswer}
+                    onChange={(e) => setUserAnswer(e.target.value)}
+                    placeholder="Wpisz odpowiedz"
+                    className="answer-input"
+                  />
+                  {answerError && <p className="answer-error">{answerError}</p>}
+                  <button className="answer-submit" onClick={submitQuestionAnswer}>
+                    Sprawdz odpowiedz
+                  </button>
+                </div>
+              </>
+            )}
+
+            {!loading && modalType === 'wrongAnswer' && (
+              <>
+                <h2>❌ Niepoprawna odpowiedz</h2>
+                <div className="modal-data">
+                  <p>Niestety, ta odpowiedz nie zgadza sie z baza danych.</p>
+                </div>
               </>
             )}
 
