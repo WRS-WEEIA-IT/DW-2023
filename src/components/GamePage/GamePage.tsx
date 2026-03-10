@@ -3,6 +3,7 @@ import { Scanner, IDetectedBarcode } from '@yudiel/react-qr-scanner';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabaseConfig';
 import { useAuth } from '../../contexts/AuthContext';
+import { GAME_RANKING_PATH, HOME_PATH } from '../../constants/RouterConstants';
 import './GamePage.scss';
 
 interface KnownCode {
@@ -287,12 +288,13 @@ const GamePage = () => {
     setLoading(true);
 
     try {
-      console.log('[submitQuestionAnswer] Początek - pendingQuestion:', pendingQuestion);
-      
       const isCorrect = normalizeAnswer(userAnswer) === normalizeAnswer(pendingQuestion.expectedAnswer);
-      const pointsToAdd = isCorrect ? pendingQuestion.points : 0;
-      
-      console.log('[submitQuestionAnswer] Walidacja:', { userAnswer, expectedAnswer: pendingQuestion.expectedAnswer, isCorrect, pointsToAdd });
+      if (!isCorrect) {
+        // Przy blednej odpowiedzi nie zapisujemy kodu jako zeskanowanego.
+        setAnswerError('Bledna odpowiedz. Sprobuj ponownie.');
+        setUserAnswer('');
+        return;
+      }
 
       // Pobierz swieze dane uzytkownika tuz przed zapisem punktow.
       const { data: freshUserData, error: freshUserError } = await supabase
@@ -300,8 +302,6 @@ const GamePage = () => {
         .select('usedCode, points')
         .eq('userID', pendingQuestion.userId)
         .maybeSingle();
-
-      console.log('[submitQuestionAnswer] Pobieranie swiezych danych - error:', freshUserError, 'data:', freshUserData);
 
       if (freshUserError && freshUserError.code !== 'PGRST116') {
         console.error('Blad pobierania swiezych danych uzytkownika:', freshUserError);
@@ -313,24 +313,16 @@ const GamePage = () => {
         pendingQuestion.userId,
         (freshUserData as UsedCodesRow | null) || null,
         pendingQuestion.code,
-        pointsToAdd
+        pendingQuestion.points
       );
 
-      console.log('[submitQuestionAnswer] Po saveUsedCodeForUser - saved:', saved);
-
       if (!saved) {
-        console.error('[submitQuestionAnswer] Nie udało się zapisać');
         setModalType('notFound');
         return;
       }
 
-      if (isCorrect) {
-        setPoints(pendingQuestion.points);
-        setModalType('points');
-      } else {
-        setPoints(0);
-        setModalType('wrongAnswer');
-      }
+      setPoints(pendingQuestion.points);
+      setModalType('points');
 
       setPendingQuestion(null);
       setUserAnswer('');
@@ -346,20 +338,34 @@ const GamePage = () => {
     <div className="game-page">
       <div className="scanner-header">
         <h1>Scanner</h1>
-        <button 
-          onClick={async () => {
-            await signOut();
-            navigate('/');
-          }}
-          type="button"
-          className="user-icon"
-          aria-label="Wyloguj się"
-          title="Wyloguj się"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M10.09 15.59 11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59ZM19 3H8a2 2 0 0 0-2 2v4h2V5h11v14H8v-4H6v4a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"/>
-          </svg>
-        </button>
+        <div className="header-buttons">
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(GAME_RANKING_PATH);
+            }}
+            type="button"
+            className="ranking-button"
+            aria-label="Pokaż ranking"
+            title="Ranking"
+          >
+            Ranking
+          </button>
+          <button 
+            onClick={async () => {
+              await signOut();
+              navigate(HOME_PATH);
+            }}
+            type="button"
+            className="user-icon"
+            aria-label="Wyloguj się"
+            title="Wyloguj się"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10.09 15.59 11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59ZM19 3H8a2 2 0 0 0-2 2v4h2V5h11v14H8v-4H6v4a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
       {isScanning && (

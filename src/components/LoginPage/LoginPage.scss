@@ -180,6 +180,31 @@ form {
   transform: translateY(0);
 }
 
+.back-button {
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: $neutral-color-95;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+
 @media (max-width: $screen-size-tablet) {
   .login-page {
     padding: 1.5rem;

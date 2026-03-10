@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import HomePage from '../HomePage/HomePage';
 import GamePage from '../GamePage/GamePage';
 import LoginPage from '../LoginPage/LoginPage';
+import RankingPage from '../RankingPage/RankingPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HOME_PATH, GAME_PATH } from '../../constants/RouterConstants';
+import { GAME_PATH, GAME_RANKING_PATH, HOME_PATH, RANKING_PATH } from '../../constants/RouterConstants';
 import '../../styles/Constants.scss';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import { AuthProvider } from '../../contexts/AuthContext';
@@ -22,6 +23,22 @@ const MainProvider = () => {
       element: (
         <ProtectedRoute>
           <GamePage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: RANKING_PATH,
+      element: (
+        <ProtectedRoute>
+          <RankingPage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: GAME_RANKING_PATH,
+      element: (
+        <ProtectedRoute>
+          <RankingPage />
         </ProtectedRoute>
       ),
     },

@@ -12,6 +12,17 @@ const LoginPage = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
 
+  const upsertProfile = async (userId: string, displayName: string) => {
+    // Nie blokujemy logowania, jeśli tabela profiles nie istnieje lub RLS nie jest gotowe.
+    const { error } = await supabase
+      .from('profiles')
+      .upsert({ id: userId, display_name: displayName }, { onConflict: 'id' });
+
+    if (error) {
+      console.warn('Nie udalo sie zapisac profilu (profiles):', error.message);
+    }
+  };
+
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -36,21 +47,39 @@ const LoginPage = () => {
           }
         });
         if (error) throw error;
+
+        if (data.user?.id) {
+          await upsertProfile(data.user.id, nickname.trim());
+        }
         
         // Automatyczne logowanie po rejestracji
-        const { error: signInError } = await supabase.auth.signInWithPassword({
+        const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
         if (signInError) throw signInError;
+
+        if (signInData.user?.id) {
+          await upsertProfile(signInData.user.id, nickname.trim());
+        }
         
         navigate('/game');
       } else {
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
         if (error) throw error;
+
+        const fallbackName =
+          data.user?.user_metadata?.display_name ||
+          data.user?.email?.split('@')[0] ||
+          'Gracz';
+
+        if (data.user?.id) {
+          await upsertProfile(data.user.id, fallbackName);
+        }
+
         navigate('/game');
       }
     } catch (error) {
@@ -138,6 +167,14 @@ const LoginPage = () => {
           className="toggle-button"
         >
           {isSignUp ? 'Masz już konto? Zaloguj się' : 'Nie masz konta? Zarejestruj się'}
+        </button>
+
+        <button 
+          type="button"
+          onClick={() => navigate('/')}
+          className="back-button"
+        >
+          ← Powrót na stronę główną
         </button>
       </div>
     </div>
