@@ -83,7 +83,9 @@ const GamePage = () => {
 
     for (let i = pairedQuestions.length - 1; i > 0; i -= 1) {
       const randomIndex = Math.floor(Math.random() * (i + 1));
-      [pairedQuestions[i], pairedQuestions[randomIndex]] = [pairedQuestions[randomIndex], pairedQuestions[i]];
+      const temp = pairedQuestions[i];
+      pairedQuestions[i] = pairedQuestions[randomIndex];
+      pairedQuestions[randomIndex] = temp;
     }
 
     return pairedQuestions.slice(0, Math.min(3, pairedQuestions.length));
