@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Scanner, IDetectedBarcode } from '@yudiel/react-qr-scanner';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabaseConfig';
 import { useAuth } from '../../contexts/AuthContext';
 import { GAME_RANKING_PATH, HOME_PATH } from '../../constants/RouterConstants';
+import DW_LOGO_IMG from '../../../public/images/dw_logo.png';
 import './GamePage.scss';
 
 interface KnownCode {
@@ -19,11 +20,17 @@ interface UsedCodesRow {
   points: number | null;
 }
 
+interface QuestionItem {
+  question: string;
+  expectedAnswer: string;
+}
+
 interface PendingQuestion {
   userId: string;
   code: string;
   points: number;
-  expectedAnswer: string;
+  questions: QuestionItem[];
+  currentIndex: number;
 }
 
 type ModalType = 'notFound' | 'points' | 'question' | 'alreadyUsed' | 'wrongAnswer' | null;
@@ -33,7 +40,6 @@ const GamePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState<ModalType>(null);
   const [points, setPoints] = useState<number | null>(null);
-  const [question, setQuestion] = useState<string | null>(null);
   const [userAnswer, setUserAnswer] = useState('');
   const [answerError, setAnswerError] = useState<string | null>(null);
   const [pendingQuestion, setPendingQuestion] = useState<PendingQuestion | null>(null);
@@ -42,8 +48,45 @@ const GamePage = () => {
   const { session, signOut } = useAuth();
   const navigate = useNavigate();
 
-  const getRandomQuestionIndex = (questions: string[]): number => {
-    return Math.floor(Math.random() * questions.length);
+  useEffect(() => {
+    if (!showModal) {
+      return;
+    }
+
+    const body = document.body;
+    const html = document.documentElement;
+    const previousBodyOverflow = body.style.overflow;
+    const previousHtmlOverflow = html.style.overflow;
+
+    body.style.overflow = 'hidden';
+    html.style.overflow = 'hidden';
+
+    return () => {
+      body.style.overflow = previousBodyOverflow;
+      html.style.overflow = previousHtmlOverflow;
+    };
+  }, [showModal]);
+
+  const getRandomQuestions = (questions: string[], answers: string[] | null): QuestionItem[] => {
+    if (!answers || answers.length === 0) {
+      return [];
+    }
+
+    const limit = Math.min(questions.length, answers.length);
+    const pairedQuestions: QuestionItem[] = questions
+      .slice(0, limit)
+      .map((singleQuestion, index) => ({
+        question: singleQuestion,
+        expectedAnswer: answers[index] || ''
+      }))
+      .filter((item) => item.question.trim().length > 0 && item.expectedAnswer.trim().length > 0);
+
+    for (let i = pairedQuestions.length - 1; i > 0; i -= 1) {
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+      [pairedQuestions[i], pairedQuestions[randomIndex]] = [pairedQuestions[randomIndex], pairedQuestions[i]];
+    }
+
+    return pairedQuestions.slice(0, Math.min(3, pairedQuestions.length));
   };
 
   const normalizeAnswer = (value: string): string => {
@@ -210,17 +253,14 @@ const GamePage = () => {
           } else {
             // Krok 4: Dla kodów z pytaniem przyznaj punkty dopiero po poprawnej odpowiedzi.
             if (knownCode.hasQuestions && knownCode.questions && knownCode.questions.length > 0) {
-              const randomIndex = getRandomQuestionIndex(knownCode.questions);
-              const randomQuestion = knownCode.questions[randomIndex] || '';
-              const expectedAnswer = knownCode.answers?.[randomIndex] || '';
+              const randomQuestions = getRandomQuestions(knownCode.questions, knownCode.answers);
 
-              if (!randomQuestion || !expectedAnswer) {
+              if (randomQuestions.length === 0) {
                 console.error('Brak pary pytanie/odpowiedz dla kodu:', knownCode.code);
                 setModalType('notFound');
                 return;
               }
 
-              setQuestion(randomQuestion);
               setPoints(knownCode.points);
               setUserAnswer('');
               setAnswerError(null);
@@ -228,7 +268,8 @@ const GamePage = () => {
                 userId,
                 code,
                 points: knownCode.points,
-                expectedAnswer
+                questions: randomQuestions,
+                currentIndex: 0
               });
               setModalType('question');
             } else {
@@ -267,7 +308,6 @@ const GamePage = () => {
     setShowModal(false);
     setModalType(null);
     setPoints(null);
-    setQuestion(null);
     setUserAnswer('');
     setAnswerError(null);
     setPendingQuestion(null);
@@ -288,10 +328,34 @@ const GamePage = () => {
     setLoading(true);
 
     try {
-      const isCorrect = normalizeAnswer(userAnswer) === normalizeAnswer(pendingQuestion.expectedAnswer);
+      const currentQuestion = pendingQuestion.questions[pendingQuestion.currentIndex];
+
+      if (!currentQuestion) {
+        setModalType('notFound');
+        return;
+      }
+
+      const isCorrect = normalizeAnswer(userAnswer) === normalizeAnswer(currentQuestion.expectedAnswer);
       if (!isCorrect) {
         // Przy blednej odpowiedzi nie zapisujemy kodu jako zeskanowanego.
         setAnswerError('Bledna odpowiedz. Sprobuj ponownie.');
+        setUserAnswer('');
+        return;
+      }
+
+      const hasNextQuestion = pendingQuestion.currentIndex < pendingQuestion.questions.length - 1;
+
+      if (hasNextQuestion) {
+        setPendingQuestion((previousState) => {
+          if (!previousState) {
+            return previousState;
+          }
+
+          return {
+            ...previousState,
+            currentIndex: previousState.currentIndex + 1
+          };
+        });
         setUserAnswer('');
         return;
       }
@@ -337,7 +401,15 @@ const GamePage = () => {
   return (
     <div className="game-page">
       <div className="scanner-header">
-        <h1>Scanner</h1>
+        <button
+          onClick={() => navigate(HOME_PATH)}
+          type="button"
+          className="scanner-logo"
+          aria-label="Przejdź do strony głównej"
+          title="Strona główna"
+        >
+          <img src={DW_LOGO_IMG} alt="DW" />
+        </button>
         <div className="header-buttons">
           <button 
             onClick={(e) => {
@@ -361,9 +433,7 @@ const GamePage = () => {
             aria-label="Wyloguj się"
             title="Wyloguj się"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M10.09 15.59 11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59ZM19 3H8a2 2 0 0 0-2 2v4h2V5h11v14H8v-4H6v4a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"/>
-            </svg>
+            Wyloguj
           </button>
         </div>
       </div>
@@ -395,7 +465,7 @@ const GamePage = () => {
 
       {showModal && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className={`modal-content ${modalType === 'question' ? 'question-modal' : ''}`} onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>×</button>
             
             {loading && (
@@ -435,11 +505,31 @@ const GamePage = () => {
 
             {!loading && modalType === 'question' && (
               <>
-                <h2>❓ Pytanie bonusowe</h2>
+                <h2>❓ Pytania bonusowe</h2>
+                {pendingQuestion && (
+                  <div className="question-progress">
+                    <p className="question-step-label">
+                      Pytanie {pendingQuestion.currentIndex + 1} z {pendingQuestion.questions.length}
+                    </p>
+                    <div className="question-steps" aria-hidden="true">
+                      {pendingQuestion.questions.map((_, index) => {
+                        const isActiveStep = index === pendingQuestion.currentIndex;
+                        const isCompletedStep = index < pendingQuestion.currentIndex;
+
+                        return (
+                          <span
+                            key={`${index}`}
+                            className={`question-step ${isActiveStep ? 'active' : ''} ${isCompletedStep ? 'completed' : ''}`}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
                 <div className="modal-data question-box">
-                  <p>{question}</p>
+                  <p>{pendingQuestion?.questions[pendingQuestion.currentIndex]?.question}</p>
                 </div>
-                <p className="points-info">Poprawna odpowiedz daje Ci <strong>{points} {points === 1 ? 'punkt' : (points || 0) < 5 ? 'punkty' : 'punktów'}</strong></p>
+                <p className="points-info">Poprawna odpowiedz na wszystkie pytania daje Ci <strong>{points} {points === 1 ? 'punkt' : (points || 0) < 5 ? 'punkty' : 'punktów'}</strong></p>
 
                 <div className="answer-form">
                   <input
@@ -451,7 +541,9 @@ const GamePage = () => {
                   />
                   {answerError && <p className="answer-error">{answerError}</p>}
                   <button className="answer-submit" onClick={submitQuestionAnswer}>
-                    Sprawdz odpowiedz
+                    {pendingQuestion && pendingQuestion.currentIndex < pendingQuestion.questions.length - 1
+                      ? 'Sprawdz i dalej'
+                      : 'Sprawdz odpowiedz'}
                   </button>
                 </div>
               </>

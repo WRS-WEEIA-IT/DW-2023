@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabaseConfig';
-import { GAME_PATH } from '../../constants/RouterConstants';
+import { useAuth } from '../../contexts/AuthContext';
+import { GAME_PATH, HOME_PATH } from '../../constants/RouterConstants';
+import DW_LOGO_IMG from '../../../public/images/dw_logo.png';
 import './RankingPage.scss';
 
 interface RankingUser {
@@ -21,6 +23,7 @@ const RankingPage = () => {
   const [ranking, setRanking] = useState<RankingUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { signOut } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,15 +73,35 @@ const RankingPage = () => {
   return (
     <div className="ranking-page">
       <div className="ranking-header">
-        <button 
-          className="back-button"
-          onClick={() => navigate(GAME_PATH)}
-          title="Powrót do skanera"
+        <button
+          onClick={() => navigate(HOME_PATH)}
+          type="button"
+          className="ranking-logo"
+          aria-label="Przejdź do strony głównej"
+          title="Strona główna"
         >
-          ← Powrót do gry
+          <img src={DW_LOGO_IMG} alt="DW" />
         </button>
-        <h1>🏆 Ranking</h1>
-        <div style={{ width: '100px' }} /> {/* Spacer dla symetrii */}
+        <h1>Ranking</h1>
+        <div className="ranking-actions">
+          <button
+            className="back-button"
+            onClick={() => navigate(GAME_PATH)}
+            title="Powrót do skanera"
+          >
+            Powrót
+          </button>
+          <button
+            className="logout-button"
+            onClick={async () => {
+              await signOut();
+              navigate(HOME_PATH);
+            }}
+            title="Wyloguj się"
+          >
+            Wyloguj
+          </button>
+        </div>
       </div>
 
       {loading && (

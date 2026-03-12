@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabaseConfig';
+import DW_LOGO_IMG from '../../../public/images/dw_logo.png';
 import './LoginPage.scss';
 
 const LoginPage = () => {
@@ -11,6 +12,28 @@ const LoginPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const body = document.body;
+    const html = document.documentElement;
+
+    const previousBodyOverflow = body.style.overflow;
+    const previousBodyHeight = body.style.height;
+    const previousHtmlOverflow = html.style.overflow;
+    const previousHtmlHeight = html.style.height;
+
+    body.style.overflow = 'hidden';
+    body.style.height = '100dvh';
+    html.style.overflow = 'hidden';
+    html.style.height = '100dvh';
+
+    return () => {
+      body.style.overflow = previousBodyOverflow;
+      body.style.height = previousBodyHeight;
+      html.style.overflow = previousHtmlOverflow;
+      html.style.height = previousHtmlHeight;
+    };
+  }, []);
 
   const upsertProfile = async (userId: string, displayName: string) => {
     // Nie blokujemy logowania, jeśli tabela profiles nie istnieje lub RLS nie jest gotowe.
@@ -92,12 +115,13 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <div className="login-container">
-        <button 
-          className="close-button"
+        <button
+          className="login-logo-button"
           onClick={() => navigate('/')}
           title="Powrót na stronę główną"
+          type="button"
         >
-          ×
+          <img src={DW_LOGO_IMG} alt="DW" />
         </button>
         
         <h1>{isSignUp ? 'Rejestracja' : 'Logowanie'}</h1>

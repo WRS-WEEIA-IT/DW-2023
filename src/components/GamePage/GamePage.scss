@@ -8,7 +8,10 @@
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #2d2d2d;
+  background:
+    radial-gradient(circle at 10% 8%, rgba(217, 119, 6, 0.25) 0%, rgba(217, 119, 6, 0) 36%),
+    radial-gradient(circle at 88% 14%, rgba(87, 75, 190, 0.28) 0%, rgba(87, 75, 190, 0) 40%),
+    $neutral-color-05;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -19,16 +22,36 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: calc(0.75rem + env(safe-area-inset-top)) calc(1rem + env(safe-area-inset-right)) 0.75rem calc(1rem + env(safe-area-inset-left));
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
+    padding: calc(0.7rem + env(safe-area-inset-top)) calc(0.9rem + env(safe-area-inset-right)) 0.7rem calc(0.9rem + env(safe-area-inset-left));
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.66) 0%, rgba(0, 0, 0, 0.24) 100%);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-    h1 {
-      font-size: 1.5rem;
-      margin: 0;
-      color: $neutral-color-95;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+    .scanner-logo {
+      all: unset;
+      cursor: pointer;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0;
+      background: transparent;
+      border: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+
+      img {
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+      }
+
+      &:active {
+        transform: scale(0.96);
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
     }
 
     .header-buttons {
@@ -39,19 +62,19 @@
 
     .ranking-button {
       background: rgba(217, 119, 6, 0.2);
-      border: 1px solid rgba(217, 119, 6, 0.6);
+      border: 1px solid rgba(217, 119, 6, 0.64);
       color: $neutral-color-95;
       cursor: pointer;
-      padding: 0.45rem 0.85rem;
+      padding: 0.44rem 0.78rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
       border-radius: 999px;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.6px;
 
       &:hover {
         background: rgba(217, 119, 6, 0.35);
@@ -64,42 +87,46 @@
     }
 
     .user-icon {
-      background: transparent;
-      border: none;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       cursor: pointer;
-      padding: 0.5rem;
-      display: flex;
+      padding: 0.44rem 0.78rem;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      border-radius: 50%;
-
-      svg {
-        width: 32px;
-        height: 32px;
-        color: $neutral-color-95;
-        transition: all 0.3s ease;
-      }
+      border-radius: 999px;
+      color: $neutral-color-95;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
 
       &:hover {
-        background: rgba(255, 255, 255, 0.1);
-        
-        svg {
-          color: rgba(239, 68, 68, 0.9);
-        }
+        background: rgba(239, 68, 68, 0.18);
+        border-color: rgba(239, 68, 68, 0.62);
       }
 
       &:active {
-        transform: scale(0.95);
+        transform: scale(0.97);
       }
     }
   }
 
   @media (max-width: $screen-size-mobile) {
     .scanner-header {
+      .scanner-logo {
+        height: 30px;
+      }
+
       .ranking-button {
-        font-size: 0.78rem;
-        padding: 0.4rem 0.65rem;
+        font-size: 0.72rem;
+        padding: 0.38rem 0.6rem;
+      }
+
+      .user-icon {
+        font-size: 0.72rem;
+        padding: 0.38rem 0.6rem;
       }
     }
   }
@@ -193,31 +220,123 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.85);
+    background: rgba(3, 3, 3, 0.82);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    backdrop-filter: blur(10px);
-    padding: 1rem;
+    backdrop-filter: blur(12px);
+    padding: calc(0.9rem + env(safe-area-inset-top)) calc(0.85rem + env(safe-area-inset-right)) calc(0.9rem + env(safe-area-inset-bottom)) calc(0.85rem + env(safe-area-inset-left));
+    overflow-x: hidden;
   }
 
   .modal-content {
-    background: linear-gradient(135deg, rgba(50, 50, 50, 0.98) 0%, rgba(30, 30, 30, 0.98) 100%);
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(165deg, rgba(18, 18, 18, 0.97) 0%, rgba(13, 13, 13, 0.97) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 20px;
-    padding: 2rem;
-    max-width: 400px;
-    width: 100%;
+    padding: 2.1rem 1.2rem 1.2rem;
+    max-width: 410px;
+    width: min(100%, 410px);
+    max-height: min(88vh, 680px);
+    overflow-y: auto;
+    overflow-x: hidden;
     text-align: center;
     position: relative;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.56);
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+
+    * {
+      box-sizing: border-box;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 20px 20px 0 0;
+      background: $primary-gradient;
+    }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: clamp(1.18rem, 2.3vw, 1.5rem);
       color: $neutral-color-95;
-      margin-bottom: 1.5rem;
-      margin-top: 0;
+      margin: 0;
+      padding-right: 2rem;
+      overflow-wrap: anywhere;
+      line-height: 1.25;
+    }
+
+    &.question-modal {
+      .question-progress {
+        margin: 0;
+        padding: 0.75rem 0.85rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: linear-gradient(140deg, rgba(17, 17, 17, 0.78) 0%, rgba(28, 28, 28, 0.78) 100%);
+
+        .question-step-label {
+          margin: 0 0 0.42rem;
+          font-size: 0.82rem;
+          color: rgba(255, 255, 255, 0.72);
+          letter-spacing: 0.35px;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+
+        .question-steps {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+
+          .question-step {
+            width: 22px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.25s ease;
+
+            &.active {
+              width: 32px;
+              background: linear-gradient(90deg, rgba(217, 119, 6, 0.9) 0%, rgba(102, 91, 214, 0.9) 100%);
+            }
+
+            &.completed {
+              background: rgba(74, 222, 128, 0.85);
+            }
+          }
+        }
+      }
+
+      .modal-data.question-box {
+        min-height: 132px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background:
+          radial-gradient(circle at 9% 8%, rgba(217, 119, 6, 0.2) 0%, rgba(217, 119, 6, 0) 48%),
+          linear-gradient(145deg, rgba(17, 41, 74, 0.62) 0%, rgba(17, 36, 70, 0.48) 100%),
+          rgba(255, 255, 255, 0.03);
+        border-color: rgba(84, 146, 246, 0.5);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+        p {
+          width: 100%;
+          text-align: center;
+          font-weight: 500;
+          line-height: 1.55;
+          font-size: clamp(0.98rem, 2.2vw, 1.08rem);
+        }
+      }
+
+      .points-info {
+        margin-bottom: 0.1rem;
+      }
     }
 
     .loading-spinner {
@@ -237,11 +356,11 @@
     }
 
     .modal-data {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 1.15rem;
       border-radius: 12px;
-      border-left: 3px solid $primary-gradient;
-      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 0;
       min-height: 60px;
       display: flex;
       flex-direction: column;
@@ -250,7 +369,8 @@
 
       p {
         color: $neutral-color-95;
-        word-break: break-all;
+        word-break: normal;
+        overflow-wrap: anywhere;
         font-family: monospace;
         font-size: 1rem;
         margin: 0;
@@ -272,19 +392,21 @@
           color: #4ade80;
           text-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
           margin: 0;
+          white-space: nowrap;
         }
       }
 
       &.question-box {
         min-height: 100px;
-        background: rgba(59, 130, 246, 0.15);
-        border-left-color: #3b82f6;
+        background: rgba(59, 130, 246, 0.12);
+        border-color: rgba(59, 130, 246, 0.35);
 
         p {
           font-family: inherit;
           font-size: 1.05rem;
           color: $neutral-color-95;
-          line-height: 1.8;
+          line-height: 1.6;
+          overflow-wrap: anywhere;
         }
       }
     }
@@ -292,7 +414,9 @@
     .points-info {
       color: rgba(255, 255, 255, 0.7);
       font-size: 0.95rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
       
       strong {
         color: #4ade80;
@@ -303,27 +427,43 @@
     .answer-form {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      margin-top: 0.75rem;
+      gap: 0.72rem;
+      margin-top: 0;
+      width: 100%;
+      max-width: 100%;
 
       .answer-input {
+        display: block;
         width: 100%;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        background: rgba(255, 255, 255, 0.08);
+        max-width: 100%;
+        min-height: 52px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background:
+          linear-gradient(120deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.05) 100%),
+          rgba(0, 0, 0, 0.22);
         color: $neutral-color-95;
-        border-radius: 10px;
-        padding: 0.75rem 0.9rem;
-        font-size: 0.98rem;
+        border-radius: 14px;
+        padding: 0.92rem 1rem;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.2;
         outline: none;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 
         &::placeholder {
-          color: rgba(255, 255, 255, 0.45);
+          color: rgba(255, 255, 255, 0.5);
+          font-weight: 500;
         }
 
         &:focus {
-          border-color: rgba(59, 130, 246, 0.85);
-          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+          border-color: rgba(217, 119, 6, 0.72);
+          background:
+            linear-gradient(120deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%),
+            rgba(0, 0, 0, 0.24);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.09),
+            0 0 0 3px rgba(217, 119, 6, 0.16);
         }
       }
 
@@ -336,19 +476,23 @@
 
       .answer-submit {
         width: 100%;
-        border: none;
+        max-width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 999px;
-        padding: 0.75rem 1rem;
-        font-weight: 600;
+        min-height: 50px;
+        padding: 0.8rem 1rem;
+        font-weight: 700;
         font-size: 0.95rem;
+        line-height: 1.2;
+        white-space: normal;
         cursor: pointer;
         color: $neutral-color-95;
-        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        background: $primary-gradient-dark;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
 
         &:hover {
           transform: translateY(-1px);
-          box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+          box-shadow: 0 8px 18px rgba(217, 119, 6, 0.28);
         }
 
         &:active {
@@ -361,7 +505,7 @@
       position: absolute;
       top: 0.75rem;
       right: 0.75rem;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: $neutral-color-95;
       width: 36px;
@@ -376,7 +520,7 @@
       line-height: 1;
 
       &:hover {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.16);
         border-color: rgba(255, 255, 255, 0.3);
         transform: scale(1.1);
       }
@@ -387,22 +531,31 @@
     }
 
     .modal-button {
-      padding: 0.875rem 2rem;
-      background: $primary-gradient;
+      min-height: 50px;
+      padding: 0.8rem 1.25rem;
+      background: rgba(255, 255, 255, 0.08);
       color: $neutral-color-95;
-      border: none;
+      border: 1px solid rgba(255, 255, 255, 0.22);
       border-radius: 50px;
-      font-weight: 600;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: normal;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
       font-size: 1rem;
       width: 100%;
+      max-width: 100%;
+
+      .question-modal & {
+        background: rgba(255, 255, 255, 0.06);
+      }
 
       &:hover {
-        background: $primary-gradient-bright;
+        background: rgba(217, 119, 6, 0.2);
+        border-color: rgba(217, 119, 6, 0.68);
         transform: translateY(-2px);
-        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 6px 20px rgba(217, 119, 6, 0.22);
       }
 
       &:active {
@@ -415,19 +568,10 @@
   @media (max-width: $screen-size-tablet) {
     .scanner-header {
       padding: calc(0.625rem + env(safe-area-inset-top)) calc(0.875rem + env(safe-area-inset-right)) 0.625rem calc(0.875rem + env(safe-area-inset-left));
-
-      h1 {
-        font-size: 1.375rem;
-      }
-
-      .user-icon svg {
-        width: 28px;
-        height: 28px;
-      }
     }
 
     .modal-content {
-      padding: 1.75rem;
+      padding: 1.75rem 1.05rem 1.05rem;
       max-width: 90%;
 
       h2 {
@@ -435,7 +579,7 @@
       }
 
       .modal-data {
-        padding: 1.25rem;
+        padding: 1rem;
 
         p.points-value {
           font-size: 2.25rem;
@@ -447,28 +591,18 @@
   @media (max-width: $screen-size-mobile) {
     .scanner-header {
       padding: calc(0.5rem + env(safe-area-inset-top)) calc(0.75rem + env(safe-area-inset-right)) 0.5rem calc(0.75rem + env(safe-area-inset-left));
-
-      h1 {
-        font-size: 1.25rem;
-      }
-
-      .user-icon {
-        padding: 0.375rem;
-
-        svg {
-          width: 26px;
-          height: 26px;
-        }
-      }
     }
 
     .modal-content {
-      padding: 1.5rem;
+      padding: 1.6rem 0.9rem 0.95rem;
       border-radius: 16px;
+      width: 100%;
+      max-height: calc(100dvh - 1.2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      gap: 0.8rem;
 
       h2 {
         font-size: 1.25rem;
-        margin-bottom: 1.25rem;
+        margin-bottom: 0;
       }
 
       .modal-data {
@@ -487,8 +621,35 @@
         font-size: 0.9rem;
       }
 
+      &.question-modal {
+        .question-progress {
+          padding: 0.68rem 0.7rem;
+
+          .question-step-label {
+            font-size: 0.8rem;
+          }
+
+          .question-steps {
+            gap: 0.35rem;
+
+            .question-step {
+              width: 16px;
+              height: 5px;
+
+              &.active {
+                width: 24px;
+              }
+            }
+          }
+        }
+
+        .modal-data.question-box {
+          min-height: 108px;
+        }
+      }
+
       .modal-button {
-        padding: 0.75rem 1.5rem;
+        padding: 0.72rem 1.2rem;
         font-size: 0.95rem;
       }
 
@@ -505,20 +666,16 @@
     .scanner-header {
       padding: calc(0.4rem + env(safe-area-inset-top)) calc(0.65rem + env(safe-area-inset-right)) 0.4rem calc(0.65rem + env(safe-area-inset-left));
 
-      h1 {
-        font-size: 1.125rem;
-      }
-
-      .user-icon svg {
-        width: 24px;
-        height: 24px;
+      .scanner-logo {
+        height: 27px;
       }
     }
 
     .modal-content {
-      max-height: 90vh;
+      max-height: calc(100dvh - 1.25rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
       overflow-y: auto;
-      padding: 1.25rem;
+      padding: 1.25rem 0.95rem 0.9rem;
+      gap: 0.65rem;
 
       h2 {
         font-size: 1.125rem;
@@ -526,7 +683,7 @@
       }
 
       .modal-data {
-        padding: 0.875rem;
+        padding: 0.8rem;
         min-height: 50px;
 
         p.points-value {
