@@ -1,0 +1,48 @@
+@use '../../styles/Constants.scss' as *;
+
+.card-container {
+  background-size: cover;
+  min-height: 300px;
+  max-height: 500px;
+  background-color: $neutral-color-55;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-content: flex-start;
+  gap: 15px;
+  color: $neutral-color-95;
+  padding: 20px;
+
+  .card-event-header {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .card-event-partner {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .card-event-time {
+    margin-top: 0;
+    margin-left: auto;
+  }
+
+  .card-title {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .card-event-type {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .card-signup-button {
+    width: max-content;
+  }
+}

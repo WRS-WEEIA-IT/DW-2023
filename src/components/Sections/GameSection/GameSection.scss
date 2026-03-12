@@ -1,0 +1,124 @@
+@use '/src/styles/Constants.scss' as *;
+
+.game-section {
+  padding: 6vh 2rem;
+  background-color: $neutral-color-05;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  &__content {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: $neutral-color-95;
+    letter-spacing: -0.5px;
+  }
+
+  &__description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    color: $neutral-color-95;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+
+    &:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &-icon {
+      transition: transform 0.3s ease;
+    }
+
+    &:hover &-icon {
+      transform: translateX(4px);
+    }
+  }
+
+  @media (max-width: $screen-size-tablet) {
+    padding: 4vh 1rem;
+
+    &__content {
+      padding: 2rem 1.5rem;
+    }
+
+    &__title {
+      font-size: 1.75rem;
+    }
+
+    &__description {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &__button {
+      padding: 0.875rem 1.75rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: $screen-size-mobile) {
+    padding: 3vh 1rem;
+
+    &__content {
+      padding: 1.5rem 1rem;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__description {
+      font-size: 0.9rem;
+    }
+
+    &__button {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+    }
+  }
+}

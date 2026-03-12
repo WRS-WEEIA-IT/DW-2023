@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#FFFFFF">
+  
+  <!-- Add this style to prevent dark mode color inversion -->
+  <style>
+    /* Force light mode */
+    html {
+      color-scheme: light only;
+    }
+    
+    /* Prevent SVGs from being inverted in dark mode */
+    svg, img[src$=".svg"] {
+      filter: none !important;
+    }
+    
+    /* Dark mode media query override */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: light;
+      }
+      
+      body, html {
+        background-color: #FFFFFF !important;
+      }
+    }
+  </style>
+
+  <script>
+    // Check if user is on mobile
+    function isMobileDevice() {
+      const userAgent = navigator.userAgent.toLowerCase();
+      return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(userAgent) || 
+             (window.innerWidth <= 1000);
+    }
+    
+    // If not mobile, show blocking page and prevent Flutter from loading
+    if (!isMobileDevice()) {
+      window.addEventListener('DOMContentLoaded', function() {
+        document.body.innerHTML = `
+          <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #000000; color: white; padding: 20px; text-align: center;">
+            <div style="font-size: 70px; margin-bottom: 24px;">📱</div>
+            <h1 style="font-size: 28px; margin-bottom: 16px;">Mobile Only Application</h1>
+            <p style="font-size: 16px; max-width: 500px; color: #cccccc;">
+              This application is optimized for mobile devices only. Please open it on your smartphone or tablet.
+            </p>
+          </div>
+        `;
+        
+        // Stop any Flutter loading scripts
+        const scripts = document.querySelectorAll('script');
+        scripts.forEach(script => {
+          if (script.src && script.src.includes('flutter')) {
+            script.remove();
+          }
+        });
+      });
+    } else {
+    // Custom "Add to Home Screen" prompt for mobile users
+    let deferredPrompt;
+    const addToHomeScreen = {
+      shown: false,
+      
+      // Check if already prompted (using localStorage)
+      wasPromptShown() {
+        return localStorage.getItem('a2hs_prompted') === 'true';
+      },
+      
+      // Mark as prompted
+      markPromptShown() {
+        localStorage.setItem('a2hs_prompted', 'true');
+        this.shown = true;
+      },
+      
+      // Show custom prompt
+      showCustomPrompt() {
+        // Wait for Flutter to initialize
+        setTimeout(() => {
+          if (this.shown || this.wasPromptShown()) return;
+          
+          // Create and show floating prompt UI
+          const promptDiv = document.createElement('div');
+          promptDiv.innerHTML = `
+            <div id="a2hs-prompt" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
+                        background-color: white; color: black; padding: 16px; border-radius: 12px; 
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 9999; display: flex; flex-direction: column;
+                        align-items: center; width: 80%; max-width: 320px;">
+              <div style="font-size: 18px; margin-bottom: 10px;">📱 Add to Home Screen</div>
+              <div style="font-size: 14px; margin-bottom: 15px; text-align: center;">
+                Add this app to your home screen for a better experience
+              </div>
+              <div style="display: flex; gap: 10px; width: 100%;">
+                <button id="a2hs-later" style="flex: 1; padding: 10px; border: none; background: #eee; border-radius: 8px;">
+                  Later
+                </button>
+                <button id="a2hs-add" style="flex: 1; padding: 10px; border: none; background: #0066cc; color: white; border-radius: 8px;">
+                  Add
+                </button>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(promptDiv);
+          
+          // Handle "Later" button
+          document.getElementById('a2hs-later').addEventListener('click', () => {
+            document.getElementById('a2hs-prompt').remove();
+            this.markPromptShown();
+          });
+          
+          // Handle "Add" button
+          document.getElementById('a2hs-add').addEventListener('click', () => {
+            document.getElementById('a2hs-prompt').remove();
+            this.markPromptShown();
+            
+            if (deferredPrompt) {
+              // For Chrome/Android - show native prompt
+              deferredPrompt.prompt();
+            } else {
+              // For iOS - show instructions
+              const iosPrompt = document.createElement('div');
+              iosPrompt.innerHTML = `
+                <div id="ios-prompt" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+                            background-color: rgba(0,0,0,0.8); z-index: 9999; display: flex; 
+                            justify-content: center; align-items: center; padding: 20px;">
+                  <div style="background: white; padding: 20px; border-radius: 12px; max-width: 320px; text-align: center;">
+                    <div style="font-size: 18px; margin-bottom: 15px;">How to add to Home Screen:</div>
+                    <div style="font-size: 14px; margin-bottom: 15px; text-align: left;">
+                      1. Tap the share icon <span style="font-size: 18px;">⎙</span> at the bottom of your browser<br>
+                      2. Scroll and select "Add to Home Screen"
+                    </div>
+                    <button id="ios-ok" style="padding: 10px 20px; border: none; background: #0066cc; color: white; border-radius: 8px;">
+                      OK
+                    </button>
+                  </div>
+                </div>
+              `;
+              document.body.appendChild(iosPrompt);
+              document.getElementById('ios-ok').addEventListener('click', () => {
+                document.getElementById('ios-prompt').remove();
+              });
+            }
+          });
+          
+        }, 3000); // Show after 3 seconds
+      }
+    };
+    
+    // Listen for "beforeinstallprompt" event (Chrome/Android)
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // Don't show if this is a subsequent visit
+      if (!addToHomeScreen.wasPromptShown()) {
+        addToHomeScreen.showCustomPrompt();
+      }
+    });
+    
+    // For iOS (which doesn't trigger beforeinstallprompt)
+    window.addEventListener('load', () => {
+      // Check if on iOS
+      const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+      
+      if (isIOS && !addToHomeScreen.wasPromptShown() && !navigator.standalone) {
+        addToHomeScreen.showCustomPrompt();
+      }
+    });
+  }
+</script>
+  <base href="/app/">
+
+  <meta name="google-signin-client_id" content="615740456848-qh2klp595m5qlvo66es3tvi36e3jka4k.apps.googleusercontent.com">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Aplikacja mobilna przeznaczona Dniu Wydziału EEIA">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Dzień Wydziału EEIA">
+  
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Fix for text rendering */
+    * {
+      text-rendering: optimizeLegibility;
+    }
+  </style>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+  
+  <!-- Add SDKs for Firebase products you need -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="icon_maskable_192.png"/>
+
+  <title>Dzień Wydziału EEIA</title>
+  <link rel="manifest" href="manifest.json">
+  <script>
+    // Service worker registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=2347998273');
+      });
+    }
+  </script>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

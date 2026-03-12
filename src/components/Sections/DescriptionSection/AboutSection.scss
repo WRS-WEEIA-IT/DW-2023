@@ -1,0 +1,24 @@
+@use '/src/styles/Constants.scss' as *;
+
+#about-section {
+  background-color: $neutral-color-05;
+  padding: 10vh calc(2 * var(--screen-side-margin)) 0 calc(2 * var(--screen-side-margin));
+  color: $neutral-color-95;
+  text-align: center;
+
+  #about-description-text {
+    margin: 0;
+    text-align: center;
+
+    .about-description-header {
+      margin: 2rem 0 1rem 0;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-size-tablet) {
+  #about-section {
+    padding-left: var(--screen-side-margin);
+    padding-right: var(--screen-side-margin);
+  }
+}

@@ -1,0 +1,247 @@
+//body settings
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+//global constants
+
+$screen-size-mobile: 500px;
+$screen-size-laptop: 1550px;
+$screen-size-tablet: 1100px;
+$navbar-height: 90px;
+
+//colors
+
+$primary-color-15: hsl(17, 83%, 15%);
+$primary-color-25: hsl(17, 83%, 25%);
+$primary-color-30: hsl(17, 83%, 30%);
+$primary-color-35: hsl(17, 83%, 35%);
+$primary-color-45: hsl(17, 83%, 45%);
+$primary-color-55: hsl(17, 83%, 55%);
+$primary-color-65: hsl(17, 83%, 65%);
+$primary-color-75: hsl(17, 83%, 75%);
+$primary-color-85: hsl(17, 83%, 85%);
+
+$secondary-color-15: hsl(242, 55%, 15%);
+$secondary-color-25: hsl(242, 55%, 25%);
+$secondary-color-30: hsl(242, 55%, 30%);
+$secondary-color-35: hsl(242, 55%, 35%);
+$secondary-color-45: hsl(242, 55%, 45%);
+$secondary-color-55: hsl(242, 55%, 55%);
+$secondary-color-65: hsl(242, 55%, 65%);
+$secondary-color-75: hsl(242, 55%, 75%);
+$secondary-color-85: hsl(242, 55%, 85%);
+
+$primary-gradient-start-dark: hsl(17, 83%, 40%);
+$secondary-gradient-end-dark: hsl(242, 55%, 30%);
+
+$primary-gradient-start: hsl(17, 83%, 50%);
+$secondary-gradient-end: hsl(242, 55%, 40%);
+
+$primary-gradient-start-bright: hsl(17, 83%, 60%);
+$secondary-gradient-end-bright: hsl(242, 55%, 50%);
+
+$primary-gradient: linear-gradient(to right, $primary-gradient-start, $secondary-gradient-end);
+
+$primary-gradient-bright: linear-gradient(
+  to right,
+  $primary-gradient-start-bright,
+  $secondary-gradient-end-bright
+);
+
+$primary-gradient-dark: linear-gradient(
+  to right,
+  $primary-gradient-start-dark,
+  $secondary-gradient-end-dark
+);
+
+$neutral-color-05: hsl(0, 0%, 5%);
+$neutral-color-15: hsl(0, 0%, 15%);
+$neutral-color-25: hsl(0, 0%, 25%);
+$neutral-color-35: hsl(0, 0%, 35%);
+$neutral-color-45: hsl(0, 0%, 45%);
+$neutral-color-55: hsl(0, 0%, 55%);
+$neutral-color-65: hsl(0, 0%, 65%);
+$neutral-color-75: hsl(0, 0%, 75%);
+$neutral-color-85: hsl(0, 0%, 85%);
+$neutral-color-95: hsl(0, 0%, 95%);
+
+//fonts
+
+:root {
+  --h1-font-size: 2.8rem;
+  --h2-font-size: 2.2rem;
+  --h3-font-size: 1.8rem;
+  --h4-font-size: 1.3rem;
+  --h5-font-size: 1.1rem;
+  --h6-font-size: 0.8rem;
+  --p-font-size: 1.1rem;
+  --span-font-size: 0.8rem;
+  --button-font-size: 0.8rem;
+}
+
+h1 {
+  font-size: var(--h1-font-size);
+}
+h2 {
+  font-size: var(--h2-font-size);
+}
+h3 {
+  font-size: var(--h3-font-size);
+}
+h4 {
+  font-size: var(--h4-font-size);
+}
+h5 {
+  font-size: var(--h5-font-size);
+}
+h6 {
+  font-size: var(--h6-font-size);
+}
+p {
+  font-size: var(--p-font-size);
+}
+span {
+  font-size: var(--span-font-size);
+}
+button {
+  font-size: var(--button-font-size);
+}
+
+@media screen and (max-width: $screen-size-laptop) {
+  :root {
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 2.2rem;
+    --h3-font-size: 1.7rem;
+    --h4-font-size: 1.3rem;
+    --h5-font-size: 1rem;
+    --h6-font-size: 0.8rem;
+    --p-font-size: 1rem;
+    --span-font-size: 0.8rem;
+    --button-font-size: 0.8rem;
+    --screen-side-margin: 9vw;
+  }
+}
+
+@media screen and (max-width: $screen-size-tablet) {
+  :root {
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 2.2rem;
+    --h3-font-size: 1.7rem;
+    --h4-font-size: 1.3rem;
+    --h5-font-size: 1rem;
+    --h6-font-size: 0.8rem;
+    --p-font-size: 1rem;
+    --span-font-size: 0.8rem;
+    --button-font-size: 0.8rem;
+    --screen-side-margin: 6vw;
+  }
+}
+
+@media screen and (max-width: $screen-size-mobile) {
+  :root {
+    --h1-font-size: 2.2rem;
+    --h2-font-size: 1.8rem;
+    --h3-font-size: 1.4rem;
+    --h4-font-size: 1rem;
+    --h5-font-size: 0.8rem;
+    --h6-font-size: 0.7rem;
+    --p-font-size: 0.8rem;
+    --span-font-size: 0.7rem;
+    --button-font-size: 0.7rem;
+    --screen-side-margin: 9vw;
+  }
+}
+
+// shared classes
+
+.icon {
+  height: calc(var(--button-font-size) * 1.5);
+}
+
+.open-link-icon {
+  height: var(--p-font-size);
+}
+
+.text-link {
+  all: unset;
+  color: $primary-color-55;
+  cursor: pointer;
+}
+
+.button-link {
+  all: unset;
+}
+
+// global classes
+
+:root {
+  overflow: visible;
+  font-family: 'Montserrat', sans-serif;
+  --screen-side-margin: 13vw;
+  background-color: $neutral-color-05;
+  color-scheme: only light;
+}
+
+:root::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  width: 100%;
+  height: calc(100 * var(--vh));
+  background: linear-gradient(
+    150deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-repeat: no-repeat;
+}
+
+// :root::after {
+//   content: '';
+//   display: block;
+//   position: absolute;
+//   overflow: hidden;
+//   z-index: -1;
+//   top: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: url('/public/background/newfluid2.png');
+//   background-repeat: no-repeat;
+// }
+
+body::-webkit-scrollbar {
+  width: 1rem;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: $neutral-color-15;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: $primary-color-55;
+}
+
+// mixins
+
+@mixin flex-center($flex-direction: row) {
+  display: flex;
+  flex-direction: $flex-direction;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin set-default-a-attributes() {
+  all: unset;
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+}

@@ -1,0 +1,90 @@
+@use './Constants.scss' as *;
+
+@mixin disableDefaultButtonStyles {
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+$hover-transition-time: 0.2s;
+$click-transition-time: 0.01s;
+$border-radius: 3rem;
+
+.button {
+  @include disableDefaultButtonStyles;
+  cursor: pointer;
+  background: none;
+  font-weight: 700;
+  white-space: nowrap;
+  position: relative;
+
+  &.filled {
+    transition: $hover-transition-time;
+    box-sizing: border-box;
+    outline: none;
+    background-clip: padding-box;
+    color: $neutral-color-95;
+    border: 0.1rem solid transparent;
+    background:
+      $primary-color-55 padding-box;
+
+    &:hover {
+      background:
+        $primary-color-65 padding-box;
+      transition: $hover-transition-time;
+    }
+
+    &:active {
+      background:
+        $primary-color-45 padding-box;
+      transition: $click-transition-time;
+      color: $neutral-color-85;
+    }
+  }
+
+  &.outlined {
+    background-color: hsla(0, 0%, 100%, 0);
+    transition: $hover-transition-time;
+    border: 0.1rem solid $neutral-color-95;
+    color: $neutral-color-95;
+
+    &:hover {
+      background-color: $neutral-color-95;
+      color: $neutral-color-05;
+      transition: $hover-transition-time;
+    }
+
+    &:active {
+      background-color: $neutral-color-65;
+      border-color: $neutral-color-65;
+      transition: $click-transition-time;
+    }
+  }
+
+  &.square {
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+
+    background:
+      $secondary-color-35 padding-box;
+
+    &:hover {
+      background:
+        $secondary-color-45 padding-box;
+      transition: $hover-transition-time;
+    }
+
+    &:active {
+      background:
+        $secondary-color-25 padding-box;
+      transition: $click-transition-time;
+      color: $neutral-color-85;
+    }
+  }
+
+  &.round {
+    border-radius: $border-radius;
+    padding: 1rem 2.25rem;
+  }
+}

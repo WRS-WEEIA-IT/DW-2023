@@ -1,0 +1,14 @@
+@use '/src/styles/Constants.scss' as *;
+
+#welcome-section {
+  height: calc(100 * var(--vh));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  #welcome-wave-img {
+    width: 100%;
+    transform: translateY(1px);
+  }
+}

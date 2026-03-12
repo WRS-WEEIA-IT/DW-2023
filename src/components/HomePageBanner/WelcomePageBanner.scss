@@ -1,0 +1,54 @@
+@use '/src/styles/Constants.scss' as *;
+
+$welcome-page-grid-gap: 25%;
+$banner-grid-gap: 1rem;
+
+$banner-buttons-gap: 1rem;
+$banner-buttons-gap-mobile: 1.8rem;
+
+#welcome-page-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $welcome-page-grid-gap;
+  align-items: center;
+  justify-content: center;
+  padding: 10vh var(--screen-side-margin) 0 var(--screen-side-margin);
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+
+  #left-banner-side {
+    @include flex-center(column);
+    width: auto;
+    gap: $banner-grid-gap;
+
+    #banner-text {
+      color: $neutral-color-95;
+      font-weight: 500;
+    }
+
+    #dw-logo {
+      width: 100%;
+    }
+
+    #banner-buttons {
+      display: flex;
+      gap: $banner-buttons-gap;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-size-tablet) {
+  #welcome-page-banner {
+    grid-template-columns: 1fr;
+
+    #left-banner-side {
+      gap: $banner-buttons-gap-mobile;
+
+      #banner-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+}

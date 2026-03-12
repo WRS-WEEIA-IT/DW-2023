@@ -1,0 +1,52 @@
+{
+  "name": "dw-2023",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint --ext .js,.ts,.jsx,.tsx src"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.97.0",
+    "@yudiel/react-qr-scanner": "^2.5.1",
+    "framer-motion": "^12.34.3",
+    "localforage": "^1.10.0",
+    "lucide": "^0.575.0",
+    "lucide-react": "^0.575.0",
+    "match-sorter": "^8.2.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-firebase-hooks": "^5.1.1",
+    "react-router-dom": "^7.13.0",
+    "react-router-hash-link": "^2.4.3",
+    "swiper": "^12.1.2"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^7.0.11",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-router-hash-link": "^2.4.9",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "@typescript-eslint/parser": "^8.56.0",
+    "@vitejs/plugin-react": "^5.1.4",
+    "eslint": "^9.39.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.5",
+    "react-router-hash-link": "^2.4.3",
+    "sass": "^1.97.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  }
+}
