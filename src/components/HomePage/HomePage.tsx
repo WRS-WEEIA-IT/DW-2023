@@ -7,6 +7,7 @@ import PartnersSection from '../Sections/PartnersSection/PartnersSection';
 import RegulaminSection from '../Sections/RegulaminSection/RegulaminSection';
 import GameSection from '../Sections/GameSection/GameSection';
 import Footer from '../Footer/Footer';
+import Advertisements from '../Advertisements/Advertisements';
 import { LazyMotion, domAnimation } from 'framer-motion';
 
 const HomePage = () => {
@@ -28,6 +29,7 @@ const HomePage = () => {
         <EventsSection />
         <PartnersSection />
         <Footer />
+        <Advertisements />
       </div>
     </LazyMotion>
   );
