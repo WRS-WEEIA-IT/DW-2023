@@ -4,7 +4,8 @@ import { supabase } from '../supabaseConfig';
 type Advertisement = {
   id: number;
   name: string;
-  imageSrc: string;
+  imageSrc?: string | null;
+  link?: string | null;
 };
 
 const useFetchAdvertisements = () => {

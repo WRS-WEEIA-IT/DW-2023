@@ -1,6 +1,6 @@
 import './Advertisements.scss';
 import { m } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useFetchAdvertisements from '../../hooks/useFetchAdvertisements';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 
@@ -10,6 +10,15 @@ const Advertisements = () => {
 
   const visibleCount = windowWidth <= 800 ? 1 : 2;
   const [startIndex, setStartIndex] = useState(0);
+  const isInitialIndexSet = useRef(false);
+
+  useEffect(() => {
+    if (isInitialIndexSet.current || advertisements.length === 0) return;
+
+    const randomStartIndex = Math.floor(Math.random() * advertisements.length);
+    setStartIndex(randomStartIndex);
+    isInitialIndexSet.current = true;
+  }, [advertisements.length]);
 
   useEffect(() => {
     if (!advertisements || advertisements.length <= visibleCount) return;
@@ -29,51 +38,59 @@ const Advertisements = () => {
     return <p>Error: {error}</p>;
   }
 
-  const visibleAds = [];
-  for (let i = 0; i < visibleCount; i++) {
-    const adIndex = (startIndex + i) % advertisements.length;
-    visibleAds.push(advertisements[adIndex]);
+  if (advertisements.length === 0) {
+    return <div id="advertisement-section" />;
   }
+
+  const visibleAds = [];
+  for (let i = 0; i < Math.min(visibleCount, advertisements.length); i++) {
+    const adIndex = (startIndex + i) % advertisements.length;
+    const advertisement = advertisements[adIndex];
+
+    if (advertisement) {
+      visibleAds.push(advertisement);
+    }
+  }
+
+  const renderAd = (ad: (typeof advertisements)[number]) => {
+    const image = (
+      <img
+        id={ad.name}
+        src={ad.imageSrc || ''}
+        className="advertisement-image"
+        alt={ad.name}
+      />
+    );
+
+    if (!ad.link) {
+      return image;
+    }
+
+    return (
+      <a href={ad.link} target="_blank" rel="noopener noreferrer">
+        {image}
+      </a>
+    );
+  };
 
   return (
     <div id="advertisement-section">
       {visibleCount === 1 ? (
-        <m.div id="advertisement-container">
-          {visibleAds.map(ad => {
-            const imageUrl = ad.imageSrc || (ad as any).link || '';
-            return (
-              <img
-                key={ad.id}
-                id={ad.name}
-                src={imageUrl}
-                className="advertisement-image"
-                alt={ad.name}
-              />
-            );
-          })}
+        <m.div className="advertisement-container">
+          {visibleAds.map(ad => (
+            <div key={ad.id}>{renderAd(ad)}</div>
+          ))}
         </m.div>
       ) : (
         <>
           <m.div className="advertisement-container">
             {visibleAds[0] && (
-              <img
-                key={visibleAds[0].id}
-                id={visibleAds[0].name}
-                src={visibleAds[0].imageSrc || (visibleAds[0] as any).link || ''}
-                className="advertisement-image"
-                alt={visibleAds[0].name}
-              />
+              <div key={visibleAds[0].id}>{renderAd(visibleAds[0])}</div>
             )}
           </m.div>
           <m.div className="advertisement-container">
             {visibleAds[1] && (
-              <img
-                key={visibleAds[1].id}
-                id={visibleAds[1].name}
-                src={visibleAds[1].imageSrc || (visibleAds[1] as any).link || ''}
-                className="advertisement-image"
-                alt={visibleAds[1].name}
-              />
+              <div key={visibleAds[1].id}>{renderAd(visibleAds[1])}</div>
             )}
           </m.div>
         </>
