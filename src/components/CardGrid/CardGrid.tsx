@@ -37,6 +37,7 @@ const CardGrid = () => {
                 timeEnd={event.timeEnd}
                 partner={event.partner}
                 room={event.room}
+                active={event.active}
               />
             </SwiperSlide>
           ))

@@ -10,6 +10,206 @@
     #events-description {
       text-align: center;
     }
+
+    .OrbitWrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arrow.left {
+      left: -44px;
+    }
+
+    .arrow.right {
+      right: -44px;
+    }
+
+    .arrow:hover {
+      background: #6c63ff;
+    }
+
+    .Orbit {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      overflow-x: auto;
+      padding: 1rem;
+      padding-bottom: 2rem;
+      scroll-snap-type: none;
+      scroll-behavior: smooth;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+    }
+
+    .Orbit.dragging {
+      cursor: grabbing;
+      user-select: none;
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+    }
+
+    .Orbit::-webkit-scrollbar {
+      height: 15px;
+    }
+
+    .Orbit::-webkit-scrollbar-track {
+      background: #1a1a1a;
+      border-radius: 10px;
+    }
+
+    .Orbit::-webkit-scrollbar-thumb {
+      background: #6c63ff;
+      border-radius: 10px;
+    }
+
+    .Orbit::-webkit-scrollbar-thumb:hover {
+      background: #8b84ff;
+    }
+
+    .Card {
+      width: 100%;
+      max-width: 350px;
+      height: 500px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      scroll-snap-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .Card.active {
+      transform: scale(1.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .CardContent {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      width: 100%;
+      height: 90.5%;
+      color: white;
+      position: relative;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.2) 100%
+      );
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0.75rem;
+        left: 1.15rem;
+        right: 1.15rem;
+        height: 3.4rem;
+        z-index: 0;
+        pointer-events: none;
+        background: rgba(7, 11, 20, 0.14);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.28), transparent);
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.28), transparent);
+      }
+    }
+
+    .CardTitle {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.28;
+      letter-spacing: 0.01em;
+      margin: 0.2rem 0 0.8rem 0;
+      padding: 0;
+      align-self: center;
+      width: auto;
+      max-width: 94%;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      text-wrap: balance;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+      position: relative;
+      z-index: 1;
+    }
+
+    .CardBottom {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .CardMeta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 8px;
+      padding: 8px 12px;
+      backdrop-filter: blur(4px);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .CardDate {
+      text-align: left;
+    }
+
+    .CardLocation {
+      text-align: left;
+    }
+
+    .card-button {
+      display: block;
+      margin-top: 0;
+      padding: 0.6rem 1rem;
+      background: #6c63ff;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      z-index: 10;
+    }
   }
 
   #events-wave-img {
@@ -22,72 +222,12 @@
     text-align: center;
   }
 
-  .coming-soon-container {
+  .events {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 4rem 2rem;
-    min-height: 300px;
-
-    .coming-soon-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 3rem 2rem;
-      max-width: 500px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-      }
-
-      .coming-soon-icon {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-        display: inline-block;
-        animation: bounce 2s infinite;
-      }
-
-      .coming-soon-title {
-        font-size: 1.8rem;
-        font-weight: 600;
-        margin: 1rem 0;
-        color: $neutral-color-95;
-      }
-
-      .coming-soon-text {
-        font-size: 1rem;
-        line-height: 1.6;
-        color: rgba(255, 255, 255, 0.8);
-        margin: 1rem 0 2rem 0;
-      }
-
-      .coming-soon-dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-
-        span {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background-color: rgba(255, 255, 255, 0.6);
-          animation: pulse 1.5s infinite;
-
-          &:nth-child(2) {
-            animation-delay: 0.2s;
-          }
-
-          &:nth-child(3) {
-            animation-delay: 0.4s;
-          }
-        }
-      }
-    }
+    min-height: 500px;
   }
 }
 
@@ -121,26 +261,20 @@
   #events-section {
     #events-content {
       padding: 7vh 0 10vh 0;
-    }
 
-    .coming-soon-container {
-      padding: 2rem 1rem;
-      min-height: 250px;
+      .Orbit {
+        scroll-snap-type: x mandatory;
+      }
 
-      .coming-soon-card {
-        padding: 2rem 1.5rem;
+      .arrow {
+        display: none;
+      }
 
-        .coming-soon-icon {
-          font-size: 3rem;
-        }
-
-        .coming-soon-title {
-          font-size: 1.4rem;
-        }
-
-        .coming-soon-text {
-          font-size: 0.9rem;
-        }
+      .CardTitle {
+        font-size: 0.92rem;
+        margin: 0.15rem 0 0.65rem 0;
+        padding: 0;
+        max-width: 96%;
       }
     }
   }

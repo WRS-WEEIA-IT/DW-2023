@@ -6,4 +6,5 @@ export default interface CardInterface {
   title: string;
   partner: string;
   room: string;
+  active: boolean;
 }

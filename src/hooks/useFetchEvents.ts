@@ -13,6 +13,7 @@ const useFetchEvents = () => {
       const { data, error } = await supabase
         .from('events')
         .select('*')
+        .eq('active', true)
         .order('timeStart', { ascending: true });
 
       console.log(data);
