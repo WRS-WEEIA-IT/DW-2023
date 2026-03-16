@@ -1,6 +1,6 @@
 @use '../../styles/Constants.scss' as *;
 
-$button-gap: 20px;
+$button-gap: 16px;
 $button-gap-mobile: 30px;
 $menu-open-transition-duration: 0.6s;
 $menu-padding: 50px;
@@ -40,11 +40,23 @@ $link-hover-transition-duration: 0.2s;
     #navbar-links-container {
       display: flex;
       flex-direction: row;
+      align-items: center;
       gap: $button-gap;
+
+      > div {
+        display: flex;
+        align-items: center;
+      }
 
       .navbar-link {
         @include set-default-a-attributes;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-weight: 600;
+        min-height: $navbar-height;
+        line-height: 1.2;
+        white-space: nowrap;
         margin: 0;
         transition: $link-hover-transition-duration;
 
@@ -116,6 +128,7 @@ $link-hover-transition-duration: 0.2s;
 
         .navbar-link {
           font-size: var(--h3-font-size);
+          min-height: calc(var(--h3-font-size) * 1.8);
           text-align: center;
         }
 
