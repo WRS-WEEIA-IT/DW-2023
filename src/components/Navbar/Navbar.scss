@@ -70,6 +70,22 @@ $link-hover-transition-duration: 0.2s;
         margin-left: auto;
         margin-right: 0;
         width: 9.5rem;
+        border: 1px solid rgba($neutral-color-95, 0.35);
+        background: rgba($neutral-color-95, 0.06);
+        box-shadow: none;
+        transition:
+          background-color 0.2s ease,
+          border-color 0.2s ease;
+
+        &:hover {
+          background: rgba($neutral-color-95, 0.12);
+          border-color: rgba($neutral-color-95, 0.55);
+        }
+
+        &:active {
+          background: rgba($neutral-color-95, 0.18);
+          border-color: rgba($neutral-color-95, 0.65);
+        }
       }
     }
   }

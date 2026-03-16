@@ -1,7 +1,7 @@
 import Card from '../Card/Card';
 import './CardGrid.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper.min.css';
+import 'swiper/css';
 import { useContext } from 'react';
 import { LanguageModeContext } from '../../contexts/LanguageContext';
 import useFetchEvents from '../../hooks/useFetchEvents';

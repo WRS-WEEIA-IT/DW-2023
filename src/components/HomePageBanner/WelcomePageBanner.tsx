@@ -38,18 +38,19 @@ const WelcomePageBanner = () => {
           variants={createAnimateOnScroll(0.7)}
           id="banner-buttons"
         >
-          {/* <a
+          <a
             href={FORM_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="button-link"
           >
             <button
+              id="banner-signup-button"
               className={`${Button.button} ${Button.filled} ${Button.round}`}
             >
               {languageMode == "polish" ? "Zapisz się" : "Sign up"}
             </button>
-          </a> */}
+          </a>
           <a
             href={FACEBOOK_EVENT_LINK}
             target="_blank"

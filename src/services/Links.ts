@@ -1,5 +1,5 @@
 export const FORM_LINK =
-  "https://forms.office.com/pages/responsepage.aspx?id=v0JFlU5jREKbdZgaoVJ3VgwIRLcGwVRBqUI34rDDByZUOTVVR1ZFTEhSTk5VWEJSNU9EN1E3R0RPTC4u&route=shorturl";
+  "https://forms.cloud.microsoft/e/nT2GaMp8jP";
 export const APP_STORE_APP_LINK =
   "https://apps.apple.com/app/dzie%C5%84-wydzia%C5%82u-eeia/id6742422768";
 export const GOOGLE_PLAY_APP_LINK =
