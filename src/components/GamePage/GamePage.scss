@@ -197,6 +197,16 @@
       }
     }
 
+    // The torch icon is positioned inline by the library (bottom/right), so we override that exact node.
+    :global(div[style*='bottom: 35px'][style*='right: 8px']),
+    :global(div[style*='bottom:35px'][style*='right:8px']) {
+      top: calc(env(safe-area-inset-top) + 4.15rem) !important;
+      right: calc(0.6rem + env(safe-area-inset-right)) !important;
+      bottom: auto !important;
+      left: auto !important;
+      z-index: 12 !important;
+    }
+
     @media (max-width: $screen-size-tablet) {
       :global(.qr-scanner__controls) {
         top: calc(env(safe-area-inset-top) + 4.25rem) !important;
@@ -207,6 +217,12 @@
       :global(.qr-scanner__controls) {
         top: calc(env(safe-area-inset-top) + 3.85rem) !important;
         right: calc(0.6rem + env(safe-area-inset-right)) !important;
+      }
+
+      :global(div[style*='bottom: 35px'][style*='right: 8px']),
+      :global(div[style*='bottom:35px'][style*='right:8px']) {
+        top: calc(env(safe-area-inset-top) + 3.65rem) !important;
+        right: calc(0.52rem + env(safe-area-inset-right)) !important;
       }
 
       :global(.qr-scanner__controls button) {
