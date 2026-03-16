@@ -167,6 +167,14 @@
 
     // Style torch and control buttons
     :global(.qr-scanner__controls) {
+      position: absolute !important;
+      top: calc(env(safe-area-inset-top) + 4.6rem) !important;
+      right: calc(0.75rem + env(safe-area-inset-right)) !important;
+      left: auto !important;
+      bottom: auto !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
       z-index: 10;
     }
 
@@ -186,6 +194,24 @@
 
       svg {
         color: white !important;
+      }
+    }
+
+    @media (max-width: $screen-size-tablet) {
+      :global(.qr-scanner__controls) {
+        top: calc(env(safe-area-inset-top) + 4.25rem) !important;
+      }
+    }
+
+    @media (max-width: $screen-size-mobile) {
+      :global(.qr-scanner__controls) {
+        top: calc(env(safe-area-inset-top) + 3.85rem) !important;
+        right: calc(0.6rem + env(safe-area-inset-right)) !important;
+      }
+
+      :global(.qr-scanner__controls button) {
+        width: 44px !important;
+        height: 44px !important;
       }
     }
 
