@@ -91,6 +91,11 @@
     margin-bottom: 1.5rem;
   }
 
+  .signup-form {
+    gap: 0.8rem;
+    margin-bottom: 1.1rem;
+  }
+
   .form-group {
     display: flex;
     flex-direction: column;
@@ -261,6 +266,28 @@
       transform: translateY(0);
     }
   }
+
+  .login-container.signup-mode {
+    padding-top: 2rem;
+    padding-bottom: 1.35rem;
+
+    h1 {
+      margin-bottom: 1.1rem;
+    }
+
+    .form-group {
+      gap: 6px;
+    }
+
+    .character-count,
+    .input-hint {
+      margin-top: 2px;
+    }
+
+    .back-button {
+      margin-top: 0.75rem;
+    }
+  }
 }
 
 @media (max-width: $screen-size-tablet) {
@@ -276,6 +303,11 @@
       h1 {
         font-size: 1.78rem;
       }
+    }
+
+    .login-container.signup-mode {
+      padding-top: 1.8rem;
+      padding-bottom: 1.2rem;
     }
   }
 }
@@ -295,6 +327,11 @@
         font-size: 1.58rem;
         margin-bottom: 1.5rem;
       }
+    }
+
+    .login-container.signup-mode {
+      padding-top: 1.65rem;
+      padding-bottom: 1.1rem;
     }
 
     .login-logo-button img {

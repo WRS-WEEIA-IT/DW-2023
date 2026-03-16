@@ -159,7 +159,7 @@ const LoginPage = () => {
 
   return (
     <div className="login-page">
-      <div className="login-container">
+      <div className={`login-container ${isSignUp ? 'signup-mode' : ''}`}>
         <button
           className="login-logo-button"
           onClick={() => navigate('/')}
@@ -173,7 +173,7 @@ const LoginPage = () => {
         
         {error && <div className="error-message">{error}</div>}
         
-        <form onSubmit={handleAuth}>
+        <form onSubmit={handleAuth} className={isSignUp ? 'signup-form' : ''}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
