@@ -183,8 +183,19 @@
       text-align: left;
     }
 
+    .CardLocationRow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
     .CardLocation {
       text-align: left;
+    }
+
+    .CardCompany {
+      text-align: right;
     }
 
     .card-button {

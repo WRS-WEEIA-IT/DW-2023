@@ -42,9 +42,10 @@ const Card = (
         <div className="card-event-header">
           <p className="card-event-time">{`${startHour} - ${endHour}`}</p>
           <h6 className="card-event-partner">
-            {partner ? partner : "??"},{" "}
             {languageMode === "polish" ? "Sala " : "Room "}
             {room}
+            <br />
+            {partner ? partner : "??"}
           </h6>
         </div>
         <h6 className="card-event-type">{eventTypeText}</h6>

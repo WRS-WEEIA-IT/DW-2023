@@ -222,7 +222,10 @@ const EventsSection = () => {
                           <div className="CardDate">
                             {formatDate(event.timeStart)}, {formatTime(event.timeStart)} - {formatTime(event.timeEnd)}
                           </div>
-                          <div className="CardLocation">{event.room}</div>
+                          <div className="CardLocationRow">
+                            <div className="CardLocation">{event.room}</div>
+                            <div className="CardCompany">{event.partner}</div>
+                          </div>
                         </div>
                       </div>
                       <a
