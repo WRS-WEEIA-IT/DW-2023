@@ -18,6 +18,13 @@
     color: rgba(255, 255, 255, 0.8);
   }
 
+  .regulamin-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
   .regulamin-button {
     display: inline-block;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
@@ -49,5 +56,14 @@
   #regulamin-section {
     padding-left: var(--screen-side-margin);
     padding-right: var(--screen-side-margin);
+
+    .regulamin-buttons-container {
+      gap: 1rem;
+    }
+
+    .regulamin-button {
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+    }
   }
 }
