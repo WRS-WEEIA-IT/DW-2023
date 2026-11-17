@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { LanguageModeContext } from "../../contexts/LanguageContext";
 import CardInterface from "./CardInterface";
 import { FORM_LINK } from "../../services/Links";
+import { EVENT_VISIBILITY } from "../../constants/EventVisibility";
 
 const Card = (
   { imageSrc, eventType, title, timeStart, timeEnd, partner, room }:
@@ -28,31 +29,37 @@ const Card = (
   const startHour = formatTime(timeStart);
   const endHour = formatTime(timeEnd);
 
-  return (
-    <a
-      href={FORM_LINK}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="button-link"
+  const card = (
+    <div
+      className="card-container"
+      style={{ backgroundImage: `url(images/${imageSrc}.jpg)` }}
     >
-      <div
-        className="card-container"
-        style={{ backgroundImage: `url(images/${imageSrc}.jpg)` }}
-      >
-        <div className="card-event-header">
-          <p className="card-event-time">{`${startHour} - ${endHour}`}</p>
-          <h6 className="card-event-partner">
-            {languageMode === "polish" ? "Sala " : "Room "}
-            {room}
-            <br />
-            {partner ? partner : "??"}
-          </h6>
-        </div>
-        <h6 className="card-event-type">{eventTypeText}</h6>
-        <h5 className="card-title">{title ? title : "??"}</h5>
+      <div className="card-event-header">
+        <p className="card-event-time">{`${startHour} - ${endHour}`}</p>
+        <h6 className="card-event-partner">
+          {languageMode === "polish" ? "Sala " : "Room "}
+          {room}
+          <br />
+          {partner ? partner : "??"}
+        </h6>
       </div>
-    </a>
+      <h6 className="card-event-type">{eventTypeText}</h6>
+      <h5 className="card-title">{title ? title : "??"}</h5>
+    </div>
   );
+
+  return EVENT_VISIBILITY.registration
+    ? (
+      <a
+        href={FORM_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="button-link"
+      >
+        {card}
+      </a>
+    )
+    : card;
 };
 
 export default Card;

@@ -45,7 +45,7 @@ const Partners = () => {
         </div>
         {/* do zmiany na aktualnych */}
         <h2 id="strategic-partners-header">
-          {languageMode == 'polish' ? 'Partnerzy strategiczni' : 'Strategic partners'}
+          {languageMode == 'polish' ? 'Partnerzy strategiczni DW2026' : 'Strategic partners DW2026'}
         </h2>
         <m.div
           className="strategic-section"
@@ -86,7 +86,9 @@ const Partners = () => {
           )}
         </m.div>
         {/* do zmiany na aktualnych */}
-        <h2 id="partners-header">{languageMode == 'polish' ? 'Partnerzy' : 'Partners'}</h2>
+        <h2 id="partners-header">
+          {languageMode == 'polish' ? 'Partnerzy DW2026' : 'Partners DW2026'}
+        </h2>
         <m.div
           className="diamond-section"
           initial="hidden"
@@ -203,7 +205,7 @@ const Partners = () => {
           ) : (
             <>
               <h3 className="patrons-subheader">
-                {languageMode == 'polish' ? 'Patronaty honorowe' : 'Honorary patronage'}
+                {languageMode == 'polish' ? 'Patronaty honorowe DW2026' : 'Honorary patronage DW2026'}
               </h3>
               <div className="patrons-container">
                 {honoraryPatrons.map((patron) => (
@@ -226,7 +228,7 @@ const Partners = () => {
                 ))}
               </div>
               <h3 className="patrons-subheader">
-                {languageMode == 'polish' ? 'Patronaty medialne' : 'Media patronage'}
+                {languageMode == 'polish' ? 'Patronaty medialne DW2026' : 'Media patronage DW2026'}
               </h3>
               <div className="patrons-container">
                 {mediaPatrons.map((patron) => (

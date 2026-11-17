@@ -18,11 +18,11 @@ const RegulaminSection = () => {
 
   const regulations = [
     {
-      date: languageMode === "polish" ? "18 marca - Dzień Wydziału" : "March 18 - Department Day",
+      date: languageMode === "polish" ? "16 marca - Dzień Wydziału" : "March 16 - Department Day",
       link: "https://zosayoqrngvrydnexaek.supabase.co/storage/v1/object/public/DW-files/regulamin.pdf",
     },
     {
-      date: languageMode === "polish" ? "19 marca - Dzień Szkół" : "March 19 - Schools Day",
+      date: languageMode === "polish" ? "17 marca - Dzień Szkół" : "March 17 - Schools Day",
       link: "https://zosayoqrngvrydnexaek.supabase.co/storage/v1/object/public/DW-files/regulamin_szkoly.pdf",
     },
   ];

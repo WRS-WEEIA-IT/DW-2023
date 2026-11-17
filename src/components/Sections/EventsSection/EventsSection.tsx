@@ -7,14 +7,19 @@ import {
 } from "../../../animations/animateOnScroll";
 import { m } from "framer-motion";
 import useFetchEvents from "../../../hooks/useFetchEvents";
+import { EVENT_VISIBILITY } from "../../../constants/EventVisibility";
 
 const EventsSection = () => {
   const { languageMode } = useContext(LanguageModeContext);
 
   const HEADER_TEXT = languageMode == "polish" ? "Szkolenia" : "Workshops";
-  const DESCRIPTION_TEXT = languageMode == "polish"
-    ? "Zapisz się na najciekawsze szkolenia!"
-    : "Choose the events that suit you the most and sign up for them!";
+  const DESCRIPTION_TEXT = EVENT_VISIBILITY.registration
+    ? languageMode == "polish"
+      ? "Zapisz się na najciekawsze szkolenia!"
+      : "Choose the events that suit you the most and sign up for them!"
+    : languageMode == "polish"
+    ? "Sprawdź harmonogram wydarzeń."
+    : "Explore the event schedule.";
 
   const APPLICATION_LINK = "https://forms.cloud.microsoft.com/e/nT2GaMp8jP";
   const { events, loading, error } = useFetchEvents();
@@ -228,14 +233,16 @@ const EventsSection = () => {
                           </div>
                         </div>
                       </div>
-                      <a
-                        href={APPLICATION_LINK}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="card-button"
-                      >
-                        {languageMode === "polish" ? "Aplikuj" : "Apply"}
-                      </a>
+                      {EVENT_VISIBILITY.registration && (
+                        <a
+                          href={APPLICATION_LINK}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="card-button"
+                        >
+                          {languageMode === "polish" ? "Aplikuj" : "Apply"}
+                        </a>
+                      )}
                     </div>
                   </div>
                 ))}

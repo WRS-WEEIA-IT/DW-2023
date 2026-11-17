@@ -23,6 +23,7 @@ import {
   WEB_APP_LINK,
 } from '../../services/Links';
 import { Globe } from 'lucide-react';
+import { EVENT_VISIBILITY } from '../../constants/EventVisibility';
 
 const Footer = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -91,14 +92,16 @@ const Footer = () => {
               {languageMode == 'polish' ? 'O wydarzeniu' : 'About event'}
             </p>
           </Link>
-          <Link to="#events-section" className="footer-link" smooth>
-            <p>{languageMode == 'polish' ? 'Szkolenia' : 'Workshops'}</p>
-          </Link>
+          {EVENT_VISIBILITY.schedule && (
+            <Link to="#events-section" className="footer-link" smooth>
+              <p>{languageMode == 'polish' ? 'Szkolenia' : 'Workshops'}</p>
+            </Link>
+          )}
         </div>
         <div id="partners-column">
           {/* do zmiany na aktualnych */}
           <h4 className="footer-header">
-            {languageMode == 'polish' ? 'Partnerzy strategiczni' : 'Strategic partners'}
+            {languageMode == 'polish' ? 'Partnerzy strategiczni DW2026' : 'Strategic partners DW2026'}
           </h4>
           <div id="partners-grid">
             <a
@@ -121,7 +124,7 @@ const Footer = () => {
         </div>
         <div id="partners-column">
           <h4 className="footer-header">
-            {languageMode == 'polish' ? 'Patronaty honorowe' : 'Honorary patronage'}
+            {languageMode == 'polish' ? 'Patronaty honorowe DW2026' : 'Honorary patronage DW2026'}
           </h4>
           <div id="partners-grid">
             <a
@@ -146,7 +149,7 @@ const Footer = () => {
           <div id="contact-text-column">
             <p className="footer-paragraph">Stefanowskiego 18/22, Łódź</p>
             <p className="footer-paragraph">dzien.weeia@samorzad.p.lodz.pl</p>
-            <p className="footer-paragraph">(+48) 504 556 808 - Ola ({languageMode == 'polish' ? 'Koordynator' : 'Coordinator'})</p>
+            <p className="footer-paragraph">(+48) 538 404 472 - Daria ({languageMode == 'polish' ? 'Koordynator' : 'Coordinator'})</p>
           </div>
         </div>
       </div>
@@ -156,7 +159,7 @@ const Footer = () => {
   const allRightsReservedSection = () => {
     return (
       <div id="all-rights-reserved-section">
-        <p>Dzień Wydziału EEIA 2026 - All Rights Reserved</p>
+        <p>Dzień Wydziału EEIA 2027 - All Rights Reserved</p>
         <div id="social-media-icons-container">
           <Link
             className="icon-link"

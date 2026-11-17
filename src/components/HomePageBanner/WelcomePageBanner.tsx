@@ -10,6 +10,7 @@ import {
   createAnimateOnScroll,
 } from "../../animations/animateOnScroll";
 import { FACEBOOK_EVENT_LINK, FORM_LINK } from "../../services/Links";
+import { EVENT_VISIBILITY } from "../../constants/EventVisibility";
 
 const WelcomePageBanner = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -38,19 +39,21 @@ const WelcomePageBanner = () => {
           variants={createAnimateOnScroll(0.7)}
           id="banner-buttons"
         >
-          <a
-            href={FORM_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="button-link"
-          >
-            <button
-              id="banner-signup-button"
-              className={`${Button.button} ${Button.filled} ${Button.round}`}
+          {EVENT_VISIBILITY.registration && (
+            <a
+              href={FORM_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button-link"
             >
-              {languageMode == "polish" ? "Zapisz się" : "Sign up"}
-            </button>
-          </a>
+              <button
+                id="banner-signup-button"
+                className={`${Button.button} ${Button.filled} ${Button.round}`}
+              >
+                {languageMode == "polish" ? "Zapisz się" : "Sign up"}
+              </button>
+            </a>
+          )}
           <a
             href={FACEBOOK_EVENT_LINK}
             target="_blank"

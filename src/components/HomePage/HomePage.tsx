@@ -9,6 +9,7 @@ import GameSection from '../Sections/GameSection/GameSection';
 import Footer from '../Footer/Footer';
 import Advertisements from '../Advertisements/Advertisements';
 import { LazyMotion, domAnimation } from 'framer-motion';
+import { EVENT_VISIBILITY } from '../../constants/EventVisibility';
 
 const HomePage = () => {
   const setCustomViewportHeightVariable = () => {
@@ -24,12 +25,12 @@ const HomePage = () => {
         <Navbar />
         <WelcomeSection />
         <AboutSection />
-        <RegulaminSection />
+        {EVENT_VISIBILITY.regulations && <RegulaminSection />}
         <GameSection />
-        <EventsSection />
+        {EVENT_VISIBILITY.schedule && <EventsSection />}
         <PartnersSection />
         <Footer />
-        <Advertisements />
+        {EVENT_VISIBILITY.advertisements && <Advertisements />}
       </div>
     </LazyMotion>
   );

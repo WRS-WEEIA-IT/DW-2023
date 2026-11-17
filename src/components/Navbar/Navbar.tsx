@@ -16,6 +16,7 @@ import {
 } from "../../animations/animateOnScroll";
 import scrollWithOffset from "../../constants/scrollWithOffset";
 import { FORM_LINK } from "../../services/Links";
+import { EVENT_VISIBILITY } from "../../constants/EventVisibility";
 
 const Navbar = () => {
   const { languageMode } = useContext(LanguageModeContext);
@@ -57,7 +58,7 @@ const Navbar = () => {
               variants={createAnimateOnScroll(0)}
               id="dw-logo"
             >
-              DW2026
+              DW2027
             </m.h3>
           </Link>
           <div id="burger-container" onClick={handleMenuToggle}>
@@ -97,24 +98,26 @@ const Navbar = () => {
         </div>
         <div id="navbar-buttons-container">
           <LanguageSwitch />
-          <a
-            href={FORM_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="button-link"
-          >
-            <button
-              id="navbar-signup-button"
-              className={`${Button.button} ${Button.filled} ${Button.square}`}
+          {EVENT_VISIBILITY.registration && (
+            <a
+              href={FORM_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button-link"
             >
-              {languageMode == "polish" ? "Zapisz się" : "Sign up"}
-              <img
-                className="icon"
-                id="arrow-right-icon"
-                src={ARROW_RIGHT_ICON}
-              />
-            </button>
-          </a>
+              <button
+                id="navbar-signup-button"
+                className={`${Button.button} ${Button.filled} ${Button.square}`}
+              >
+                {languageMode == "polish" ? "Zapisz się" : "Sign up"}
+                <img
+                  className="icon"
+                  id="arrow-right-icon"
+                  src={ARROW_RIGHT_ICON}
+                />
+              </button>
+            </a>
+          )}
         </div>
       </div>
     </div>
